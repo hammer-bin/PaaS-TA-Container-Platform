@@ -15,13 +15,29 @@
 		898624DC28E250B000024852 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 898624DB28E250B000024852 /* Alamofire */; };
 		898624DE28E2515000024852 /* APILogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624DD28E2515000024852 /* APILogger.swift */; };
 		898624E028E2519700024852 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624DF28E2519700024852 /* BaseInterceptor.swift */; };
-		898624E228E252B700024852 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624E128E252B700024852 /* APIRouter.swift */; };
 		898624E428E253E000024852 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624E328E253E000024852 /* AuthRouter.swift */; };
 		898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624E628E2544B00024852 /* UserDefaultManager.swift */; };
 		898624EA28E2548300024852 /* TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624E928E2548300024852 /* TokenData.swift */; };
 		898624EC28E2564100024852 /* AuthAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624EB28E2564100024852 /* AuthAPIService.swift */; };
 		898624EE28E2568900024852 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624ED28E2568900024852 /* UserData.swift */; };
 		898624F028E256BE00024852 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624EF28E256BE00024852 /* AuthResponse.swift */; };
+		89910FD728E340CE00A21088 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FD628E340CE00A21088 /* UserVM.swift */; };
+		89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FD928E3427B00A21088 /* LoginPage.swift */; };
+		89910FDC28E343CC00A21088 /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FDB28E343CC00A21088 /* CustomCorner.swift */; };
+		8993E43328E639E7007CA986 /* Workload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993E43228E639E7007CA986 /* Workload.swift */; };
+		899CDF6328E4735B00838335 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6228E4735B00838335 /* MainView.swift */; };
+		899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6428E4DF5B00838335 /* SideMenu.swift */; };
+		899CDF6728E4DF8200838335 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6628E4DF8200838335 /* TabButton.swift */; };
+		899CDF6928E4DFB100838335 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6828E4DFB100838335 /* Home.swift */; };
+		899CDF6B28E4E04400838335 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6A28E4E04400838335 /* CustomCorners.swift */; };
+		899CDF6D28E4E8FB00838335 /* K8sAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6C28E4E8FB00838335 /* K8sAPIClient.swift */; };
+		899CDF6F28E4E9A300838335 /* K8sRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6E28E4E9A300838335 /* K8sRouter.swift */; };
+		899CDF7128E4EA2000838335 /* K8sAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7028E4EA2000838335 /* K8sAPIService.swift */; };
+		899CDF7328E4EAFA00838335 /* PVCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7228E4EAFA00838335 /* PVCInfo.swift */; };
+		899CDF7528E4EB1700838335 /* PVCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7428E4EB1700838335 /* PVCData.swift */; };
+		899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7628E4EB2F00838335 /* PVCResponse.swift */; };
+		899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7828E4EBFC00838335 /* K8sVM.swift */; };
+		899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7B28E4EF3A00838335 /* HomePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,13 +49,30 @@
 		898624D828E2508C00024852 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		898624DD28E2515000024852 /* APILogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILogger.swift; sourceTree = "<group>"; };
 		898624DF28E2519700024852 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
-		898624E128E252B700024852 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		898624E328E253E000024852 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		898624E628E2544B00024852 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		898624E928E2548300024852 /* TokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenData.swift; sourceTree = "<group>"; };
 		898624EB28E2564100024852 /* AuthAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIService.swift; sourceTree = "<group>"; };
 		898624ED28E2568900024852 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		898624EF28E256BE00024852 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		89910FD628E340CE00A21088 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
+		89910FD928E3427B00A21088 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		89910FDB28E343CC00A21088 /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
+		8993E43128E63580007CA986 /* PaaS-TA-Container-Platform-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PaaS-TA-Container-Platform-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8993E43228E639E7007CA986 /* Workload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workload.swift; sourceTree = "<group>"; };
+		899CDF6228E4735B00838335 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		899CDF6428E4DF5B00838335 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		899CDF6628E4DF8200838335 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
+		899CDF6828E4DFB100838335 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		899CDF6A28E4E04400838335 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
+		899CDF6C28E4E8FB00838335 /* K8sAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sAPIClient.swift; sourceTree = "<group>"; };
+		899CDF6E28E4E9A300838335 /* K8sRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sRouter.swift; sourceTree = "<group>"; };
+		899CDF7028E4EA2000838335 /* K8sAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sAPIService.swift; sourceTree = "<group>"; };
+		899CDF7228E4EAFA00838335 /* PVCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCInfo.swift; sourceTree = "<group>"; };
+		899CDF7428E4EB1700838335 /* PVCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCData.swift; sourceTree = "<group>"; };
+		899CDF7628E4EB2F00838335 /* PVCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCResponse.swift; sourceTree = "<group>"; };
+		899CDF7828E4EBFC00838335 /* K8sVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sVM.swift; sourceTree = "<group>"; };
+		899CDF7B28E4EF3A00838335 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +106,12 @@
 		898624C428E24FF800024852 /* PaaS-TA Container Platform */ = {
 			isa = PBXGroup;
 			children = (
-				898624E828E2547900024852 /* Model */,
+				8993E43128E63580007CA986 /* PaaS-TA-Container-Platform-Info.plist */,
+				89910FD828E3426D00A21088 /* View */,
+				89910FD528E340BD00A21088 /* ViewModel */,
 				898624E528E2543E00024852 /* Manager */,
 				898624D328E2504F00024852 /* API */,
+				898624E828E2547900024852 /* Model */,
 				898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */,
 				898624C728E24FF800024852 /* ContentView.swift */,
 				898624C928E24FFA00024852 /* Assets.xcassets */,
@@ -101,6 +137,7 @@
 				898624D428E2505500024852 /* Service */,
 				898624D828E2508C00024852 /* APIClient.swift */,
 				898624DD28E2515000024852 /* APILogger.swift */,
+				899CDF6C28E4E8FB00838335 /* K8sAPIClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -109,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				898624EB28E2564100024852 /* AuthAPIService.swift */,
+				899CDF7028E4EA2000838335 /* K8sAPIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -116,8 +154,8 @@
 		898624D528E2506200024852 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				898624E128E252B700024852 /* APIRouter.swift */,
 				898624E328E253E000024852 /* AuthRouter.swift */,
+				899CDF6E28E4E9A300838335 /* K8sRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -151,8 +189,44 @@
 				898624E928E2548300024852 /* TokenData.swift */,
 				898624ED28E2568900024852 /* UserData.swift */,
 				898624EF28E256BE00024852 /* AuthResponse.swift */,
+				899CDF7228E4EAFA00838335 /* PVCInfo.swift */,
+				899CDF7428E4EB1700838335 /* PVCData.swift */,
+				899CDF7628E4EB2F00838335 /* PVCResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		89910FD528E340BD00A21088 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				89910FD628E340CE00A21088 /* UserVM.swift */,
+				899CDF7828E4EBFC00838335 /* K8sVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		89910FD828E3426D00A21088 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				899CDF7A28E4EF2B00838335 /* SubView */,
+				89910FD928E3427B00A21088 /* LoginPage.swift */,
+				89910FDB28E343CC00A21088 /* CustomCorner.swift */,
+				899CDF6228E4735B00838335 /* MainView.swift */,
+				899CDF6428E4DF5B00838335 /* SideMenu.swift */,
+				899CDF6628E4DF8200838335 /* TabButton.swift */,
+				899CDF6A28E4E04400838335 /* CustomCorners.swift */,
+				899CDF6828E4DFB100838335 /* Home.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		899CDF7A28E4EF2B00838335 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				899CDF7B28E4EF3A00838335 /* HomePage.swift */,
+				8993E43228E639E7007CA986 /* Workload.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,18 +305,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899CDF7328E4EAFA00838335 /* PVCInfo.swift in Sources */,
 				898624E428E253E000024852 /* AuthRouter.swift in Sources */,
 				898624DE28E2515000024852 /* APILogger.swift in Sources */,
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
+				8993E43328E639E7007CA986 /* Workload.swift in Sources */,
 				898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */,
-				898624E228E252B700024852 /* APIRouter.swift in Sources */,
+				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
+				899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */,
+				899CDF6D28E4E8FB00838335 /* K8sAPIClient.swift in Sources */,
+				89910FDC28E343CC00A21088 /* CustomCorner.swift in Sources */,
 				898624EE28E2568900024852 /* UserData.swift in Sources */,
+				899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */,
+				899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */,
+				899CDF6B28E4E04400838335 /* CustomCorners.swift in Sources */,
+				899CDF6928E4DFB100838335 /* Home.swift in Sources */,
+				899CDF6728E4DF8200838335 /* TabButton.swift in Sources */,
+				899CDF6F28E4E9A300838335 /* K8sRouter.swift in Sources */,
 				898624E028E2519700024852 /* BaseInterceptor.swift in Sources */,
+				899CDF6328E4735B00838335 /* MainView.swift in Sources */,
+				899CDF7128E4EA2000838335 /* K8sAPIService.swift in Sources */,
 				898624C828E24FF800024852 /* ContentView.swift in Sources */,
 				898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */,
+				899CDF7528E4EB1700838335 /* PVCData.swift in Sources */,
+				89910FD728E340CE00A21088 /* UserVM.swift in Sources */,
 				898624EA28E2548300024852 /* TokenData.swift in Sources */,
 				898624F028E256BE00024852 /* AuthResponse.swift in Sources */,
 				898624D928E2508C00024852 /* APIClient.swift in Sources */,
+				899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,9 +464,9 @@
 				DEVELOPMENT_TEAM = KLT864H57C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PaaS-TA-Container-Platform-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -403,9 +493,9 @@
 				DEVELOPMENT_TEAM = KLT864H57C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PaaS-TA-Container-Platform-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

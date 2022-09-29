@@ -1,8 +1,8 @@
 //
-//  APIRouter.swift
+//  K8sRouter.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/09/27.
+//  Created by minkyuLee on 2022/09/29.
 //
 
 import Foundation
@@ -15,17 +15,7 @@ enum K8sRouter: URLRequestConvertible {
         
         var request = URLRequest(url: url)
         
-        print("url :: \(url)")
-        
         request.method = method
-        
-        //print("count = ", parameters.count)
-        
-        //request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
-        //request.httpBody = try! URLEncoding.default.encode(request, with: parameters).httpBody
-        //request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
-        
-        //try URLEncoding.default.encode(request, with: parameters)
         request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
         return request
     }
@@ -38,7 +28,7 @@ enum K8sRouter: URLRequestConvertible {
     case pvcInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     var baseURL: URL {
-        return URL(string: APIClient.BASE_URL)!
+        return URL(string: K8sAPIClient.BASE_URL)!
     }
     
     var endPoint: String {

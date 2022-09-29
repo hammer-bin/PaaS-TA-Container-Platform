@@ -41,8 +41,6 @@ enum AuthRouter: URLRequestConvertible {
             return "login"
         case .tokenRefresh:
             return "user/token-refresh"
-        default:
-            return ""
         }
     }
     

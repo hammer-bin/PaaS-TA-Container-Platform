@@ -35,7 +35,6 @@ class UserDefaultManager {
     func getTokens()->TokenData{
         let accessToken = UserDefaults.standard.string(forKey: Key.accessToken.rawValue) ?? ""
         let refreshToken = UserDefaults.standard.string(forKey: Key.refreshToken.rawValue) ?? ""
-        let k8sToken = UserDefaults.standard.string(forKey: Key.k8sToken.rawValue) ?? ""
-        return TokenData(accessToken: accessToken, refreshToken: refreshToken, k8sToken: k8sToken)
+        return TokenData(accessToken: accessToken, refreshToken: refreshToken)
     }
 }

@@ -25,7 +25,7 @@ enum AuthAPIService {
                 // userdefaults, keychain
                 print(receivedValue.token.accessToken)
                 print(receivedValue.token.refreshToken)
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.token.k8sToken)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: "")
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }
@@ -33,7 +33,8 @@ enum AuthAPIService {
     //로그인
     static func login(email: String, password: String)-> AnyPublisher<UserData, AFError> {
         print("AuthAPIService = register() called")
-        
+        print(email)
+        print(password)
         return APIClient.shared.session
             .request(AuthRouter.login(email: email, password: password))
             .publishDecodable(type: AuthResponse.self)
@@ -41,7 +42,7 @@ enum AuthAPIService {
             .map{ receivedValue in
                 // 받은 토큰 정보 어딘가에 영구 저장
                 // userdefaults, keychain
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.token.k8sToken)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken)
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }
