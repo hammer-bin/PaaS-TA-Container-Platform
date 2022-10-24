@@ -11,13 +11,13 @@ import Combine
 
 enum K8sApiService {
     
-    static func PVCList()-> AnyPublisher<[PVCData], AFError> {
+    static func PVCList(namespace: String)-> AnyPublisher<[PVCData], AFError> {
         print("K8sApiService = PVCList() called")
-        let targetUrl = "https://15.164.195.107:6443"
-        let authorization = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNJaTZLT2Y1WU1XY2Q5a3NvbFEwdVRWal9GRm5jVzRyelppSWVKNXgtTVEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrOHNhZG1pbi10b2tlbi1ucG13ZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrOHNhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6Ijg3YTUwODYxLTFlODUtNGU4My04YTJlLTk4ZTdlZGVkYTBjMiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTprOHNhZG1pbiJ9.Ygy9DRQbSoozhIfWizCDkUhcTWf7V_g0611stsHSzAj13I2p4WtLYgyS1tMnOf64TcV3y9ehWxCnSUPB4p0-Bc5lc6CsJ12DQ8pr9g0sSs6y5Nmb28MBY6xxrQEYtt7ahukDabFXVWxjxEOQqaHAtwNiuOFkAFRId0aaBSoaldhvfGdNiuxKV1LSTWpE9LWhaaOa3z4wmiAY5vZBMUGHUIfn3-QpFHaxAbKQxsCFaoERcQo3yQ6lo7uPVs3X64MU7dGzVAqzLZcpk63ra39vJPCZzZOeQUyv2cSlop8DRQKM7xoaVxYJ75j26WaD9h6cS5nbSfjsLCxSidIPtspKBQ"
-        let namespace = "harbor"
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
         return K8sAPIClient.shared.session
-            .request(K8sRouter.pvcList(targetUrl: targetUrl, authorization: authorization, namespace: namespace))
+            .request(K8sRouter.pvcList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
             .publishDecodable(type: PVCResponse.self)
             .value()
             .map{ receivedValue in
@@ -28,14 +28,13 @@ enum K8sApiService {
     }
     
     
-    static func pvcInfo()-> AnyPublisher<PVCInfo, AFError> {
+    static func pvcInfo(namespace: String, resourceName: String)-> AnyPublisher<PVCInfo, AFError> {
         print("K8sApiService = pvcInfo() called")
-        let targetUrl = "https://15.164.195.107:6443"
-        let authorization = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNJaTZLT2Y1WU1XY2Q5a3NvbFEwdVRWal9GRm5jVzRyelppSWVKNXgtTVEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrOHNhZG1pbi10b2tlbi1ucG13ZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrOHNhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6Ijg3YTUwODYxLTFlODUtNGU4My04YTJlLTk4ZTdlZGVkYTBjMiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTprOHNhZG1pbiJ9.Ygy9DRQbSoozhIfWizCDkUhcTWf7V_g0611stsHSzAj13I2p4WtLYgyS1tMnOf64TcV3y9ehWxCnSUPB4p0-Bc5lc6CsJ12DQ8pr9g0sSs6y5Nmb28MBY6xxrQEYtt7ahukDabFXVWxjxEOQqaHAtwNiuOFkAFRId0aaBSoaldhvfGdNiuxKV1LSTWpE9LWhaaOa3z4wmiAY5vZBMUGHUIfn3-QpFHaxAbKQxsCFaoERcQo3yQ6lo7uPVs3X64MU7dGzVAqzLZcpk63ra39vJPCZzZOeQUyv2cSlop8DRQKM7xoaVxYJ75j26WaD9h6cS5nbSfjsLCxSidIPtspKBQ"
-        let namespace = "default"
-        let resourceName = "data-mariadb-0"
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
         return K8sAPIClient.shared.session
-            .request(K8sRouter.pvcInfo(targetUrl: targetUrl, authorization: authorization, namespace: namespace, resourceName: resourceName))
+            .request(K8sRouter.pvcInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
             .validate(statusCode: 200...400)
             .publishDecodable(type: PVCInfo.self)
             .value()
@@ -43,6 +42,132 @@ enum K8sApiService {
                 print("uid :: \(receivedValue.detailPVC.uid)")
                 //debugPrint(receivedValue)
                 return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func deployList()-> AnyPublisher<[DeployData], AFError> {
+        print("K8sAPIService = deployList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        let namespace = "harbor"
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.deploymnetList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+            .publishDecodable(type: DeployResponse.self)
+            .value()
+            .map{ receivedValue in
+                //debugPrint(receivedValue)
+                return receivedValue.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func deployInfo(nemespace: String, resourceName: String)-> AnyPublisher<DeployInfo, AFError> {
+        print("K8sApiService = pvcInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.deploymentInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: nemespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: DeployInfo.self)
+            .value()
+            .map{ receivedValue in
+                //debugPrint(receivedValue)
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func podList()-> AnyPublisher<[PodData], AFError> {
+        print("K8sAPIService = podList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        let namespace = "harbor"
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.podList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+            .publishDecodable(type: PodResponse.self)
+            .value()
+            .map{ receivedValue in
+                //debugPrint(receivedValue)
+                return receivedValue.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func serviceList(namespace: String)-> AnyPublisher<[ServiceData], AFError> {
+        print("K8sAPIService = serviceList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+
+        return clientService(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: ServiceResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientService(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.serviceList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.serviceList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func PVList()-> AnyPublisher<[PVData], AFError> {
+        print("K8sApiService = PVList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        print("storedApiUrl :: \(storedApiUrl)")
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.pvList(targetUrl: storedApiUrl, authorization: storedTokenData))
+            .publishDecodable(type: PVResponse.self)
+            .value()
+            .map{ receivedValue in
+                debugPrint(receivedValue)
+                return receivedValue.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func IngressList(namespace: String)-> AnyPublisher<[IngressData], AFError> {
+        print("K8sApiService = IngressList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.ingressList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+            .publishDecodable(type: IngressResponse.self)
+            .value()
+            .map{ receivedValue in
+                debugPrint(receivedValue)
+                return receivedValue.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func namespaceList()-> AnyPublisher<[NamespaceData], AFError> {
+        print("K8sApiService = namespaceList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sAdminRouter.namespaceList(targetUrl: storedApiUrl, authorization: storedTokenData))
+            .publishDecodable(type: NamespaceResponse.self)
+            .value()
+            .map{ receivedValue in
+                debugPrint(receivedValue)
+                return receivedValue.data
             }
             .eraseToAnyPublisher()
     }

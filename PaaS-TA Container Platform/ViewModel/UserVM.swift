@@ -18,6 +18,8 @@ class UserVM: ObservableObject {
     
     // Login Properties..
     @Published var email: String = ""
+    @Published var apiUrl: String = ""
+    @Published var k8sToken: String = ""
     @Published var password: String = ""
     @Published var showPassword: Bool = false
     
@@ -33,9 +35,9 @@ class UserVM: ObservableObject {
     var loginSuccess = PassthroughSubject<(), Never>()
     
     //회원가입 하기
-    func register(name: String, email: String, password: String) {
+    func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String) {
         print("UserVM: register() called")
-        AuthAPIService.register(name: name, email: email, password: password)
+        AuthAPIService.register(name: name, email: email, password: password, apiUrl: apiUrl, k8SToken: k8SToken)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("UserVM completion: \(completion)")
             } receiveValue: { (receivedUser: UserData) in

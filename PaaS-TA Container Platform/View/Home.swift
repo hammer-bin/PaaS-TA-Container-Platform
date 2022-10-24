@@ -34,11 +34,11 @@ struct Home: View {
             Workload()
                 .tag("Workload")
             
-            Setting()
-                .tag("Setting")
+            Service()
+                .tag("Service")
             
-            Help()
-                .tag("Help")
+            Storage()
+                .tag("Storage")
             
             Notifications()
                 .tag("Notifications")
@@ -61,19 +61,6 @@ struct Notifications: View {
                 .fontWeight(.heavy)
                 .foregroundColor(.primary)
                 .navigationTitle("Notifications")
-        }
-    }
-}
-
-struct Setting: View {
-    var body: some View{
-        
-        NavigationView{
-            Text("Setting")
-                .font(.largeTitle)
-                .fontWeight(.heavy)
-                .foregroundColor(.primary)
-                .navigationTitle("Setting")
         }
     }
 }

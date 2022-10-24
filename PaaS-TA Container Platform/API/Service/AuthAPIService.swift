@@ -13,11 +13,11 @@ import Alamofire
 enum AuthAPIService {
     //static func login(email: String, password: String)->
     //회원가입
-    static func register(name: String, email: String, password: String)-> AnyPublisher<UserData, AFError> {
+    static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String)-> AnyPublisher<UserData, AFError> {
         print("AuthAPIService = register() called")
         
         return APIClient.shared.session
-            .request(AuthRouter.register(name: name, email: email, password: password))
+            .request(AuthRouter.register(name: name, email: email, password: password, apiUrl: apiUrl, k8sToken: k8SToken))
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map{ receivedValue in
@@ -25,7 +25,7 @@ enum AuthAPIService {
                 // userdefaults, keychain
                 print(receivedValue.token.accessToken)
                 print(receivedValue.token.refreshToken)
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: "")
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl)
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }
@@ -40,9 +40,10 @@ enum AuthAPIService {
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map{ receivedValue in
+                print(receivedValue)
                 // 받은 토큰 정보 어딘가에 영구 저장
                 // userdefaults, keychain
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl)
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }

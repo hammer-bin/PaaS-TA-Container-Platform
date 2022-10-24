@@ -8,14 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var animate = false
+    
+    @AppStorage("log_Status") var status = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        
+        ZStack {
+            
+            if status {
+                MainView()
+                    .onAppear(perform: animateSpalsh)
+            }
+            else {
+                LoginPage()
+            }
+                
+            
+            
         }
-        .padding()
+        
+        
+        
+    }
+    
+    func animateSpalsh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            
+            withAnimation(Animation.easeOut(duration: 5)) {
+                animate.toggle()
+            }
+        }
     }
 }
 

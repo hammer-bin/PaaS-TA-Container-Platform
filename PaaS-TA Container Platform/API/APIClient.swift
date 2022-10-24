@@ -11,7 +11,7 @@ import Alamofire
 final class APIClient {
     static let shared = APIClient()
     
-    static let BASE_URL = "http://15.164.195.107:31365/"
+    static let BASE_URL = "http://223.255.205.62:30266/"
     
     let interceptors = Interceptor(interceptors: [ BaseInterceptor() ])
     

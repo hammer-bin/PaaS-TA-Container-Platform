@@ -11,7 +11,7 @@ import Alamofire
 final class K8sAPIClient {
     static let shared = K8sAPIClient()
     
-    static let BASE_URL = "http://15.164.195.107:30295/"
+    static let BASE_URL = "http://223.255.205.62:30295/"
     
     let interceptors = Interceptor(interceptors: [ BaseInterceptor() ])
     

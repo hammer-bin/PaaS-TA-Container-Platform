@@ -9,10 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     // selected Tab...
-    @State var selectedTab = "Home"
+    @State var selectedTab = "Storage"
     @State var showMenu = false
     @State var translation: CGSize = .zero
     @State var offsetX: CGFloat = -120
+    @EnvironmentObject var k8sVM : K8sVM
+    
+    // Animation Namespace
+    @Namespace var animation
     
     var body: some View {
         
@@ -53,37 +57,54 @@ struct MainView: View {
             .offset(x: showMenu ? getRect().width - 120 : 0)
             .ignoresSafeArea()
             .overlay(
-                //Menu Button...
-                Button(action: {
-                    withAnimation(.spring()){
-                        showMenu.toggle()
+                VStack{
+                    HStack(alignment: .top){                //Menu Button...
+                        Button(action: {
+                            withAnimation(.spring()){
+                                showMenu.toggle()
+                            }
+                        }, label: {
+                            
+                            // Animated Drawer Button...
+                            VStack(spacing: 5) {
+                                Capsule()
+                                    .fill(showMenu ? Color.white : Color.primary)
+                                    .frame(width: 30, height: 3)
+                                // Rotating...
+                                    .rotationEffect(.init(degrees: showMenu ? -50 : 0))
+                                    .offset(x: showMenu ? 2 : 0, y: showMenu ? 9 : 0)
+                                VStack(spacing: 5) {
+                                    Capsule()
+                                        .fill(showMenu ? Color.white : Color.primary)
+                                        .frame(width: 30, height: 3)
+                                    // Moving Up when clicked...
+                                    Capsule()
+                                        .fill(showMenu ? Color.white : Color.primary)
+                                        .frame(width: 30, height: 3)
+                                        .offset(y: showMenu ? -8 : 0)
+                                }
+                                .rotationEffect(.init(degrees: showMenu ? 50 : 0))
+                            }
+                        })
+                        .padding()
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            withAnimation(.easeInOut){
+                                k8sVM.searchActivated = true
+                            }
+                        }, label: {
+                            Image(systemName: "magnifyingglass")
+                                .padding([.top, .trailing], 15)
+                                .font(.title2)
+                                .frame(width: 36, height: 36)
+                                .foregroundColor(.black)
+                            
+                        })
                     }
-                }, label: {
-                    
-                    // Animated Drawer Button...
-                    VStack(spacing: 5) {
-                        Capsule()
-                            .fill(showMenu ? Color.white : Color.primary)
-                            .frame(width: 30, height: 3)
-                        // Rotating...
-                            .rotationEffect(.init(degrees: showMenu ? -50 : 0))
-                            .offset(x: showMenu ? 2 : 0, y: showMenu ? 9 : 0)
-                        VStack(spacing: 5) {
-                            Capsule()
-                                .fill(showMenu ? Color.white : Color.primary)
-                                .frame(width: 30, height: 3)
-                            // Moving Up when clicked...
-                            Capsule()
-                                .fill(showMenu ? Color.white : Color.primary)
-                                .frame(width: 30, height: 3)
-                                .offset(y: showMenu ? -8 : 0)
-                        }
-                        .rotationEffect(.init(degrees: showMenu ? 50 : 0))
-                    }
-                })
-                .padding()
-                
-                , alignment: .topLeading
+                    Spacer()
+                }
             )
             .gesture(
                 DragGesture()
@@ -107,6 +128,13 @@ struct MainView: View {
                         }
                     }
                              
+            )
+            .overlay(
+                ZStack{
+                    if k8sVM.searchActivated{
+                        SearchView(animation: animation)
+                    }
+                }
             )
             
         }

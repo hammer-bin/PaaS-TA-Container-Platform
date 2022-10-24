@@ -20,12 +20,19 @@ enum K8sRouter: URLRequestConvertible {
         return request
     }
     
-    case deploymnet
-    case pod
+    case deploymnetList(targetUrl: String, authorization: String, namespace: String)
     case deploymentInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
-    case configmap(targetUrl: String, authorization: String, namespace: String)
+    case podList(targetUrl: String, authorization: String, namespace: String)
+    
     case pvcList(targetUrl: String, authorization: String, namespace: String)
     case pvcInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    
+    case serviceList(targetUrl: String, authorization: String, namespace: String)
+    case ingressList(targetUrl: String, authorization: String, namespace: String)
+    
+    case configmap(targetUrl: String, authorization: String, namespace: String)
+    
+    case pvList(targetUrl: String, authorization: String)
     
     var baseURL: URL {
         return URL(string: K8sAPIClient.BASE_URL)!
@@ -33,9 +40,9 @@ enum K8sRouter: URLRequestConvertible {
     
     var endPoint: String {
         switch self {
-        case .deploymnet:
+        case .deploymnetList:
             return "resource/deployment/list"
-        case .pod:
+        case .podList:
             return "resource/pod/list"
         case .deploymentInfo:
             return "resource/deployment/info"
@@ -45,6 +52,12 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/pvc/info"
         case .pvcList:
             return "resource/pvc/list"
+        case .serviceList:
+            return "resource/service/list"
+        case .pvList:
+            return "resource/pv/list"
+        case .ingressList:
+            return "resource/ingress/list"
         }
     }
     
@@ -58,6 +71,20 @@ enum K8sRouter: URLRequestConvertible {
     
     var parameters: params{
         switch self {
+        case let .deploymnetList(targetUrl, authorization, namespace):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            return params
+            
+        case let .podList(targetUrl, authorization, namespace):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            return params
+            
         case let .configmap(targetUrl, authorization, namespace):
             var params = params()
             params["target_url"] = targetUrl
@@ -89,8 +116,28 @@ enum K8sRouter: URLRequestConvertible {
             params["namespace"] = namespace
             return params
             
-        default:
-            return params()
+        case let .serviceList(targetUrl, authorization, namespace):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            return params
+            
+        case let .pvList(targetUrl, authorization):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            return params
+            
+        case let .ingressList(targetUrl, authorization, namespace):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            return params
         }
+        
+   
     }
+    
 }

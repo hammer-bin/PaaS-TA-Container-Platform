@@ -69,7 +69,7 @@ struct HomePage: View {
                 // MARK: - PVCINFO
                 VStack{
                     Button(action: {
-                        k8sVM.pvcInfo()
+                        k8sVM.pvcInfo(namespace: "harbor", resourceName: "data-mariadb-0")
                     }, label: {
                         Text("k8sVM.pvcInfo()")
                     })

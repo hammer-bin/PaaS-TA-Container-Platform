@@ -81,22 +81,30 @@ struct LoginPage: View {
                     
                     // Register Reenter Password
                     if userVM.registerUser{
-                        CustomTextField(icon: "envolope", title: "Re-Enter Password", hint: "123456", value: $userVM.re_Enter_Password, showPassword: $userVM.showReEnterPassword).textInputAutocapitalization(.none)
+                        CustomTextField(icon: "curlybraces.square", title: "API URL", hint: "https://127.0.0.1:6443", value: $userVM.apiUrl, showPassword: .constant(false))
+                            .autocapitalization(.none)
+                            .padding(.top, 30)
+                        
+                        CustomTextField(icon: "lock.rectangle.on.rectangle", title: "K8s Token", hint: "euskx87wlkdjefl...", value: $userVM.k8sToken, showPassword: .constant(false))
+                            .autocapitalization(.none)
+                            .padding(.top, 30)
+                        
+                        CustomTextField(icon: "envelope", title: "Re-Enter Password", hint: "123456", value: $userVM.re_Enter_Password, showPassword: $userVM.showReEnterPassword).textInputAutocapitalization(.none)
                             .padding(.top, 10)
                     }
                     
                     // Forgot Password Button...
-                    Button {
-                        userVM.ForgetPassword()
-                    } label: {
-                        
-                        Text("Forget password?")
-                            .font(.system(size: 14))
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color("Purple"))
-                    }
-                    .padding(.top,8)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+//                    Button {
+//                        userVM.ForgetPassword()
+//                    } label: {
+//
+//                        Text("Forget password?")
+//                            .font(.system(size: 14))
+//                            .fontWeight(.semibold)
+//                            .foregroundColor(Color("Purple"))
+//                    }
+//                    .padding(.top,8)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                     //Login Button...
                     Button {
@@ -108,7 +116,7 @@ struct LoginPage: View {
                         }
                     } label: {
                         
-                        Text("Login")
+                        Text(userVM.registerUser ? "Register" : "Login")
                             .font(.system(size: 17))
                             .padding(.vertical, 20)
                             .frame(maxWidth: .infinity)
