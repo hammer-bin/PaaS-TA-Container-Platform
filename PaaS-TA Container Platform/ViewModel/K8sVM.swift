@@ -35,14 +35,80 @@ class K8sVM: ObservableObject {
     
     @Published var searchActivated: Bool = false
     @Published var searchText: String = ""
-    @Published var searchResource: String = ""
-    @Published var searchedProducts: [String]?
+    @Published var searchResource: resource = .deployment
+    @Published var searchedProducts: [String] = []
+    @Published var filterdResource: [String] = []
     
-//    enum searchResource {
-//        case pv
-//        case pvc
-//        case svc
-//    }
+    enum resource {
+        case pv
+        case pvc
+        case svc
+        case pod
+        case deployment
+    }
+    
+    func collectSearchData() {
+        print("collectSearchData")
+        print(searchResource)
+        searchedProducts = []
+        switch searchResource {
+        case .deployment:
+            for data in deploymemts {
+                searchedProducts.append(String(data.name))
+            }
+        case .pv:
+            for data in pvs {
+                searchedProducts.append(String(data.name))
+            }
+        case .pvc:
+            for data in pvcs {
+                searchedProducts.append(String(data.name))
+            }
+        case .svc:
+            for data in services {
+                searchedProducts.append(String(data.name))
+            }
+        case .pod:
+            for data in pods {
+                searchedProducts.append(String(data.name))
+            }
+        }
+    }
+    var searchCancellable: AnyCancellable?
+    
+    init()
+    {
+        
+        searchCancellable = $searchText.removeDuplicates()
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .sink(receiveValue: { str in
+                if str != "" {
+                    self.filterProductBySearch()
+                }
+                else {
+                    self.filterdResource = []
+                }
+            })
+    }
+    
+    func filterProductBySearch() {
+        
+        // Filtering Product By Product Type...
+        DispatchQueue.global(qos: .userInteractive).async {
+            let results = self.searchedProducts
+            // Since it will repuire more memory so were using lazy to perform more...
+                .lazy
+                .filter { product in
+                    return product.lowercased().contains(self.searchText.lowercased())
+                }
+            
+            DispatchQueue.main.async {
+                self.filterdResource = results.compactMap({ product in
+                    return product
+                })
+            }
+        }
+    }
     
     func pvcList() {
         print("K8sVM: pvcList() called")

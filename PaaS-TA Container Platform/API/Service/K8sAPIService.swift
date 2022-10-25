@@ -16,8 +16,7 @@ enum K8sApiService {
         
         let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
         let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
-        return K8sAPIClient.shared.session
-            .request(K8sRouter.pvcList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        return clientPVC(storedApiUrl, storedTokenData, namespace)
             .publishDecodable(type: PVCResponse.self)
             .value()
             .map{ receivedValue in
@@ -25,6 +24,17 @@ enum K8sApiService {
                 return receivedValue.data
             }
             .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientPVC(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.pvcList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.pvcList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
     }
     
     

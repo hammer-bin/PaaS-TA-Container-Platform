@@ -53,6 +53,7 @@
 		89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */; };
 		89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAA28EA3C5A00DBA981 /* PodData.swift */; };
 		89999CAD28EA3CA600DBA981 /* PodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAC28EA3CA600DBA981 /* PodResponse.swift */; };
+		8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */; };
 		899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A3A3729072DC2008EBEC4 /* SearchView.swift */; };
 		899CDF6328E4735B00838335 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6228E4735B00838335 /* MainView.swift */; };
 		899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6428E4DF5B00838335 /* SideMenu.swift */; };
@@ -121,6 +122,7 @@
 		89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicaSetListView.swift; sourceTree = "<group>"; };
 		89999CAA28EA3C5A00DBA981 /* PodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodData.swift; sourceTree = "<group>"; };
 		89999CAC28EA3CA600DBA981 /* PodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodResponse.swift; sourceTree = "<group>"; };
+		8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaggeredGrid.swift; path = ../../../../Documents/Kavsoft/StaggeredGrid/StaggeredGrid/StaggeredGrid.swift; sourceTree = "<group>"; };
 		899A3A3729072DC2008EBEC4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		899CDF6228E4735B00838335 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		899CDF6428E4DF5B00838335 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				899CDF6828E4DFB100838335 /* Home.swift */,
 				8989725D28F398780052605C /* LowTabButton.swift */,
 				899A3A3729072DC2008EBEC4 /* SearchView.swift */,
+				8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				89999C8D28E9058B00DBA981 /* PodListView.swift in Sources */,
 				898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */,
 				8989726728F3AC6D0052605C /* PVCView.swift in Sources */,
+				8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
 				899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */,
 				89999C8B28E9047F00DBA981 /* DeploymentListView.swift in Sources */,

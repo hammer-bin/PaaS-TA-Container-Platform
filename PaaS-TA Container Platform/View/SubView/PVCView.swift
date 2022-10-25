@@ -99,7 +99,8 @@ struct PVCView: View {
                 }
                 
                 .onAppear(perform: {
-                    print("ServiceView onAppear() called")
+                    print("PVCView onAppear() called")
+                    k8sVM.searchResource = .pvc
                 })
                 .onAppear(perform: { k8sVM.pvcList()})
                 .onReceive(k8sVM.$pvcs, perform: { self.pvcData = $0 })

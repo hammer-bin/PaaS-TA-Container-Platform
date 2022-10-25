@@ -100,7 +100,7 @@ struct PVView: View {
                 
                 .onAppear(perform: {
                     print("ServiceView onAppear() called")
-                    k8sVM.searchResource = "pv"
+                    k8sVM.searchResource = .pv
                 })
                 .onAppear(perform: { k8sVM.pvList()})
                 .onReceive(k8sVM.$pvs, perform: { self.pvData = $0 })
@@ -118,7 +118,12 @@ struct PVView: View {
                     .opacity(0.1)
             )
             .overlay(
-                DetailPVCView()
+                ZStack{
+                    //if k8sVM.showDetail{
+                        DetailPVCView()
+                    //}
+                }
+                
             )
             
         }

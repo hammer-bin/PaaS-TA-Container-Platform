@@ -10,7 +10,7 @@ import Foundation
 struct PVData: Codable, Identifiable {
     
     var id: UUID = UUID()
-    let name, capacity: String
+    var name, capacity: String
     let accessMode: [String]
     let status, claim: String
     let createdTime: String

@@ -136,6 +136,7 @@ struct MainView: View {
                     }
                 }
             )
+            //detailView overlay 고려
             
         }
     }

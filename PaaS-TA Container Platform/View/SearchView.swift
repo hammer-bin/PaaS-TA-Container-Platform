@@ -22,6 +22,7 @@ struct SearchView: View {
                 Button {
                     withAnimation{
                         k8sVM.searchActivated = false
+                        k8sVM.searchText = ""
                     }
                 } label: {
                     Image(systemName: "arrow.left")
@@ -55,7 +56,7 @@ struct SearchView: View {
             
             // Showing Progress if searching
             // else showing no results found if empty...
-            if let products = k8sVM.pvs {
+            if let products = k8sVM.filterdResource {
                 
                 if products.isEmpty {
                     // No Results Found...
@@ -91,9 +92,12 @@ struct SearchView: View {
                             // See my Staggered Video..
                             // Link in Bio...
                             //StaggeredGrid(columns: 2, spacing: 20, list: products) { product in
-                                 
-                                // Card View...
-                                //ProductCardView(product: product)
+                            
+                            // Card View...
+                            ForEach(products, id:\.self){product in
+                                SearchCardView(resource: product)
+                            }
+                            
                             //}
                         }
                         
@@ -110,19 +114,60 @@ struct SearchView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .background(
-                Color.white
-                    .ignoresSafeArea()
-            )
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    startTF = true
-                }
+        .background(
+            Color.white
+                .ignoresSafeArea()
+        )
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                startTF = true
             }
-            //.onAppear(perform: k8sVM.searchedProducts)
+        }
+        .onAppear(perform: k8sVM.collectSearchData)
+        
+        
+    }
+    @ViewBuilder
+    func SearchCardView(resource: String) -> some View {
+        
+        HStack(spacing: 10){
+            Image(systemName: "chevron.right.square")
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 30, height:30)
             
+            VStack(content: {
+                Text(resource)
+                    .fontWeight(.bold)
+                
+                
+            })
+        }
+        .padding(.horizontal)
+        .padding(.vertical)
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(color: Color.black.opacity(0.08), radius: 5, x: 5, y: 5)
+        .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)
+        .onTapGesture {
+            switch k8sVM.searchResource {
+            case .pv:
+                k8sVM.currentPV?.name = resource
+            case .pvc:
+                k8sVM.currentPVC?.name = resource
+            case .svc:
+                k8sVM.currentService?.name = resource
+            case .pod:
+                print("pod")
+            case .deployment:
+                print("dep")
+            }
+            withAnimation(.easeInOut){
+                
+                k8sVM.showDetail = true
+            }
         }
     }
+}
     
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
