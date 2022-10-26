@@ -133,6 +133,7 @@ struct MainView: View {
                 ZStack{
                     if k8sVM.searchActivated{
                         SearchView(animation: animation)
+                            
                     }
                 }
             )

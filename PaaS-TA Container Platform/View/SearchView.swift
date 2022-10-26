@@ -96,6 +96,7 @@ struct SearchView: View {
                             // Card View...
                             ForEach(products, id:\.self){product in
                                 SearchCardView(resource: product)
+                                    
                             }
                             
                             //}
@@ -112,6 +113,7 @@ struct SearchView: View {
                     .opacity(k8sVM.searchText == "" ? 0 : 1)
             }
             
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(
@@ -124,6 +126,19 @@ struct SearchView: View {
             }
         }
         .onAppear(perform: k8sVM.collectSearchData)
+        .overlay(
+            ZStack{
+                //if k8sVM.showDetail{
+                    
+                //}
+                if k8sVM.searchResource == .pvc {
+                    DetailPVCView()
+                } else if k8sVM.searchResource == .deployment {
+                    DetailDeployView()
+                }
+            }
+            
+        )
         
         
     }
@@ -149,11 +164,13 @@ struct SearchView: View {
         .shadow(color: Color.black.opacity(0.08), radius: 5, x: 5, y: 5)
         .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)
         .onTapGesture {
+            print(k8sVM.searchResource)
             switch k8sVM.searchResource {
             case .pv:
                 k8sVM.currentPV?.name = resource
             case .pvc:
                 k8sVM.currentPVC?.name = resource
+                print("pvc")
             case .svc:
                 k8sVM.currentService?.name = resource
             case .pod:
@@ -166,6 +183,7 @@ struct SearchView: View {
                 k8sVM.showDetail = true
             }
         }
+        
     }
 }
     
