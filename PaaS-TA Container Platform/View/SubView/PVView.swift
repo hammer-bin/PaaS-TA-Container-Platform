@@ -99,7 +99,7 @@ struct PVView: View {
                 }
                 
                 .onAppear(perform: {
-                    print("ServiceView onAppear() called")
+                    print("PVView onAppear() called")
                     k8sVM.searchResource = .pv
                 })
                 .onAppear(perform: { k8sVM.pvList()})
@@ -110,7 +110,6 @@ struct PVView: View {
             .overlay(
                 Image("pvc-256")
                     //.renderingMode(.template)
-                    
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.gray)
@@ -119,9 +118,7 @@ struct PVView: View {
             )
             .overlay(
                 ZStack{
-                    //if k8sVM.showDetail{
-                        DetailPVCView()
-                    //}
+                    DetailPVView()
                 }
                 
             )

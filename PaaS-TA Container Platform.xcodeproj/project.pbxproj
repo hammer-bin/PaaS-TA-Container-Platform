@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964DAD3290B2AEA00E77505 /* DetailPVView.swift */; };
 		898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */; };
 		898624C828E24FF800024852 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624C728E24FF800024852 /* ContentView.swift */; };
 		898624CA28E24FFA00024852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898624C928E24FFA00024852 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8964DAD3290B2AEA00E77505 /* DetailPVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVView.swift; sourceTree = "<group>"; };
 		898624C228E24FF800024852 /* PaaS-TA Container Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PaaS-TA Container Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaaS_TA_Container_PlatformApp.swift; sourceTree = "<group>"; };
 		898624C728E24FF800024852 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				8995F16728F2A58F001CFAE7 /* DetailDeployView.swift */,
 				8989726A28F3AFFC0052605C /* DetailPVCView.swift */,
+				8964DAD3290B2AEA00E77505 /* DetailPVView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				89999C8B28E9047F00DBA981 /* DeploymentListView.swift in Sources */,
 				8995F16828F2A58F001CFAE7 /* DetailDeployView.swift in Sources */,
 				8989726228F3A7F30052605C /* Storage.swift in Sources */,
+				8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */,
 				89999CAD28EA3CA600DBA981 /* PodResponse.swift in Sources */,
 				899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */,
 				898FD6A528FDFF9200D313CE /* K8sAdminRouter.swift in Sources */,

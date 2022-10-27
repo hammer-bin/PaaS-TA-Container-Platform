@@ -28,6 +28,7 @@ enum K8sAdminRouter: URLRequestConvertible {
     case pvcInfo(targetUrl: String, authorization: String, resourceName: String)
     case serviceList(targetUrl: String, authorization: String)
     case pvList(targetUrl: String, authorization: String)
+    case pvInfo(targetUrl: String, authorization: String, resourceName: String)
     case namespaceList(targetUrl: String, authorization: String)
     
     var baseURL: URL {
@@ -52,6 +53,8 @@ enum K8sAdminRouter: URLRequestConvertible {
             return "resource/service/list"
         case .pvList:
             return "resource/pv/list"
+        case .pvInfo:
+            return "resource/pv/info"
         case .namespaceList:
             return "resource/namespace/list"
         }
@@ -115,6 +118,13 @@ enum K8sAdminRouter: URLRequestConvertible {
             var params = params()
             params["target_url"] = targetUrl
             params["authorization"] = authorization
+            return params
+            
+        case let .pvInfo(targetUrl, authorization, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["resource_name"] = resourceName
             return params
             
         case let .namespaceList(targetUrl, authorization):

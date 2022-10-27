@@ -48,8 +48,6 @@ class K8sVM: ObservableObject {
     }
     
     func collectSearchData() {
-        print("collectSearchData")
-        print(searchResource)
         searchedProducts = []
         switch searchResource {
         case .deployment:
@@ -57,10 +55,12 @@ class K8sVM: ObservableObject {
                 searchedProducts.append(String(data.name))
             }
         case .pv:
+            print("collectSearchData() .pv")
             for data in pvs {
                 searchedProducts.append(String(data.name))
             }
         case .pvc:
+            print("collectSearchData() .pvc")
             for data in pvcs {
                 searchedProducts.append(String(data.name))
             }
@@ -184,6 +184,18 @@ class K8sVM: ObservableObject {
                      } receiveValue: { (receivedData: [PVData]) in
                 print("store")
                          self.pvs = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func pvInfo(resourceName: String) {
+        print("K8sVM: pvInfo() called")
+        K8sApiService.pvInfo(resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: PVInfo) in
+                //print("store")
+                //print("capacity \(receivedData.resourcePVC.capacity)")
+                self.pvInfoData = receivedData
             }.store(in: &subscription)
     }
     

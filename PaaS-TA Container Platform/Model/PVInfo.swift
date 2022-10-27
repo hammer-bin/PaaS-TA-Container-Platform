@@ -37,7 +37,7 @@ struct DetailPV: Codable {
     let name, uid: String
     let labels: JSONNull?
     let annotations: [String]
-    let createdTime: Date
+    let createdTime: String
 
     enum CodingKeys: String, CodingKey {
         case name

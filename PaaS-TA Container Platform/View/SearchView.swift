@@ -61,7 +61,7 @@ struct SearchView: View {
                 if products.isEmpty {
                     // No Results Found...
                     VStack(spacing: 10) {
-                        Image("NotFound")
+                        Image("p2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding(.top, 60)
