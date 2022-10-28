@@ -106,7 +106,7 @@ struct PVCView: View {
                 .onReceive(k8sVM.$pvcs, perform: { self.pvcData = $0 })
                 .onAppear(perform: {
                     print("PVCView onAppear() called")
-                    k8sVM.searchResource = .pvc
+                    //k8sVM.searchResource = .pvc
                 })
                 
             }

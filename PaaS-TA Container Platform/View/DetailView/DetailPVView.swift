@@ -19,6 +19,13 @@ struct DetailPVView: View {
         
         if let data = k8sVM.currentPV, k8sVM.showDetail {
             ScrollView(.vertical, showsIndicators: false){
+                
+                if k8sVM.showDetailSearch {
+                    VStack{
+                        Text("Search Detail")
+                            
+                    }
+                }
 
                 VStack{
                     // MARK: - Detail Info
@@ -166,6 +173,9 @@ struct DetailPVView: View {
                         Button(action: {
                             withAnimation{
                                 k8sVM.showDetail = false
+                                if k8sVM.showDetailSearch {
+                                    k8sVM.showDetailSearch = false
+                                }
                             }
                         }) {
                             

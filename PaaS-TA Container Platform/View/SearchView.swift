@@ -120,21 +120,29 @@ struct SearchView: View {
             Color.white
                 .ignoresSafeArea()
         )
+        .onAppear(perform: k8sVM.collectSearchData)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 startTF = true
             }
         }
-        .onAppear(perform: k8sVM.collectSearchData)
         .overlay(
             ZStack{
-                //if k8sVM.showDetail{
-                    
-                //}
                 if k8sVM.searchResource == .pvc {
                     DetailPVCView()
                 } else if k8sVM.searchResource == .deployment {
                     DetailDeployView()
+                } else if k8sVM.searchResource == .pv {
+                    //ZStack{
+                        DetailPVView()
+                    //}
+//                    .background(
+//                        Color.red
+//                            .cornerRadius(12)
+//                    )
+//                    .padding()
+//                    .padding(.top, 50)
+                    
                 }
             }
             
@@ -164,19 +172,29 @@ struct SearchView: View {
         .shadow(color: Color.black.opacity(0.08), radius: 5, x: 5, y: 5)
         .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)
         .onTapGesture {
-            print(k8sVM.searchResource)
+            k8sVM.showDetail = true
+            k8sVM.showDetailSearch = true
             switch k8sVM.searchResource {
             case .pv:
+                print("resource         :: \(resource)")
                 k8sVM.currentPV?.name = resource
+                
+                print("onTapGesture pv")
+                print("showDetail       :: \(k8sVM.showDetail)")
+                print("showDetailSearch :: \(k8sVM.showDetailSearch)")
+                
+                print(".currentPV?.name :: \(String(describing: k8sVM.currentPV?.name))")
             case .pvc:
                 k8sVM.currentPVC?.name = resource
-                print("pvc")
+                print("onTapGesture pvc")
             case .svc:
                 k8sVM.currentService?.name = resource
             case .pod:
-                print("pod")
+                print("onTapGesture pod")
             case .deployment:
-                print("dep")
+                print("onTapGesture dep")
+            case .sc:
+                print("onTapGesture sc")
             }
             withAnimation(.easeInOut){
                 

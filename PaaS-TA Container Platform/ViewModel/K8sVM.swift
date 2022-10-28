@@ -31,11 +31,12 @@ class K8sVM: ObservableObject {
     @Published var currentDeploy: DeployData?
     @Published var currentPV: PVData?
     @Published var showDetail = false
+    @Published var showDetailSearch = false
     @Published var currentNS = "All"
     
     @Published var searchActivated: Bool = false
     @Published var searchText: String = ""
-    @Published var searchResource: resource = .deployment
+    @Published var searchResource: resource = .deployment   //초기값으로 변경이 필요하다. 개발완료 시
     @Published var searchedProducts: [String] = []
     @Published var filterdResource: [String] = []
     
@@ -45,6 +46,7 @@ class K8sVM: ObservableObject {
         case svc
         case pod
         case deployment
+        case sc
     }
     
     func collectSearchData() {
@@ -59,6 +61,8 @@ class K8sVM: ObservableObject {
             for data in pvs {
                 searchedProducts.append(String(data.name))
             }
+            print("showDetail :: \(self.showDetail)")
+            print("showDetailSearch :: \(self.showDetailSearch)")
         case .pvc:
             print("collectSearchData() .pvc")
             for data in pvcs {
@@ -70,6 +74,10 @@ class K8sVM: ObservableObject {
             }
         case .pod:
             for data in pods {
+                searchedProducts.append(String(data.name))
+            }
+        case .sc:
+            for data in pvs {   //수정 필요
                 searchedProducts.append(String(data.name))
             }
         }

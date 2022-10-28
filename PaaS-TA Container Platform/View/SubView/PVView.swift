@@ -100,7 +100,7 @@ struct PVView: View {
                 
                 .onAppear(perform: {
                     print("PVView onAppear() called")
-                    k8sVM.searchResource = .pv
+                    //k8sVM.searchResource = .pv
                 })
                 .onAppear(perform: { k8sVM.pvList()})
                 .onReceive(k8sVM.$pvs, perform: { self.pvData = $0 })

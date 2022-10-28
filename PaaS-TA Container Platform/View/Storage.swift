@@ -47,14 +47,21 @@ struct Storage: View {
             .padding(.horizontal,15)
             .opacity(k8sVM.showDetail ? 0 : 1)
         }
-        .onChange(of: self.current, perform: {
-            if current == "Persistent Volumes" {
+        .onAppear{
+            k8sVM.searchResource = .pv
+        }
+        .onChange(of: current) { value in
+            switch value {
+            case "Persistent Volumes":
+                k8sVM.searchResource = .pv
+            case "Persistent Volumes Claims":
+                k8sVM.searchResource = .pvc
+            case "Storage Classes":
+                k8sVM.searchResource = .sc
+            default:
                 k8sVM.searchResource = .pv
             }
-            else if current = "Persistent Volumes Claims" {
-                k8sVM.searchResource = .pvc
-            }
-        })
+        }
     }
 }
 
