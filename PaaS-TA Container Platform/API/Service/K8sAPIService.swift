@@ -117,7 +117,7 @@ enum K8sApiService {
             .publishDecodable(type: ServiceResponse.self)
             .value()
             .map{ receivedValue in
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }

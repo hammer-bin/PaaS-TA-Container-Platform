@@ -36,6 +36,14 @@ struct DetailPVView: View {
                         
                         VStack{
                             HStack{
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 10)
+                                        .foregroundColor(Color("blue3"))
+                                    Circle()
+                                        .frame(width: 3)
+                                        .foregroundColor(Color("blue"))
+                                }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Detail")
                                         //.font(.caption.bold())
@@ -62,6 +70,7 @@ struct DetailPVView: View {
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
                                     Text("\(data.name)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
@@ -73,6 +82,7 @@ struct DetailPVView: View {
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
                                     Text(uid)
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 
@@ -91,6 +101,14 @@ struct DetailPVView: View {
                     
                         VStack{
                             HStack{
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 10)
+                                        .foregroundColor(Color("blue3"))
+                                    Circle()
+                                        .frame(width: 3)
+                                        .foregroundColor(Color("blue"))
+                                }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Resource")
                                         //.font(.caption.bold())
@@ -115,6 +133,7 @@ struct DetailPVView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(status)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
@@ -126,6 +145,7 @@ struct DetailPVView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(storageClass)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 
@@ -136,6 +156,7 @@ struct DetailPVView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(claim)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 
@@ -147,6 +168,7 @@ struct DetailPVView: View {
                                         .frame(width: 140, alignment: .trailing)
                                     ForEach(accessMode, id: \.self){ am in
                                         Text(am)
+                                            .font(.system(size: 15, design: .rounded))
                                             .fontWeight(.medium)
                                             //.clipShape(Rectangle())
                                     }

@@ -63,7 +63,7 @@ struct SCCardView: View {
         }
         .padding(.horizontal)
         .padding(.vertical)
-        .background(Color.white)
+        .background(Color("blue").opacity(0.1))
         .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.08), radius: 5, x: 5, y: 5)
         .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)

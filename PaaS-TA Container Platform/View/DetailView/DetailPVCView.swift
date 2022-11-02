@@ -25,7 +25,16 @@ struct DetailPVCView: View {
                     VStack{
                         
                         VStack{
+                            
                             HStack{
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 10)
+                                        .foregroundColor(Color("blue3"))
+                                    Circle()
+                                        .frame(width: 3)
+                                        .foregroundColor(Color("blue"))
+                                }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Detail")
                                         //.font(.caption.bold())
@@ -52,6 +61,7 @@ struct DetailPVCView: View {
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
                                     Text("\(data.name)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
@@ -63,6 +73,7 @@ struct DetailPVCView: View {
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
                                     Text("\(data.namespace)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                         
@@ -74,6 +85,7 @@ struct DetailPVCView: View {
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
                                     Text(uid)
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 
@@ -92,6 +104,14 @@ struct DetailPVCView: View {
                     
                         VStack{
                             HStack{
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 10)
+                                        .foregroundColor(Color("blue3"))
+                                    Circle()
+                                        .frame(width: 3)
+                                        .foregroundColor(Color("blue"))
+                                }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Resource")
                                         //.font(.caption.bold())
@@ -116,6 +136,7 @@ struct DetailPVCView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(status)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
@@ -127,6 +148,7 @@ struct DetailPVCView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(storageClass)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 
@@ -137,6 +159,7 @@ struct DetailPVCView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(storage)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 
@@ -148,6 +171,7 @@ struct DetailPVCView: View {
                                         .frame(width: 140, alignment: .trailing)
                                     ForEach(accessMode, id: \.self){ am in
                                         Text(am)
+                                            .font(.system(size: 15, design: .rounded))
                                             .fontWeight(.medium)
                                             //.clipShape(Rectangle())
                                     }
@@ -201,28 +225,6 @@ struct DetailPVCView: View {
                             )
                             .cornerRadius(10)
                         }
-                        .padding(.leading, 35)
-                        
-                        Button(action: {
-                            
-                        }) {
-                            HStack{
-                                Image(systemName: "arrow.backward")
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                
-                                Text("Delete")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                            }
-                            .padding(.vertical)
-                            .padding(.horizontal)
-                            .background(
-                                LinearGradient(gradient: .init(colors: [Color("blue2"), Color("blue2")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                            )
-                            .cornerRadius(10)
-                        }
-                        .padding(.leading, 35)
                     }
                 }
                 

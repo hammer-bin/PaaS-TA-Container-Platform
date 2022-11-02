@@ -8,5 +8,5 @@
 import Foundation
 
 struct ServiceResponse: Codable {
-    let data: [ServiceData]
+    let data: [ServiceData]?
 }

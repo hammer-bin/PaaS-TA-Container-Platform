@@ -25,6 +25,14 @@ struct DetailSCView: View {
                         
                         VStack{
                             HStack{
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 10)
+                                        .foregroundColor(Color("blue3"))
+                                    Circle()
+                                        .frame(width: 3)
+                                        .foregroundColor(Color("blue"))
+                                }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Detail")
                                         //.font(.caption.bold())
@@ -72,12 +80,17 @@ struct DetailSCView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
-                                    VStack{
+                                    VStack(spacing: 3){
                                         ForEach(labels, id: \.self){ am in
                                             Text(am)
                                                 .font(.system(size: 15, design: .rounded))
                                                 .fontWeight(.medium)
-                                                //.clipShape(Rectangle())
+                                                .foregroundColor(.white)
+                                                .background(
+                                                    Rectangle()
+                                                        .fill(Color.gray)
+                                                        .cornerRadius(3)
+                                                )
                                         }
                                     }
                                     
@@ -89,12 +102,17 @@ struct DetailSCView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
-                                    VStack{
+                                    VStack(spacing: 3){
                                         ForEach(annotations, id: \.self){ am in
                                             Text(am)
                                                 .font(.system(size: 15, design: .rounded))
                                                 .fontWeight(.medium)
-                                                //.clipShape(Rectangle())
+                                                .foregroundColor(.white)
+                                                .background(
+                                                    Rectangle()
+                                                        .fill(Color.gray)
+                                                        .cornerRadius(3)
+                                                )
                                         }
                                     }
                                     
@@ -115,6 +133,14 @@ struct DetailSCView: View {
                     
                         VStack{
                             HStack{
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 10)
+                                        .foregroundColor(Color("blue3"))
+                                    Circle()
+                                        .frame(width: 3)
+                                        .foregroundColor(Color("blue"))
+                                }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Resource")
                                         //.font(.caption.bold())
@@ -139,6 +165,7 @@ struct DetailSCView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(provider)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
@@ -150,6 +177,7 @@ struct DetailSCView: View {
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
                                     Text("\(archiveOnDelete)")
+                                        .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                 }
                                 

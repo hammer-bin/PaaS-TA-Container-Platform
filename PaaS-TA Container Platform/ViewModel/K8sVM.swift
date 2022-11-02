@@ -188,8 +188,9 @@ class K8sVM: ObservableObject {
         K8sApiService.serviceList(namespace: currentNS)
             .sink {  (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
-            } receiveValue: { (receivedData: [ServiceData]) in
-                self.services = receivedData
+            } receiveValue: { (receivedData: [ServiceData]?) in
+                debugPrint(receivedData ?? [])
+                self.services = receivedData ?? []
             }.store(in: &subscription)
     }
     

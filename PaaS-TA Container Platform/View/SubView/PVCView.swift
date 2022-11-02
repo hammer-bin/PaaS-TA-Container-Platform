@@ -10,8 +10,7 @@ import SwiftUI
 struct PVCView: View {
     @EnvironmentObject var k8sVM : K8sVM
     @State var pvcData : [PVCData] = []
-    @State var size = "Medium"
-    
+    @State var namespaceData : [NamespaceData] = []
     
     var body: some View {
         
@@ -45,30 +44,29 @@ struct PVCView: View {
                         
                         Menu(content: {
                             
-                            Button(action: {size = "Small"}) {
-                                
-                                Text("Small")
+                            Button(action: {
+                                k8sVM.currentNS = "All"
+                                k8sVM.serviceList()
+                            }) {
+                                Text("All namespace")
                             }
-                            Button(action: {size = "Midium"}) {
-                                
-                                Text("Midium")
+                            ForEach(namespaceData) { datum in
+                                NamespaceButton(namespaceName: datum.name)
                             }
-                            Button(action: {size = "Large"}) {
-                                
-                                Text("Large")
-                            }
-                            
+                
                         }) {
                             
                             Label(title: {
-                                Text(size)
+                                Text(k8sVM.currentNS)
                                     .foregroundColor(.white)
                             }) {
-                                Image(systemName: "slider.vertical.3")
+                                Image(systemName: "rectangle.split.3x1")
                                     .foregroundColor(.white)
                             }
                             .padding(.vertical,10)
                             .padding(.horizontal)
+                            .frame(maxWidth: 240, alignment: .leading)
+                            .fontWeight(.semibold)
                             .background(Color.black)
                             .clipShape(Capsule())
                         }
@@ -78,9 +76,6 @@ struct PVCView: View {
                     ForEach(pvcData) {data in
                         //Group
                         ZStack{
-                            
-     
-                            
                             PVCCardView(pvcInfo: data)
                                 .onTapGesture {
                                     withAnimation{
@@ -88,9 +83,6 @@ struct PVCView: View {
                                         k8sVM.showDetail = true
                                     }
                                 }
-                                
-                            
-                            
                         }
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
@@ -104,6 +96,7 @@ struct PVCView: View {
 //                })
                 .onAppear(perform: { k8sVM.pvcList()})
                 .onReceive(k8sVM.$pvcs, perform: { self.pvcData = $0 })
+                .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
                 .onAppear(perform: {
                     print("PVCView onAppear() called")
                     //k8sVM.searchResource = .pvc
@@ -125,6 +118,17 @@ struct PVCView: View {
                 DetailPVCView()
             )
             
+        }
+    }
+    
+    @ViewBuilder
+    func NamespaceButton(namespaceName: String) -> some View {
+        
+        Button(action: {
+            k8sVM.currentNS = namespaceName
+            k8sVM.pvcList()
+        }) {
+            Text(namespaceName)
         }
     }
 }
