@@ -11,9 +11,7 @@ struct ServiceView: View {
     @EnvironmentObject var k8sVM : K8sVM
     @State var serviceData : [ServiceData] = []
     @State var namespaceData : [NamespaceData] = []
-    @State var size = "Medium"
-    
-    
+       
     var body: some View {
         
         VStack{
@@ -100,9 +98,16 @@ struct ServiceView: View {
                 .onAppear(perform: {
                     print("ServiceView onAppear() called")
                 })
-                .onAppear(perform: { k8sVM.serviceList()})
+                .onAppear(perform: {
+                    k8sVM.serviceList()
+                })
                 .onReceive(k8sVM.$services, perform: { self.serviceData = $0 })
                 .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
+                .onChange(of: k8sVM.showMenu){value in
+                    if value == false {
+                        k8sVM.serviceList()
+                    }
+                }
                 
             }
             .padding(.top, 5)

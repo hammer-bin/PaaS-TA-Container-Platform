@@ -24,12 +24,17 @@ class K8sVM: ObservableObject {
     @Published var services: [ServiceData] = []
     @Published var ingresses: [IngressData] = []
     @Published var namespaces: [NamespaceData] = []
+    @Published var clusterMetricsData: ClusterMetricInfo? = nil
+    @Published var scs : [SCData] = []
+    @Published var scInfoData: SCInfo? = nil
     
     // Detail View Properties...
     @Published var currentService: ServiceData?
     @Published var currentPVC: PVCData?
     @Published var currentDeploy: DeployData?
     @Published var currentPV: PVData?
+    @Published var currentSC: SCData?
+    
     @Published var showDetail = false
     @Published var showDetailSearch = false
     @Published var currentNS = "All"
@@ -39,6 +44,9 @@ class K8sVM: ObservableObject {
     @Published var searchResource: resource = .deployment   //초기값으로 변경이 필요하다. 개발완료 시
     @Published var searchedProducts: [String] = []
     @Published var filterdResource: [String] = []
+    
+    @Published var currentView = "Home"
+    @Published var showMenu = false
     
     enum resource {
         case pv
@@ -61,7 +69,8 @@ class K8sVM: ObservableObject {
             for data in pvs {
                 searchedProducts.append(String(data.name))
             }
-            print("showDetail :: \(self.showDetail)")
+            print("count            :: \(searchedProducts.count)")
+            print("showDetail       :: \(self.showDetail)")
             print("showDetailSearch :: \(self.showDetailSearch)")
         case .pvc:
             print("collectSearchData() .pvc")
@@ -77,7 +86,7 @@ class K8sVM: ObservableObject {
                 searchedProducts.append(String(data.name))
             }
         case .sc:
-            for data in pvs {   //수정 필요
+            for data in scs {
                 searchedProducts.append(String(data.name))
             }
         }
@@ -226,6 +235,37 @@ class K8sVM: ObservableObject {
                      } receiveValue: { (receivedData: [NamespaceData]) in
                 print("store")
                          self.namespaces = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func clusterMetricInfo() {
+        print("K8sVM: clusterMetricInfo() called")
+        K8sApiService.clusterMetricInfo()
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: ClusterMetricInfo) in
+                self.clusterMetricsData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func scList() {
+        print("K8sVM: scList() called")
+        K8sApiService.scList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+                     } receiveValue: { (receivedData: [SCData]) in
+                print("store")
+                         self.scs = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func scInfo(resourceName: String) {
+        print("K8sVM: scInfo() called")
+        K8sApiService.scInfo(nemespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: SCInfo) in
+                self.scInfoData = receivedData
             }.store(in: &subscription)
     }
 }

@@ -22,7 +22,7 @@ struct Storage: View {
                 PVCView()
                     .tag("Persistent Volumes Claims")
                 
-                Text("Storage Classes")
+                SCView()
                     .tag("Storage Classes")
             }
             
@@ -48,6 +48,7 @@ struct Storage: View {
             .opacity(k8sVM.showDetail ? 0 : 1)
         }
         .onAppear{
+            print("Storage onAppear")
             k8sVM.searchResource = .pv
         }
         .onChange(of: current) { value in

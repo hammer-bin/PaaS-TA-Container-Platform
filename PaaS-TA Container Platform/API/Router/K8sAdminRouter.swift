@@ -30,6 +30,10 @@ enum K8sAdminRouter: URLRequestConvertible {
     case pvList(targetUrl: String, authorization: String)
     case pvInfo(targetUrl: String, authorization: String, resourceName: String)
     case namespaceList(targetUrl: String, authorization: String)
+    case clusterMetricInfo(targetUrl: String, authorization: String)
+    
+    case scList(targetUrl: String, authorization: String)
+    case scInfo(targetUrl: String, authorization: String, resourceName: String)
     
     var baseURL: URL {
         return URL(string: K8sAPIClient.BASE_URL)!
@@ -57,6 +61,12 @@ enum K8sAdminRouter: URLRequestConvertible {
             return "resource/pv/info"
         case .namespaceList:
             return "resource/namespace/list"
+        case .clusterMetricInfo:
+            return "metrics/cluster/count"
+        case .scList:
+            return "resource/sc/list"
+        case .scInfo:
+            return "resource/sc/info"
         }
     }
     
@@ -131,6 +141,25 @@ enum K8sAdminRouter: URLRequestConvertible {
             var params = params()
             params["target_url"] = targetUrl
             params["authorization"] = authorization
+            return params
+            
+        case let .clusterMetricInfo(targetUrl, authorization):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            return params
+            
+        case let .scList(targetUrl, authorization):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            return params
+            
+        case let .scInfo(targetUrl, authorization, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["resource_name"] = resourceName
             return params
             
         }

@@ -1,31 +1,28 @@
 //
-//  RowTabButton.swift
+//  CpuMemButton.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/10/10.
+//  Created by minkyuLee on 2022/10/31.
 //
 
 import SwiftUI
 
-struct LowTabButton: View {
+struct CpuMemButton: View {
     var title: String
     var image: String
-    @EnvironmentObject var k8sVM : K8sVM
     @Binding var selected : String
     
     var body: some View {
         
         Button(action: {
             withAnimation(.spring()){selected = title}
-            k8sVM.currentView = title
         }) {
             
             HStack(spacing: 10){
                 
                 Image(image)
                     .resizable()
-                    //.renderingMode(.template)
-                    .frame(width: 25, height: 25)
+                    .frame(width: 35, height: 35)
                     .foregroundColor(.white)
                 
                 if selected == title{

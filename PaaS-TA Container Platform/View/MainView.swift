@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     // selected Tab...
-    @State var selectedTab = "Storage"
+    @State var selectedTab = "Home"
     @State var showMenu = false
     @State var translation: CGSize = .zero
     @State var offsetX: CGFloat = -120
@@ -62,6 +62,7 @@ struct MainView: View {
                         Button(action: {
                             withAnimation(.spring()){
                                 showMenu.toggle()
+                                k8sVM.showMenu.toggle()
                             }
                         }, label: {
                             
@@ -100,6 +101,7 @@ struct MainView: View {
                                 .font(.title2)
                                 .frame(width: 36, height: 36)
                                 .foregroundColor(.black)
+                                .opacity(showMenu ? 0 : 1)
                             
                         })
                     }

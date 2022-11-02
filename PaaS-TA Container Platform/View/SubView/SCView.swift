@@ -1,21 +1,21 @@
 //
-//  PVView.swift
+//  SCView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/10/10.
+//  Created by minkyuLee on 2022/11/02.
 //
 
 import SwiftUI
 
-struct PVView: View {
+struct SCView: View {
     @EnvironmentObject var k8sVM : K8sVM
-    @State var pvData : [PVData] = []
+    @State var scData : [SCData] = []
     
     var body: some View {
         
         VStack{
             
-            Text("Persistent Volumes")
+            Text("StorageClass")
                 .font(.title)
                 .fontWeight(.heavy)
                 .foregroundColor(.black)
@@ -29,55 +29,40 @@ struct PVView: View {
                         VStack(alignment: .center, spacing: 0) {
                             
                             VStack(alignment: .leading, content: {
-                                Text("A PersistentVolume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a resource in the cluster just like a node is a cluster resource. PVs are volume plugins like Volumes, but have a lifecycle independent of any individual Pod that uses the PV. This API object captures the details of the implementation of the storage, be that NFS, iSCSI, or a cloud-provider-specific storage system.")
+                                Text("A StorageClass provides a way for administrators to describe the 'classes' of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators. Kubernetes itself is unopinionated about what classes represent. This concept is sometimes called 'profiles' in other storage systems.")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                     .fontWeight(.bold)
                             })
                             
                         }
-                        
-                        Spacer(minLength: 15)
-                        
-                        
+
                     }
                     .padding()
                     
-                    ForEach(pvData) {data in
-                        //Group
+                    ForEach(scData) {data in
                         ZStack{
-                            
-     
-                            
-                            PVCardView(pvInfo: data)
+                            SCCardView(scInfo: data)
                                 .onTapGesture {
                                     withAnimation{
-                                        k8sVM.currentPV = data
+                                        k8sVM.currentSC = data
                                         k8sVM.showDetail = true
                                     }
                                 }
-                                
-                            
-                            
                         }
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
                     }
                     
                 }
-                
-                .onAppear(perform: {
-                    print("PVView onAppear() called")
-                    //k8sVM.searchResource = .pv
-                })
-                .onAppear(perform: { k8sVM.pvList()})
-                .onReceive(k8sVM.$pvs, perform: { self.pvData = $0 })
-                
+                .onAppear(perform: { k8sVM.scList()})
+                .onReceive(k8sVM.$scs, perform: { self.scData = $0 })
             }
             .padding(.top, 5)
             .overlay(
                 Image("pvc-256")
                     //.renderingMode(.template)
+                    
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.gray)
@@ -85,18 +70,15 @@ struct PVView: View {
                     .opacity(0.1)
             )
             .overlay(
-                ZStack{
-                    DetailPVView()
-                }
-                
+                DetailSCView()
             )
             
         }
     }
 }
 
-struct PVView_Previews: PreviewProvider {
+struct SCView_Previews: PreviewProvider {
     static var previews: some View {
-        PVView()
+        SCView()
     }
 }

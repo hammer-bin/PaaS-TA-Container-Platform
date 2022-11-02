@@ -23,6 +23,8 @@ struct SearchView: View {
                     withAnimation{
                         k8sVM.searchActivated = false
                         k8sVM.searchText = ""
+                        k8sVM.showDetailSearch = false
+                        k8sVM.showDetail = false
                     }
                 } label: {
                     Image(systemName: "arrow.left")
@@ -96,12 +98,9 @@ struct SearchView: View {
                             // Card View...
                             ForEach(products, id:\.self){product in
                                 SearchCardView(resource: product)
-                                    
                             }
-                            
-                            //}
+                            .padding(.bottom, 10)
                         }
-                        
                         .padding()
                     }
                 }
@@ -136,15 +135,19 @@ struct SearchView: View {
                     //ZStack{
                         DetailPVView()
                     //}
-//                    .background(
-//                        Color.red
-//                            .cornerRadius(12)
-//                    )
-//                    .padding()
-//                    .padding(.top, 50)
+                    
                     
                 }
             }
+            .frame(maxHeight: .infinity)
+            .background(
+                Color("blue")
+                    .opacity(0.3)
+                    .cornerRadius(12)
+                    .edgesIgnoringSafeArea(.bottom)
+            )
+            .padding()
+            .padding(.top, 50)
             
         )
         
@@ -164,6 +167,7 @@ struct SearchView: View {
                 
                 
             })
+            Spacer()
         }
         .padding(.horizontal)
         .padding(.vertical)
@@ -174,6 +178,7 @@ struct SearchView: View {
         .onTapGesture {
             k8sVM.showDetail = true
             k8sVM.showDetailSearch = true
+            k8sVM.currentPV?.name = resource
             switch k8sVM.searchResource {
             case .pv:
                 print("resource         :: \(resource)")

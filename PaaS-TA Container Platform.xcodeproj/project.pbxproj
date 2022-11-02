@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89336CCD2911BE08007CC659 /* SCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCC2911BE08007CC659 /* SCData.swift */; };
+		89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCE2911BE42007CC659 /* SCResponse.swift */; };
+		89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD02911BE7D007CC659 /* SCInfo.swift */; };
+		89336CD32911C230007CC659 /* SCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD22911C230007CC659 /* SCView.swift */; };
+		89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD42911C3A6007CC659 /* SCCardView.swift */; };
+		89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD62911C6CB007CC659 /* DetailSCView.swift */; };
 		8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964DAD3290B2AEA00E77505 /* DetailPVView.swift */; };
 		898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */; };
 		898624C828E24FF800024852 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624C728E24FF800024852 /* ContentView.swift */; };
@@ -34,6 +40,7 @@
 		89910FD728E340CE00A21088 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FD628E340CE00A21088 /* UserVM.swift */; };
 		89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FD928E3427B00A21088 /* LoginPage.swift */; };
 		89910FDC28E343CC00A21088 /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FDB28E343CC00A21088 /* CustomCorner.swift */; };
+		8993B8B4290C9FB600DB17FB /* ClusterMetricInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */; };
 		8993E43328E639E7007CA986 /* Workload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993E43228E639E7007CA986 /* Workload.swift */; };
 		8995C6DB29009EE5003A0AC0 /* NamespaceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995C6DA29009EE5003A0AC0 /* NamespaceData.swift */; };
 		8995C6DD2900A088003A0AC0 /* NamespaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995C6DC2900A088003A0AC0 /* NamespaceResponse.swift */; };
@@ -69,6 +76,9 @@
 		899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7628E4EB2F00838335 /* PVCResponse.swift */; };
 		899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7828E4EBFC00838335 /* K8sVM.swift */; };
 		899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7B28E4EF3A00838335 /* HomePage.swift */; };
+		89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */; };
+		89AF80A4290F160F00787CD2 /* IndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A3290F160F00787CD2 /* IndicatorShape.swift */; };
+		89AF80A6290F20A400787CD2 /* CpuMemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A5290F20A400787CD2 /* CpuMemButton.swift */; };
 		89DF549128FCC95200A84640 /* PVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549028FCC95200A84640 /* PVData.swift */; };
 		89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549228FCCA0A00A84640 /* PVResponse.swift */; };
 		89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549428FCCB2F00A84640 /* PVInfo.swift */; };
@@ -76,6 +86,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89336CCC2911BE08007CC659 /* SCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCData.swift; sourceTree = "<group>"; };
+		89336CCE2911BE42007CC659 /* SCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCResponse.swift; sourceTree = "<group>"; };
+		89336CD02911BE7D007CC659 /* SCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCInfo.swift; sourceTree = "<group>"; };
+		89336CD22911C230007CC659 /* SCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCView.swift; sourceTree = "<group>"; };
+		89336CD42911C3A6007CC659 /* SCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCardView.swift; sourceTree = "<group>"; };
+		89336CD62911C6CB007CC659 /* DetailSCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSCView.swift; sourceTree = "<group>"; };
 		8964DAD3290B2AEA00E77505 /* DetailPVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVView.swift; sourceTree = "<group>"; };
 		898624C228E24FF800024852 /* PaaS-TA Container Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PaaS-TA Container Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaaS_TA_Container_PlatformApp.swift; sourceTree = "<group>"; };
@@ -103,6 +119,7 @@
 		89910FD628E340CE00A21088 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
 		89910FD928E3427B00A21088 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		89910FDB28E343CC00A21088 /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
+		8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterMetricInfo.swift; sourceTree = "<group>"; };
 		8993E43128E63580007CA986 /* PaaS-TA-Container-Platform-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PaaS-TA-Container-Platform-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8993E43228E639E7007CA986 /* Workload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workload.swift; sourceTree = "<group>"; };
 		8995C6DA29009EE5003A0AC0 /* NamespaceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceData.swift; sourceTree = "<group>"; };
@@ -139,6 +156,9 @@
 		899CDF7628E4EB2F00838335 /* PVCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCResponse.swift; sourceTree = "<group>"; };
 		899CDF7828E4EBFC00838335 /* K8sVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sVM.swift; sourceTree = "<group>"; };
 		899CDF7B28E4EF3A00838335 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeedoMeter.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/SpeedoMeter.swift"; sourceTree = "<group>"; };
+		89AF80A3290F160F00787CD2 /* IndicatorShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndicatorShape.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/IndicatorShape.swift"; sourceTree = "<group>"; };
+		89AF80A5290F20A400787CD2 /* CpuMemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuMemButton.swift; sourceTree = "<group>"; };
 		89DF549028FCC95200A84640 /* PVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVData.swift; sourceTree = "<group>"; };
 		89DF549228FCCA0A00A84640 /* PVResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVResponse.swift; sourceTree = "<group>"; };
 		89DF549428FCCB2F00A84640 /* PVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVInfo.swift; sourceTree = "<group>"; };
@@ -264,6 +284,8 @@
 				89DF549428FCCB2F00A84640 /* PVInfo.swift */,
 				898FD6A628FE076400D313CE /* K8sData.swift */,
 				8999790928FF526300E80B84 /* IngressInfo.swift */,
+				8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */,
+				89336CD02911BE7D007CC659 /* SCInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,6 +330,9 @@
 				8989725D28F398780052605C /* LowTabButton.swift */,
 				899A3A3729072DC2008EBEC4 /* SearchView.swift */,
 				8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */,
+				89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */,
+				89AF80A3290F160F00787CD2 /* IndicatorShape.swift */,
+				89AF80A5290F20A400787CD2 /* CpuMemButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,6 +343,7 @@
 				8995F16728F2A58F001CFAE7 /* DetailDeployView.swift */,
 				8989726A28F3AFFC0052605C /* DetailPVCView.swift */,
 				8964DAD3290B2AEA00E77505 /* DetailPVView.swift */,
+				89336CD62911C6CB007CC659 /* DetailSCView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -333,6 +359,7 @@
 				89DF549228FCCA0A00A84640 /* PVResponse.swift */,
 				8999790728FF506E00E80B84 /* IngressResponse.swift */,
 				8995C6DC2900A088003A0AC0 /* NamespaceResponse.swift */,
+				89336CCE2911BE42007CC659 /* SCResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -349,6 +376,7 @@
 				8995F16228F2685B001CFAE7 /* ServiceData.swift */,
 				8999790528FF4FD000E80B84 /* IngressData.swift */,
 				8995C6DA29009EE5003A0AC0 /* NamespaceData.swift */,
+				89336CCC2911BE08007CC659 /* SCData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -362,6 +390,8 @@
 				8989726628F3AC6D0052605C /* PVCView.swift */,
 				8989726828F3AD520052605C /* PVCCardView.swift */,
 				89DF549628FCCD3900A84640 /* PVCardView.swift */,
+				89336CD22911C230007CC659 /* SCView.swift */,
+				89336CD42911C3A6007CC659 /* SCCardView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -446,6 +476,9 @@
 				8995F16C28F2AEF4001CFAE7 /* DeployInfo.swift in Sources */,
 				89999C8728E8EB2000DBA981 /* DeployData.swift in Sources */,
 				8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */,
+				89336CD32911C230007CC659 /* SCView.swift in Sources */,
+				8993B8B4290C9FB600DB17FB /* ClusterMetricInfo.swift in Sources */,
+				89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */,
 				8995F16128F26514001CFAE7 /* ServiceCardView.swift in Sources */,
 				89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */,
 				899CDF7328E4EAFA00838335 /* PVCInfo.swift in Sources */,
@@ -456,7 +489,9 @@
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
 				8993E43328E639E7007CA986 /* Workload.swift in Sources */,
 				89999C8D28E9058B00DBA981 /* PodListView.swift in Sources */,
+				89336CCD2911BE08007CC659 /* SCData.swift in Sources */,
 				898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */,
+				89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */,
 				8989726728F3AC6D0052605C /* PVCView.swift in Sources */,
 				8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
@@ -467,15 +502,18 @@
 				8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */,
 				89999CAD28EA3CA600DBA981 /* PodResponse.swift in Sources */,
 				899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */,
+				89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */,
 				898FD6A528FDFF9200D313CE /* K8sAdminRouter.swift in Sources */,
 				89DF549728FCCD3900A84640 /* PVCardView.swift in Sources */,
 				899CDF6D28E4E8FB00838335 /* K8sAPIClient.swift in Sources */,
 				8995F16A28F2A6DB001CFAE7 /* BaseVM.swift in Sources */,
 				8999790628FF4FD000E80B84 /* IngressData.swift in Sources */,
 				89910FDC28E343CC00A21088 /* CustomCorner.swift in Sources */,
+				89AF80A6290F20A400787CD2 /* CpuMemButton.swift in Sources */,
 				898624EE28E2568900024852 /* UserData.swift in Sources */,
 				8995F15F28F26466001CFAE7 /* ServiceView.swift in Sources */,
 				899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */,
+				89AF80A4290F160F00787CD2 /* IndicatorShape.swift in Sources */,
 				89999C8928E8EB9D00DBA981 /* DeployResponse.swift in Sources */,
 				8989726928F3AD520052605C /* PVCCardView.swift in Sources */,
 				899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */,
@@ -488,12 +526,14 @@
 				899CDF6728E4DF8200838335 /* TabButton.swift in Sources */,
 				899CDF6F28E4E9A300838335 /* K8sRouter.swift in Sources */,
 				898624E028E2519700024852 /* BaseInterceptor.swift in Sources */,
+				89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */,
 				899CDF6328E4735B00838335 /* MainView.swift in Sources */,
 				8995C6DB29009EE5003A0AC0 /* NamespaceData.swift in Sources */,
 				899CDF7128E4EA2000838335 /* K8sAPIService.swift in Sources */,
 				898624C828E24FF800024852 /* ContentView.swift in Sources */,
 				898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */,
 				8989725E28F398780052605C /* LowTabButton.swift in Sources */,
+				89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */,
 				899CDF7528E4EB1700838335 /* PVCData.swift in Sources */,
 				89910FD728E340CE00A21088 /* UserVM.swift in Sources */,
 				89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */,

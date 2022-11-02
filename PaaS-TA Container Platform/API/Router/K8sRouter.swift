@@ -32,6 +32,9 @@ enum K8sRouter: URLRequestConvertible {
     
     case configmap(targetUrl: String, authorization: String, namespace: String)
     
+    case scList(targetUrl: String, authorization: String, namespace: String)
+    case scInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    
     var baseURL: URL {
         return URL(string: K8sAPIClient.BASE_URL)!
     }
@@ -54,6 +57,10 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/service/list"
         case .ingressList:
             return "resource/ingress/list"
+        case .scList:
+            return "resource/sc/list"
+        case .scInfo:
+            return "resource/sc/info"
         }
     }
     
@@ -125,7 +132,24 @@ enum K8sRouter: URLRequestConvertible {
             params["authorization"] = authorization
             params["namespace"] = namespace
             return params
+            
+        case let .scList(targetUrl, authorization, namespace):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            return params
+            
+        case let .scInfo(targetUrl, authorization, namespace, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            params["resource_name"] = resourceName
+            return params
         }
+        
+        
         
    
     }

@@ -200,4 +200,62 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
+    static func clusterMetricInfo()-> AnyPublisher<ClusterMetricInfo, AFError> {
+        print("K8sApiService = clusterMetricInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sAdminRouter.clusterMetricInfo(targetUrl: storedApiUrl, authorization: storedTokenData))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: ClusterMetricInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func scList(namespace: String)-> AnyPublisher<[SCData], AFError> {
+        print("K8sApiService = scList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return clientSC(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: SCResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientSC(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.scList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.scList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func scInfo(nemespace: String, resourceName: String)-> AnyPublisher<SCInfo, AFError> {
+        print("K8sApiService = scInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.scInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: nemespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: SCInfo.self)
+            .value()
+            .map{ receivedValue in
+                //debugPrint(receivedValue)
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
 }
