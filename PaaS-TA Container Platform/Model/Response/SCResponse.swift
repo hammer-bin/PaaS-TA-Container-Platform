@@ -8,5 +8,5 @@
 import Foundation
 
 struct SCResponse: Codable {
-    let data: [SCData]
+    let data: [SCData]?
 }

@@ -28,7 +28,9 @@ enum K8sRouter: URLRequestConvertible {
     case pvcInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case serviceList(targetUrl: String, authorization: String, namespace: String)
+    case serviceInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     case ingressList(targetUrl: String, authorization: String, namespace: String)
+    case ingressInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case configmap(targetUrl: String, authorization: String, namespace: String)
     
@@ -55,8 +57,12 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/pvc/list"
         case .serviceList:
             return "resource/service/list"
+        case .serviceInfo:
+            return "resource/service/info"
         case .ingressList:
             return "resource/ingress/list"
+        case .ingressInfo:
+            return "resource/ingress/info"
         case .scList:
             return "resource/sc/list"
         case .scInfo:
@@ -126,11 +132,27 @@ enum K8sRouter: URLRequestConvertible {
             params["namespace"] = namespace
             return params
             
+        case let .serviceInfo(targetUrl, authorization, namespace, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            params["resource_name"] = resourceName
+            return params
+            
         case let .ingressList(targetUrl, authorization, namespace):
             var params = params()
             params["target_url"] = targetUrl
             params["authorization"] = authorization
             params["namespace"] = namespace
+            return params
+            
+        case let .ingressInfo(targetUrl, authorization, namespace, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["namespace"] = namespace
+            params["resource_name"] = resourceName
             return params
             
         case let .scList(targetUrl, authorization, namespace):

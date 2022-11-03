@@ -7,7 +7,7 @@
 
 import Foundation
 struct PVCResponse: Codable {
-    let data: [PVCData]
+    let data: [PVCData]?
     
     enum CodingKeys: String, CodingKey {
         case data

@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Datum
 struct IngressData: Codable, Identifiable {
     var id: UUID = UUID()
-    let name, namespace: String
+    var name, namespace: String
     let target: [String]
     let createdTime: String
 

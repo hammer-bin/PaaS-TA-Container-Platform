@@ -7,6 +7,6 @@
 
 import Foundation
 struct PVResponse: Codable {
-    let data: [PVData]
+    let data: [PVData]?
     
 }

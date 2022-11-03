@@ -18,7 +18,7 @@ struct Service: View {
                 ServiceView()
                     .tag("Service")
                 
-                Text("Ingress")
+                IngressView()
                     .tag("Ingress")
             }
             

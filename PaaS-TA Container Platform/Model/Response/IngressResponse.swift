@@ -8,5 +8,5 @@
 import Foundation
 
 struct IngressResponse: Codable {
-    let data: [IngressData]
+    let data: [IngressData]?
 }

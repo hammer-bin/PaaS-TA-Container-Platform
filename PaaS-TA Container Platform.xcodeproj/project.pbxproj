@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89189C7D291313CB00158CFF /* DetailServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89189C7C291313CA00158CFF /* DetailServiceView.swift */; };
+		89189C7F2913143E00158CFF /* ServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89189C7E2913143E00158CFF /* ServiceInfo.swift */; };
 		89336CCD2911BE08007CC659 /* SCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCC2911BE08007CC659 /* SCData.swift */; };
 		89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCE2911BE42007CC659 /* SCResponse.swift */; };
 		89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD02911BE7D007CC659 /* SCInfo.swift */; };
@@ -14,6 +16,9 @@
 		89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD42911C3A6007CC659 /* SCCardView.swift */; };
 		89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD62911C6CB007CC659 /* DetailSCView.swift */; };
 		8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964DAD3290B2AEA00E77505 /* DetailPVView.swift */; };
+		897E0B34291467AC005DBC3B /* IngressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E0B33291467AC005DBC3B /* IngressView.swift */; };
+		897E0B36291468AC005DBC3B /* IngressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E0B35291468AC005DBC3B /* IngressCardView.swift */; };
+		897E0B38291469ED005DBC3B /* DetailIngressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E0B37291469ED005DBC3B /* DetailIngressView.swift */; };
 		898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */; };
 		898624C828E24FF800024852 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898624C728E24FF800024852 /* ContentView.swift */; };
 		898624CA28E24FFA00024852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898624C928E24FFA00024852 /* Assets.xcassets */; };
@@ -86,6 +91,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89189C7C291313CA00158CFF /* DetailServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailServiceView.swift; sourceTree = "<group>"; };
+		89189C7E2913143E00158CFF /* ServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfo.swift; sourceTree = "<group>"; };
 		89336CCC2911BE08007CC659 /* SCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCData.swift; sourceTree = "<group>"; };
 		89336CCE2911BE42007CC659 /* SCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCResponse.swift; sourceTree = "<group>"; };
 		89336CD02911BE7D007CC659 /* SCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCInfo.swift; sourceTree = "<group>"; };
@@ -93,6 +100,9 @@
 		89336CD42911C3A6007CC659 /* SCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCardView.swift; sourceTree = "<group>"; };
 		89336CD62911C6CB007CC659 /* DetailSCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSCView.swift; sourceTree = "<group>"; };
 		8964DAD3290B2AEA00E77505 /* DetailPVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVView.swift; sourceTree = "<group>"; };
+		897E0B33291467AC005DBC3B /* IngressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressView.swift; sourceTree = "<group>"; };
+		897E0B35291468AC005DBC3B /* IngressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressCardView.swift; sourceTree = "<group>"; };
+		897E0B37291469ED005DBC3B /* DetailIngressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIngressView.swift; sourceTree = "<group>"; };
 		898624C228E24FF800024852 /* PaaS-TA Container Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PaaS-TA Container Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		898624C528E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaaS_TA_Container_PlatformApp.swift; sourceTree = "<group>"; };
 		898624C728E24FF800024852 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -286,6 +296,7 @@
 				8999790928FF526300E80B84 /* IngressInfo.swift */,
 				8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */,
 				89336CD02911BE7D007CC659 /* SCInfo.swift */,
+				89189C7E2913143E00158CFF /* ServiceInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +355,8 @@
 				8989726A28F3AFFC0052605C /* DetailPVCView.swift */,
 				8964DAD3290B2AEA00E77505 /* DetailPVView.swift */,
 				89336CD62911C6CB007CC659 /* DetailSCView.swift */,
+				89189C7C291313CA00158CFF /* DetailServiceView.swift */,
+				897E0B37291469ED005DBC3B /* DetailIngressView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -392,6 +405,8 @@
 				89DF549628FCCD3900A84640 /* PVCardView.swift */,
 				89336CD22911C230007CC659 /* SCView.swift */,
 				89336CD42911C3A6007CC659 /* SCCardView.swift */,
+				897E0B33291467AC005DBC3B /* IngressView.swift */,
+				897E0B35291468AC005DBC3B /* IngressCardView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -489,6 +504,7 @@
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
 				8993E43328E639E7007CA986 /* Workload.swift in Sources */,
 				89999C8D28E9058B00DBA981 /* PodListView.swift in Sources */,
+				897E0B38291469ED005DBC3B /* DetailIngressView.swift in Sources */,
 				89336CCD2911BE08007CC659 /* SCData.swift in Sources */,
 				898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */,
 				89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */,
@@ -505,6 +521,7 @@
 				89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */,
 				898FD6A528FDFF9200D313CE /* K8sAdminRouter.swift in Sources */,
 				89DF549728FCCD3900A84640 /* PVCardView.swift in Sources */,
+				89189C7D291313CB00158CFF /* DetailServiceView.swift in Sources */,
 				899CDF6D28E4E8FB00838335 /* K8sAPIClient.swift in Sources */,
 				8995F16A28F2A6DB001CFAE7 /* BaseVM.swift in Sources */,
 				8999790628FF4FD000E80B84 /* IngressData.swift in Sources */,
@@ -519,6 +536,7 @@
 				899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */,
 				8995F16528F268C9001CFAE7 /* ServiceResponse.swift in Sources */,
 				899CDF6B28E4E04400838335 /* CustomCorners.swift in Sources */,
+				89189C7F2913143E00158CFF /* ServiceInfo.swift in Sources */,
 				89DF549128FCC95200A84640 /* PVData.swift in Sources */,
 				899CDF6928E4DFB100838335 /* Home.swift in Sources */,
 				89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */,
@@ -532,6 +550,7 @@
 				899CDF7128E4EA2000838335 /* K8sAPIService.swift in Sources */,
 				898624C828E24FF800024852 /* ContentView.swift in Sources */,
 				898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */,
+				897E0B34291467AC005DBC3B /* IngressView.swift in Sources */,
 				8989725E28F398780052605C /* LowTabButton.swift in Sources */,
 				89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */,
 				899CDF7528E4EB1700838335 /* PVCData.swift in Sources */,
@@ -539,6 +558,7 @@
 				89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */,
 				898624EA28E2548300024852 /* TokenData.swift in Sources */,
 				8999790828FF506E00E80B84 /* IngressResponse.swift in Sources */,
+				897E0B36291468AC005DBC3B /* IngressCardView.swift in Sources */,
 				8995C6DD2900A088003A0AC0 /* NamespaceResponse.swift in Sources */,
 				898624F028E256BE00024852 /* AuthResponse.swift in Sources */,
 				898624D928E2508C00024852 /* APIClient.swift in Sources */,

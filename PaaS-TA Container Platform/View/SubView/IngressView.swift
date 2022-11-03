@@ -1,25 +1,24 @@
 //
-//  PVCView.swift
+//  IngressView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/10/10.
+//  Created by minkyuLee on 2022/11/04.
 //
 
 import SwiftUI
 
-struct PVCView: View {
+struct IngressView: View {
     @EnvironmentObject var k8sVM : K8sVM
-    @State var pvcData : [PVCData] = []
+    @State var ingressData : [IngressData] = []
     @State var namespaceData : [NamespaceData] = []
-    
+       
     var body: some View {
         
         VStack{
             
-            Text("Persistent Volumes Claims")
-                .font(.title)
+            Text("Ingress")
+                .font(.largeTitle)
                 .fontWeight(.heavy)
-                .padding(.top, 50)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{
@@ -29,7 +28,7 @@ struct PVCView: View {
                         VStack(alignment: .center, spacing: 0) {
                             
                             VStack(alignment: .leading, content: {
-                                Text("A PersistentVolumeClaim (PVC) is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources.")
+                                Text("An abstract way to expose an application running on a set of Pods as a network service.")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                     .fontWeight(.bold)
@@ -45,7 +44,7 @@ struct PVCView: View {
                             
                             Button(action: {
                                 k8sVM.currentNS = "All"
-                                k8sVM.serviceList()
+                                k8sVM.ingressList()
                             }) {
                                 Text("All namespace")
                             }
@@ -66,21 +65,23 @@ struct PVCView: View {
                             .padding(.horizontal)
                             .frame(maxWidth: 240, alignment: .leading)
                             .fontWeight(.semibold)
-                            .background(Color("base"))
+                            .background(Color.black)
                             .clipShape(Capsule())
                         }
                     }
                     .padding()
                     
-                    if pvcData.count > 0 {
-                        ForEach(pvcData) {data in
+                    if ingressData.count > 0 {
+                        ForEach(ingressData) {sData in
                             //Group
                             ZStack{
-                                PVCCardView(pvcInfo: data)
+                                IngressCardView(ingressInfo: sData)
                                     .onTapGesture {
                                         withAnimation{
-                                            k8sVM.currentPVC = data
+                                            print("sData :: \(sData)")
+                                            k8sVM.currentIngress = sData
                                             k8sVM.showDetail = true
+                                            print("showDetail :: \(k8sVM.showDetail)")
                                         }
                                     }
                             }
@@ -100,25 +101,28 @@ struct PVCView: View {
                         }
                         
                     }
+                        
                     
                 }
                 
-//                .onAppear(perform: {
-//                    print("PVCView onAppear() called")
-//                    k8sVM.searchResource = .pvc
-//                })
-                .onAppear(perform: { k8sVM.pvcList()})
-                .onReceive(k8sVM.$pvcs, perform: { self.pvcData = $0 })
-                .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
                 .onAppear(perform: {
-                    print("PVCView onAppear() called")
-                    //k8sVM.searchResource = .pvc
+                    print("IngressView onAppear() called")
                 })
+                .onAppear(perform: {
+                    k8sVM.ingressList()
+                })
+                .onReceive(k8sVM.$ingresses, perform: { self.ingressData = $0 })
+                .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
+                .onChange(of: k8sVM.showMenu){value in
+                    if value == false {
+                        k8sVM.ingressList()
+                    }
+                }
                 
             }
             .padding(.top, 5)
             .overlay(
-                Image("pvc-256")
+                Image("svc-256")
                     //.renderingMode(.template)
                     
                     .resizable()
@@ -128,26 +132,25 @@ struct PVCView: View {
                     .opacity(0.1)
             )
             .overlay(
-                DetailPVCView()
+                DetailIngressView()
             )
             
         }
     }
-    
     @ViewBuilder
     func NamespaceButton(namespaceName: String) -> some View {
         
         Button(action: {
             k8sVM.currentNS = namespaceName
-            k8sVM.pvcList()
+            k8sVM.ingressList()
         }) {
             Text(namespaceName)
         }
     }
 }
 
-struct PVCView_Previews: PreviewProvider {
+struct IngressView_Previews: PreviewProvider {
     static var previews: some View {
-        PVCView()
+        IngressView()
     }
 }

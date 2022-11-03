@@ -1,29 +1,30 @@
 //
-//  DetailSCView.swift
+//  DetailIngressView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/11/02.
+//  Created by minkyuLee on 2022/11/04.
 //
 
 import SwiftUI
 
-struct DetailSCView: View {
+struct DetailIngressView: View {
     @EnvironmentObject var k8sVM : K8sVM
     @State var uid: String = ""
-    @State var labels: [String] = []
-    @State var annotations: [String] = []
-    @State var provider: String = ""
-    @State var archiveOnDelete: String = ""
+    @State var namespace: String = ""
+    @State var createdTime: String = ""
+    @State var ri: [ResourceIngress] = []
+    
     var body: some View {
         
-        if let data = k8sVM.currentSC, k8sVM.showDetail {
+        if let data = k8sVM.currentIngress, k8sVM.showDetail {
             ScrollView(.vertical, showsIndicators: false){
-
+                
                 VStack{
                     // MARK: - Detail Info
                     VStack{
                         
                         VStack{
+                            
                             HStack{
                                 ZStack{
                                     Circle()
@@ -35,7 +36,7 @@ struct DetailSCView: View {
                                 }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Detail")
-                                        //.font(.caption.bold())
+                                    //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
@@ -46,7 +47,10 @@ struct DetailSCView: View {
                                 Spacer()
                             }
                             .padding(.horizontal)
-
+                            
+                            
+                            
+                            
                             VStack(alignment: .leading, spacing: 10){
                                 
                                 HStack{
@@ -60,7 +64,18 @@ struct DetailSCView: View {
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
-                        
+                                
+                                HStack{
+                                    Text("Namespace")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing)
+                                        .frame(width: 90, alignment: .trailing)
+                                    Text("\(data.namespace)")
+                                        .font(.system(size: 15, design: .rounded))
+                                        .fontWeight(.medium)
+                                }
+                                
                                 
                                 HStack{
                                     Text("UID")
@@ -70,56 +85,18 @@ struct DetailSCView: View {
                                         .frame(width: 90, alignment: .trailing)
                                     Text(uid)
                                         .font(.system(size: 15, design: .rounded))
-                                        .lineLimit(2)
                                         .fontWeight(.medium)
                                 }
                                 
                                 HStack{
-                                    Text("Lables")
+                                    Text("createTime")
                                         .font(.caption.bold())
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
-                                    VStack(spacing: 3){
-                                        ForEach(labels, id: \.self){ am in
-                                            Text(am)
-                                                .font(.system(size: 15, design: .rounded))
-                                                .fontWeight(.medium)
-                                                .padding(.horizontal, 6)
-                                                .padding(.vertical, 2)
-                                                .foregroundColor(.white)
-                                                .background(
-                                                    Rectangle()
-                                                        .fill(Color.gray)
-                                                        .cornerRadius(3)
-                                                )
-                                        }
-                                    }
-                                    
-                                }
-                                
-                                HStack{
-                                    Text("Anotations")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 90, alignment: .trailing)
-                                    VStack(spacing: 3){
-                                        ForEach(annotations, id: \.self){ am in
-                                            Text(am)
-                                                .font(.system(size: 15, design: .rounded))
-                                                .fontWeight(.medium)
-                                                .padding(.horizontal, 6)
-                                                .padding(.vertical, 2)
-                                                .foregroundColor(.white)
-                                                .background(
-                                                    Rectangle()
-                                                        .fill(Color.gray)
-                                                        .cornerRadius(3)
-                                                )
-                                        }
-                                    }
-                                    
+                                    Text(createdTime)
+                                        .font(.system(size: 15, design: .rounded))
+                                        .fontWeight(.medium)
                                 }
                                 
                                 
@@ -134,7 +111,7 @@ struct DetailSCView: View {
                         .padding(.bottom)
                         .padding(.horizontal)
                         
-                    
+                        
                         VStack{
                             HStack{
                                 ZStack{
@@ -147,7 +124,7 @@ struct DetailSCView: View {
                                 }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Resource")
-                                        //.font(.caption.bold())
+                                    //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
@@ -159,40 +136,77 @@ struct DetailSCView: View {
                             }
                             .padding(.horizontal)
                             
-                            
-                            VStack(alignment: .leading, spacing: 10){
-                                
-                                HStack{
-                                    Text("provider")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 140, alignment: .trailing)
-                                    Text("\(provider)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                    Spacer()
+                            VStack{
+                                ForEach(ri, id: \.self){ data in
+                                    VStack(alignment: .leading, spacing: 10){
+                                        
+                                        HStack{
+                                            Text("host")
+                                                .font(.caption.bold())
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing)
+                                                .frame(width: 140, alignment: .trailing)
+                                            Text("\(data.host)")
+                                                .font(.system(size: 15, design: .rounded))
+                                                .fontWeight(.medium)
+                                            Spacer()
+                                        }
+                                        
+                                        HStack{
+                                            Text("pathType")
+                                                .font(.caption.bold())
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing)
+                                                .frame(width: 140, alignment: .trailing)
+                                            Text("\(data.pathType)")
+                                                .font(.system(size: 15, design: .rounded))
+                                                .fontWeight(.medium)
+                                        }
+                                        
+                                        HStack{
+                                            Text("path")
+                                                .font(.caption.bold())
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing)
+                                                .frame(width: 140, alignment: .trailing)
+                                            Text("\(data.path)")
+                                                .font(.system(size: 15, design: .rounded))
+                                                .fontWeight(.medium)
+                                        }
+                                        
+                                        HStack{
+                                            Text("targetSVC")
+                                                .font(.caption.bold())
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing)
+                                                .frame(width: 140, alignment: .trailing)
+                                            Text("\(data.targetSVC)")
+                                                .font(.system(size: 15, design: .rounded))
+                                                .fontWeight(.medium)
+                                        }
+                                        
+                                        HStack{
+                                            Text("targetPort")
+                                                .font(.caption.bold())
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing)
+                                                .frame(width: 140, alignment: .trailing)
+                                            Text("\(data.targetPort)")
+                                                .font(.system(size: 15, design: .rounded))
+                                                .fontWeight(.medium)
+                                        }
+                                        
+                                        
+                                    }
+                                    .padding(.vertical)
+                                    .padding(.horizontal, 25)
+                                    .background(Color.white)
+                                    .cornerRadius(20)
+                                    .shadow(color: Color.black.opacity(0.08), radius: 5, x:5, y: 5)
+                                    .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)
                                 }
-                                
-                                HStack{
-                                    Text("archive_on_delete")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 140, alignment: .trailing)
-                                    Text("\(archiveOnDelete)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                }
-                                
-                                
                             }
-                            .padding(.vertical)
-                            .padding(.horizontal, 25)
-                            .background(Color.white)
-                            .cornerRadius(20)
-                            .shadow(color: Color.black.opacity(0.08), radius: 5, x:5, y: 5)
-                            .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)
+                            
                         }
                         .padding(.horizontal)
                         
@@ -227,39 +241,29 @@ struct DetailSCView: View {
                             .padding(.vertical)
                             .padding(.horizontal)
                             .background(
-                             
+                                
                                 Color("blue2")
                                 
                             )
                             .cornerRadius(10)
                         }
-                        
                     }
                 }
                 
             }
             .onAppear(perform: {
-                k8sVM.scInfo(resourceName: data.name)
+                k8sVM.ingressInfo(resourceName: data.name)
             })
-            .onReceive(k8sVM.$scInfoData, perform: { value in
-                self.uid = value?.detailSc.uid ?? ""
-                self.labels = value?.detailSc.labels ?? []
-                self.annotations = value?.detailSc.annotations ?? []
-                self.provider = value?.resourceSc.provider ?? ""
-                self.archiveOnDelete = value?.resourceSc.archiveOnDelete ?? ""
+            .onReceive(k8sVM.$ingressInfoData, perform: { value in
+                self.uid = value?.detailIngress.uid ?? ""
+                self.namespace = value?.detailIngress.namespace ?? ""
+                self.createdTime = value?.detailIngress.createdTime ?? ""
+                self.ri = value?.resourceIngress ?? []
+                
             })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
             
         }
-            
-        
-        
-    }
-}
-
-struct DetailSCView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailSCView()
     }
 }

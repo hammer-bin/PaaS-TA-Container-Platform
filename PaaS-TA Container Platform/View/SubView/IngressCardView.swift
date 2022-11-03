@@ -1,14 +1,14 @@
 //
-//  ServiceCardView.swift
+//  IngressCardView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/10/09.
+//  Created by minkyuLee on 2022/11/04.
 //
 
 import SwiftUI
 
-struct ServiceCardView: View {
-    var serviceInfo : ServiceData
+struct IngressCardView: View {
+    var ingressInfo : IngressData
     var body: some View {
         HStack(spacing: 10){
             Image(systemName: "chevron.right.square")
@@ -16,7 +16,7 @@ struct ServiceCardView: View {
                 .frame(width: 30, height:30)
             
             VStack(content: {
-                Text(serviceInfo.name)
+                Text(ingressInfo.name)
                     .fontWeight(.bold)
                 
                 Divider()
@@ -28,18 +28,7 @@ struct ServiceCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(serviceInfo.namespace)
-                            .font(.caption)
-                            .lineLimit(1)
-                    }
-                    
-                    
-                    HStack{
-                        Text("Type : ")
-                            .font(.caption)
-                            .lineLimit(1)
-                        
-                        Text(serviceInfo.type)
+                        Text(ingressInfo.namespace)
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -49,9 +38,13 @@ struct ServiceCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(serviceInfo.clusterIP)
-                            .font(.caption)
-                            .lineLimit(1)
+                        VStack{
+                            ForEach(ingressInfo.target, id: \.self){ data in
+                                Text(data)
+                                    .font(.caption)
+                                    .lineLimit(1)
+                            }
+                        }
                     }
                     
                     HStack{
@@ -59,7 +52,7 @@ struct ServiceCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(serviceInfo.createdTime)
+                        Text(ingressInfo.createdTime)
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -77,8 +70,8 @@ struct ServiceCardView: View {
     }
 }
 
-struct ServiceCardView_Previews: PreviewProvider {
+struct IngressCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ServiceView()
+        IngressView()
     }
 }

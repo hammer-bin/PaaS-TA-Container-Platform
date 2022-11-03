@@ -18,7 +18,6 @@ struct SCView: View {
             Text("StorageClass")
                 .font(.title)
                 .fontWeight(.heavy)
-                .foregroundColor(.black)
                 .padding(.top, 50)
             ScrollView(.vertical, showsIndicators: false) {
                 
@@ -40,18 +39,32 @@ struct SCView: View {
                     }
                     .padding()
                     
-                    ForEach(scData) {data in
-                        ZStack{
-                            SCCardView(scInfo: data)
-                                .onTapGesture {
-                                    withAnimation{
-                                        k8sVM.currentSC = data
-                                        k8sVM.showDetail = true
+                    if scData.count > 0 {
+                        ForEach(scData) {data in
+                            ZStack{
+                                SCCardView(scInfo: data)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            k8sVM.currentSC = data
+                                            k8sVM.showDetail = true
+                                        }
                                     }
-                                }
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity)
                         }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity)
+                    }
+                    else {
+                        VStack(alignment: .center){
+                            Text("No Data.")
+                                .font(.system(size: 22, design: .rounded))
+                                .fontWeight(.bold)
+                            Image("NoData_gray")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 120)
+                        }
+                        
                     }
                     
                 }

@@ -22,7 +22,9 @@ class K8sVM: ObservableObject {
     @Published var deployInfoData: DeployInfo? = nil
     @Published var pods: [PodData] = []
     @Published var services: [ServiceData] = []
+    @Published var serviceInfoData: ServiceInfo? = nil
     @Published var ingresses: [IngressData] = []
+    @Published var ingressInfoData: IngressInfo? = nil
     @Published var namespaces: [NamespaceData] = []
     @Published var clusterMetricsData: ClusterMetricInfo? = nil
     @Published var scs : [SCData] = []
@@ -34,6 +36,7 @@ class K8sVM: ObservableObject {
     @Published var currentDeploy: DeployData?
     @Published var currentPV: PVData?
     @Published var currentSC: SCData?
+    @Published var currentIngress: IngressData?
     
     @Published var showDetail = false
     @Published var showDetailSearch = false
@@ -55,6 +58,7 @@ class K8sVM: ObservableObject {
         case pod
         case deployment
         case sc
+        case ingress
     }
     
     func collectSearchData() {
@@ -87,6 +91,10 @@ class K8sVM: ObservableObject {
             }
         case .sc:
             for data in scs {
+                searchedProducts.append(String(data.name))
+            }
+        case .ingress:
+            for data in ingresses {
                 searchedProducts.append(String(data.name))
             }
         }
@@ -194,6 +202,37 @@ class K8sVM: ObservableObject {
             }.store(in: &subscription)
     }
     
+    func serviceInfo(resourceName: String) {
+        print("K8sVM: serviceInfo() called")
+        K8sApiService.serviceInfo(namespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: ServiceInfo) in
+                self.serviceInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func ingressList() {
+        print("K8sVM: ingressList() called")
+        K8sApiService.IngressList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+                     } receiveValue: { (receivedData: [IngressData]) in
+                print("store")
+                         self.ingresses = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func ingressInfo(resourceName: String) {
+        print("K8sVM: ingressInfo() called")
+        K8sApiService.ingressInfo(namespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: IngressInfo) in
+                self.ingressInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
     func pvList() {
         print("K8sVM: pvList() called")
         K8sApiService.PVList()
@@ -214,17 +253,6 @@ class K8sVM: ObservableObject {
                 //print("store")
                 //print("capacity \(receivedData.resourcePVC.capacity)")
                 self.pvInfoData = receivedData
-            }.store(in: &subscription)
-    }
-    
-    func ingressList() {
-        print("K8sVM: ingressList() called")
-        K8sApiService.IngressList(namespace: currentNS)
-            .sink { (completion: Subscribers.Completion<AFError>) in
-                print("K8sVM completion: \(completion)")
-                     } receiveValue: { (receivedData: [IngressData]) in
-                print("store")
-                         self.ingresses = receivedData
             }.store(in: &subscription)
     }
     

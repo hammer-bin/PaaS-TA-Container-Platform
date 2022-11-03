@@ -19,7 +19,6 @@ struct ServiceView: View {
             Text("Service")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
-                .foregroundColor(.black)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{
@@ -72,26 +71,37 @@ struct ServiceView: View {
                     }
                     .padding()
                     
-                    ForEach(serviceData) {sData in
-                        //Group
-                        ZStack{
-                            
-     
-                            
-                            ServiceCardView(serviceInfo: sData)
-                                .onTapGesture {
-                                    withAnimation{
-                                        k8sVM.currentService = sData
-                                        k8sVM.showDetail = true
+                    if serviceData.count > 0 {
+                        ForEach(serviceData) {sData in
+                            //Group
+                            ZStack{
+                                ServiceCardView(serviceInfo: sData)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            print("sData :: \(sData)")
+                                            k8sVM.currentService = sData
+                                            k8sVM.showDetail = true
+                                            print("showDetail :: \(k8sVM.showDetail)")
+                                        }
                                     }
-                                }
-                                
-                            
-                            
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity)
                         }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity)
                     }
+                    else {
+                        VStack(alignment: .center){
+                            Text("No Data.")
+                                .font(.system(size: 22, design: .rounded))
+                                .fontWeight(.bold)
+                            Image("NoData_gray")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 120)
+                        }
+                        
+                    }
+                        
                     
                 }
                 
@@ -122,7 +132,7 @@ struct ServiceView: View {
                     .opacity(0.1)
             )
             .overlay(
-                DetailDeployView()
+                DetailServiceView()
             )
             
         }

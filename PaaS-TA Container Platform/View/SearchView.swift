@@ -63,10 +63,10 @@ struct SearchView: View {
                 if products.isEmpty {
                     // No Results Found...
                     VStack(spacing: 10) {
-                        Image("p2")
+                        Image("NoData_gray")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .padding(.top, 60)
+                            .frame(width: 120)
                         
                         Text("Item Not Found")
                             .font(.system(size: 22).bold())
@@ -200,6 +200,8 @@ struct SearchView: View {
                 print("onTapGesture dep")
             case .sc:
                 print("onTapGesture sc")
+            case .ingress:
+                k8sVM.currentIngress?.name = resource
             }
             withAnimation(.easeInOut){
                 

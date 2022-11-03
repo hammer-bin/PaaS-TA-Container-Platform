@@ -27,6 +27,9 @@ enum K8sAdminRouter: URLRequestConvertible {
     case pvcList(targetUrl: String, authorization: String)
     case pvcInfo(targetUrl: String, authorization: String, resourceName: String)
     case serviceList(targetUrl: String, authorization: String)
+    case serviceInfo(targetUrl: String, authorization: String, resourceName: String)
+    case ingressList(targetUrl: String, authorization: String)
+    case ingressInfo(targetUrl: String, authorization: String, resourceName: String)
     case pvList(targetUrl: String, authorization: String)
     case pvInfo(targetUrl: String, authorization: String, resourceName: String)
     case namespaceList(targetUrl: String, authorization: String)
@@ -55,6 +58,12 @@ enum K8sAdminRouter: URLRequestConvertible {
             return "resource/pvc/list"
         case .serviceList:
             return "resource/service/list"
+        case .serviceInfo:
+            return "resource/service/info"
+        case .ingressList:
+            return "resource/ingress/list"
+        case .ingressInfo:
+            return "resource/ingress/info"
         case .pvList:
             return "resource/pv/list"
         case .pvInfo:
@@ -122,6 +131,26 @@ enum K8sAdminRouter: URLRequestConvertible {
             var params = params()
             params["target_url"] = targetUrl
             params["authorization"] = authorization
+            return params
+            
+        case let .serviceInfo(targetUrl, authorization, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["resource_name"] = resourceName
+            return params
+            
+        case let .ingressList(targetUrl, authorization):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            return params
+            
+        case let .ingressInfo(targetUrl, authorization, resourceName):
+            var params = params()
+            params["target_url"] = targetUrl
+            params["authorization"] = authorization
+            params["resource_name"] = resourceName
             return params
             
         case let .pvList(targetUrl, authorization):

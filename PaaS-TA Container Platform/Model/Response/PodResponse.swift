@@ -8,5 +8,5 @@
 import Foundation
 
 struct PodResponse: Codable {
-    let data: [PodData]
+    let data: [PodData]?
 }

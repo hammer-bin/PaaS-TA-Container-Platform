@@ -1,29 +1,35 @@
 //
-//  DetailSCView.swift
+//  DetailServiceView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/11/02.
+//  Created by minkyuLee on 2022/11/03.
 //
 
 import SwiftUI
 
-struct DetailSCView: View {
+struct DetailServiceView: View {
     @EnvironmentObject var k8sVM : K8sVM
     @State var uid: String = ""
+    @State var namespace: String = ""
     @State var labels: [String] = []
     @State var annotations: [String] = []
-    @State var provider: String = ""
-    @State var archiveOnDelete: String = ""
+    @State var createdTime: String = ""
+    @State var type: String = ""
+    @State var clusterIp: String = ""
+    @State var sessionAffinity: String = ""
+    @State var selector: [String] = []
+    
     var body: some View {
         
-        if let data = k8sVM.currentSC, k8sVM.showDetail {
+        if let data = k8sVM.currentService, k8sVM.showDetail {
             ScrollView(.vertical, showsIndicators: false){
-
+                
                 VStack{
                     // MARK: - Detail Info
                     VStack{
                         
                         VStack{
+                            
                             HStack{
                                 ZStack{
                                     Circle()
@@ -35,7 +41,7 @@ struct DetailSCView: View {
                                 }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Detail")
-                                        //.font(.caption.bold())
+                                    //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
@@ -46,7 +52,10 @@ struct DetailSCView: View {
                                 Spacer()
                             }
                             .padding(.horizontal)
-
+                            
+                            
+                            
+                            
                             VStack(alignment: .leading, spacing: 10){
                                 
                                 HStack{
@@ -60,7 +69,18 @@ struct DetailSCView: View {
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
-                        
+                                
+                                HStack{
+                                    Text("Namespace")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing)
+                                        .frame(width: 90, alignment: .trailing)
+                                    Text("\(data.namespace)")
+                                        .font(.system(size: 15, design: .rounded))
+                                        .fontWeight(.medium)
+                                }
+                                
                                 
                                 HStack{
                                     Text("UID")
@@ -70,7 +90,6 @@ struct DetailSCView: View {
                                         .frame(width: 90, alignment: .trailing)
                                     Text(uid)
                                         .font(.system(size: 15, design: .rounded))
-                                        .lineLimit(2)
                                         .fontWeight(.medium)
                                 }
                                 
@@ -80,7 +99,7 @@ struct DetailSCView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
-                                    VStack(spacing: 3){
+                                    VStack(alignment: .leading, spacing: 3){
                                         ForEach(labels, id: \.self){ am in
                                             Text(am)
                                                 .font(.system(size: 15, design: .rounded))
@@ -104,7 +123,7 @@ struct DetailSCView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 90, alignment: .trailing)
-                                    VStack(spacing: 3){
+                                    VStack(alignment: .leading, spacing: 3){
                                         ForEach(annotations, id: \.self){ am in
                                             Text(am)
                                                 .font(.system(size: 15, design: .rounded))
@@ -122,6 +141,17 @@ struct DetailSCView: View {
                                     
                                 }
                                 
+                                HStack{
+                                    Text("createTime")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing)
+                                        .frame(width: 90, alignment: .trailing)
+                                    Text(createdTime)
+                                        .font(.system(size: 15, design: .rounded))
+                                        .fontWeight(.medium)
+                                }
+                                
                                 
                             }
                             .padding(.vertical)
@@ -134,7 +164,7 @@ struct DetailSCView: View {
                         .padding(.bottom)
                         .padding(.horizontal)
                         
-                    
+                        
                         VStack{
                             HStack{
                                 ZStack{
@@ -147,7 +177,7 @@ struct DetailSCView: View {
                                 }
                                 VStack(alignment: .leading, spacing: 0){
                                     Text("Resource")
-                                        //.font(.caption.bold())
+                                    //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
@@ -163,26 +193,51 @@ struct DetailSCView: View {
                             VStack(alignment: .leading, spacing: 10){
                                 
                                 HStack{
-                                    Text("provider")
+                                    Text("type")
                                         .font(.caption.bold())
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
-                                    Text("\(provider)")
+                                    Text("\(type)")
                                         .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
                                     Spacer()
                                 }
                                 
                                 HStack{
-                                    Text("archive_on_delete")
+                                    Text("clusterIp")
                                         .font(.caption.bold())
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                         .frame(width: 140, alignment: .trailing)
-                                    Text("\(archiveOnDelete)")
+                                    Text("\(clusterIp)")
                                         .font(.system(size: 15, design: .rounded))
                                         .fontWeight(.medium)
+                                }
+                                
+                                HStack{
+                                    Text("sessionAffinity")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing)
+                                        .frame(width: 140, alignment: .trailing)
+                                    Text("\(sessionAffinity)")
+                                        .font(.system(size: 15, design: .rounded))
+                                        .fontWeight(.medium)
+                                }
+                                
+                                HStack{
+                                    Text("selector")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing)
+                                        .frame(width: 140, alignment: .trailing)
+                                    ForEach(selector, id: \.self){ am in
+                                        Text(am)
+                                            .font(.system(size: 15, design: .rounded))
+                                            .fontWeight(.medium)
+                                        //.clipShape(Rectangle())
+                                    }
                                 }
                                 
                                 
@@ -227,39 +282,33 @@ struct DetailSCView: View {
                             .padding(.vertical)
                             .padding(.horizontal)
                             .background(
-                             
+                                
                                 Color("blue2")
                                 
                             )
                             .cornerRadius(10)
                         }
-                        
                     }
                 }
                 
             }
             .onAppear(perform: {
-                k8sVM.scInfo(resourceName: data.name)
+                k8sVM.serviceInfo(resourceName: data.name)
             })
-            .onReceive(k8sVM.$scInfoData, perform: { value in
-                self.uid = value?.detailSc.uid ?? ""
-                self.labels = value?.detailSc.labels ?? []
-                self.annotations = value?.detailSc.annotations ?? []
-                self.provider = value?.resourceSc.provider ?? ""
-                self.archiveOnDelete = value?.resourceSc.archiveOnDelete ?? ""
+            .onReceive(k8sVM.$serviceInfoData, perform: { value in
+                self.uid = value?.detailService.uid ?? ""
+                self.namespace = value?.detailService.namespace ?? ""
+                self.labels = value?.detailService.labels ?? []
+                self.annotations = value?.detailService.annotations ?? []
+                self.type = value?.resourceService.type ?? ""
+                self.clusterIp = value?.resourceService.clusterIP ?? ""
+                self.sessionAffinity = value?.resourceService.sessionAffinity ?? ""
+                self.selector = value?.resourceService.selector ?? []
+                self.createdTime = value?.detailService.createdTime ?? ""
             })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
             
         }
-            
-        
-        
-    }
-}
-
-struct DetailSCView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailSCView()
     }
 }

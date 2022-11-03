@@ -18,7 +18,6 @@ struct PVView: View {
             Text("Persistent Volumes")
                 .font(.title)
                 .fontWeight(.heavy)
-                .foregroundColor(.black)
                 .padding(.top, 50)
             ScrollView(.vertical, showsIndicators: false) {
                 
@@ -43,25 +42,39 @@ struct PVView: View {
                     }
                     .padding()
                     
-                    ForEach(pvData) {data in
-                        //Group
-                        ZStack{
-                            
-     
-                            
-                            PVCardView(pvInfo: data)
-                                .onTapGesture {
-                                    withAnimation{
-                                        k8sVM.currentPV = data
-                                        k8sVM.showDetail = true
-                                    }
-                                }
+                    if pvData.count > 0 {
+                        ForEach(pvData) {data in
+                            //Group
+                            ZStack{
                                 
-                            
-                            
+         
+                                
+                                PVCardView(pvInfo: data)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            k8sVM.currentPV = data
+                                            k8sVM.showDetail = true
+                                        }
+                                    }
+                                    
+                                
+                                
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity)
                         }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity)
+                    }
+                    else {
+                        VStack(alignment: .center){
+                            Text("No Data.")
+                                .font(.system(size: 22, design: .rounded))
+                                .fontWeight(.bold)
+                            Image("NoData_gray")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 120)
+                        }
+                        
                     }
                     
                 }

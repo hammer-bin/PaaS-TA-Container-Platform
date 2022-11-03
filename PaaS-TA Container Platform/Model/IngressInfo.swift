@@ -21,7 +21,7 @@ struct IngressInfo: Codable {
 // MARK: - DetailIngress
 struct DetailIngress: Codable {
     let name, uid, namespace: String
-    let createdTime: Date
+    let createdTime: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -31,7 +31,7 @@ struct DetailIngress: Codable {
 }
 
 // MARK: - ResourceIngress
-struct ResourceIngress: Codable {
+struct ResourceIngress: Codable, Hashable {
     let host, pathType, path, targetSVC: String
     let targetPort: Int
 

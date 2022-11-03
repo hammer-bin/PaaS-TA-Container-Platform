@@ -21,7 +21,7 @@ enum K8sApiService {
             .value()
             .map{ receivedValue in
                 //debugPrint(receivedValue)
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }
@@ -68,7 +68,7 @@ enum K8sApiService {
             .value()
             .map{ receivedValue in
                 //debugPrint(receivedValue)
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }
@@ -102,7 +102,7 @@ enum K8sApiService {
             .value()
             .map{ receivedValue in
                 //debugPrint(receivedValue)
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }
@@ -133,6 +133,22 @@ enum K8sApiService {
         }
     }
     
+    static func serviceInfo(namespace: String, resourceName: String)-> AnyPublisher<ServiceInfo, AFError> {
+        print("K8sApiService = serviceInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.serviceInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: ServiceInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
     static func PVList()-> AnyPublisher<[PVData], AFError> {
         print("K8sApiService = PVList() called")
         
@@ -145,7 +161,7 @@ enum K8sApiService {
             .value()
             .map{ receivedValue in
                 //debugPrint(receivedValue)
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }
@@ -173,13 +189,38 @@ enum K8sApiService {
         
         let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
         let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
-        return K8sAPIClient.shared.session
-            .request(K8sRouter.ingressList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        return clientIngress(storedApiUrl, storedTokenData, namespace)
             .publishDecodable(type: IngressResponse.self)
             .value()
             .map{ receivedValue in
-                //debugPrint(receivedValue)
-                return receivedValue.data
+                return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientIngress(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.ingressList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.ingressList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func ingressInfo(namespace: String, resourceName: String)-> AnyPublisher<IngressInfo, AFError> {
+        print("K8sApiService = ingressInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.ingressInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: IngressInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
             }
             .eraseToAnyPublisher()
     }
@@ -195,7 +236,7 @@ enum K8sApiService {
             .value()
             .map{ receivedValue in
                 //debugPrint(receivedValue)
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }
@@ -225,7 +266,7 @@ enum K8sApiService {
             .publishDecodable(type: SCResponse.self)
             .value()
             .map{ receivedValue in
-                return receivedValue.data
+                return receivedValue.data ?? []
             }
             .eraseToAnyPublisher()
     }

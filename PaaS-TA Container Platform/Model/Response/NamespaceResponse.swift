@@ -8,5 +8,5 @@
 import Foundation
 
 struct NamespaceResponse: Codable {
-    let data: [NamespaceData]
+    let data: [NamespaceData]?
 }
