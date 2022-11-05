@@ -1,28 +1,26 @@
 //
-//  DetailDeployView.swift
+//  DetailPodView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/10/09.
+//  Created by minkyuLee on 2022/11/05.
 //
 
 import SwiftUI
 
-struct DetailDeployView: View {
+struct DetailPodView: View {
     @EnvironmentObject var k8sVM : K8sVM
     @State var uid: String = ""
-    
-    @State var strategy: String = ""
-    @State var minReadySeconds: Int = 0
-    @State var revisionHistoryLimit: Int = 0
-    @State var selector: [String] = []
-    @State var maxSurge: String = "0%"
-    @State var maxUnavailable: String = "0%"
-    @State var updated: Int = 0
-    @State var total: Int = 0
-    @State var available: Int = 0
+    @State var labels: [String] = []
+    @State var annotations: [String] = []
+    @State var ip: String = ""
+    @State var qosClass: String = ""
+    @State var controllers: [String] = []
+    @State var volumes: [String] = []
+    @State var containerName: [String] = []
+    @State var containerImage: [String] = []
     var body: some View {
         
-        if let deploy = k8sVM.currentDeploy, k8sVM.showDetail {
+        if let podData = k8sVM.currentPod, k8sVM.showDetail {
             ScrollView(.vertical, showsIndicators: false){
 
                 VStack{
@@ -46,19 +44,20 @@ struct DetailDeployView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 48, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
                             }
                             .padding(.horizontal)
-                            
-                            
+
                             VStack(alignment: .leading, spacing: 10){
-                                Item(title: "Name", value: deploy.name, width: 90)
-                                Item(title: "Namespace", value: deploy.namespace, width: 90)
-                                Item(title: "Replica", value: "\(deploy.availableReplicas)/\(deploy.replicas)", width: 90)
+                                
+                                Item(title: "Name", value: podData.name, width: 90)
+                                Item(title: "Namespace", value: podData.namespace, width: 90)
                                 Item(title: "UID", value: uid, width: 90)
+                                ItemList(title: "Labels", value: labels, width: 90)
+                                ItemList(title: "Annotations", value: annotations, width: 90)
                             }
                             .padding(.vertical)
                             .padding(.horizontal, 25)
@@ -96,18 +95,17 @@ struct DetailDeployView: View {
                             
                             
                             VStack(alignment: .leading, spacing: 10){
-
                                 
-                                Item(title: "Strategy", value: strategy, width: 140)
-                                Item(title: "minReadySeconds", value: String(minReadySeconds), width: 140)
-                                Item(title: "revisionHistoryLimit", value: String(revisionHistoryLimit), width: 140)
-                                
-                                ItemList(title: "Selector", value: selector, width: 140)
-                                
-                                
+                                Item(title: "Nodes", value: podData.node, width: 90)
+                                Item(title: "Status", value: podData.status, width: 90)
+                                Item(title: "IP", value: ip, width: 90)
+                                Item(title: "qo_s_class", value: qosClass, width: 90)
+                                Item(title: "restart", value: String(podData.restarts), width: 90)
+ 
                             }
                             .padding(.vertical)
                             .padding(.horizontal, 25)
+                            .frame(maxWidth: .infinity)
                             .background(Color.white)
                             .cornerRadius(20)
                             .shadow(color: Color.black.opacity(0.08), radius: 5, x:5, y: 5)
@@ -127,7 +125,7 @@ struct DetailDeployView: View {
                                         .foregroundColor(Color("blue"))
                                 }
                                 VStack(alignment: .leading, spacing: 0){
-                                    Text("UpdateStrategy")
+                                    Text("Container")
                                         //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
@@ -142,8 +140,10 @@ struct DetailDeployView: View {
                             
                             
                             VStack(alignment: .leading, spacing: 10){
-                                Item(title: "maxSurge", value: maxSurge, width: 110)
-                                Item(title: "maxUnavailable", value: maxUnavailable, width: 110)
+                                
+                                ItemList(title: "name", value: containerName, width: 110)
+                                ItemList(title: "image", value: containerImage, width: 110)
+
                             }
                             .padding(.vertical)
                             .padding(.horizontal, 25)
@@ -154,45 +154,7 @@ struct DetailDeployView: View {
                         }
                         .padding(.horizontal)
                         
-                        // MARK: - PodStatus
-                        VStack{
-                            HStack{
-                                ZStack{
-                                    Circle()
-                                        .frame(width: 10)
-                                        .foregroundColor(Color("blue3"))
-                                    Circle()
-                                        .frame(width: 3)
-                                        .foregroundColor(Color("blue"))
-                                }
-                                VStack(alignment: .leading, spacing: 0){
-                                    Text("PodStatus")
-                                        //.font(.caption.bold())
-                                        .font(.system(size: 15)).bold()
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                    Color("blue3")
-                                        .frame(width: 68, height: 2)
-                                        .clipShape(Capsule())
-                                }
-                                Spacer()
-                            }
-                            .padding(.horizontal)
-                            
-                            VStack(alignment: .leading, spacing: 10){
-                                Item(title: "Updated", value: String(updated), width: 90)
-                                Item(title: "Total", value: String(total), width: 90)
-                                Item(title: "Available", value: String(available), width: 90)
-                            }
-                            .padding(.vertical)
-                            .padding(.horizontal, 25)
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(20)
-                            .shadow(color: Color.black.opacity(0.08), radius: 5, x:5, y: 5)
-                            .shadow(color: Color.black.opacity(0.08), radius: 5, x: -5, y: -5)
-                        }
-                        .padding(.horizontal)
+                        
                         
                     }
                     .padding(.vertical)
@@ -201,26 +163,27 @@ struct DetailDeployView: View {
                     .background(Color.white)
                     //.transition(.opacity)
                 }
-                
             }
             .onAppear(perform: {
-                k8sVM.deployInfo(namespace: deploy.namespace, resourceName: deploy.name)
+                k8sVM.podInfo(namespace: podData.namespace, resourceName: podData.name)
             })
-            .onReceive(k8sVM.$deployInfoData, perform: { value in
-                self.uid = value?.detail.uid ?? ""
-                self.strategy = value?.resourceInfo.strategy ?? ""
-                self.minReadySeconds = value?.resourceInfo.minReadySeconds ?? 0
-                self.revisionHistoryLimit = value?.resourceInfo.revisionHistoryLimit ?? 0
-                self.selector = value?.resourceInfo.Selector ?? []
-                self.maxSurge = value?.updateStrategy.maxSurge ?? ""
-                self.maxUnavailable = value?.updateStrategy.maxUnavailable ?? ""
-                self.updated = value?.podStatus.updated ?? 0
-                self.total = value?.podStatus.total ?? 0
-                self.available = value?.podStatus.available ?? 0
+            .onReceive(k8sVM.$podInfoData, perform: { value in
+                self.uid = value?.detailPod.uid ?? ""
+                self.labels = value?.detailPod.labels ?? []
+                self.annotations = value?.detailPod.annotations ?? []
+                self.ip = value?.resourcePod.ip ?? ""
+                self.qosClass = value?.resourcePod.qoSClass ?? ""
+                self.controllers = value?.resourcePod.controllers ?? []
+                self.volumes = value?.resourcePod.volumes ?? []
+                self.containerName = value?.containerPod.name ?? []
+                self.containerImage = value?.containerPod.image ?? []
             })
             .edgesIgnoringSafeArea(.all)
             
         }
+            
+        
+        
     }
     
     @ViewBuilder
@@ -229,11 +192,10 @@ struct DetailDeployView: View {
             Text(title)
                 .font(.caption.bold())
                 .foregroundColor(.gray)
-                .frame(width: width, alignment: .trailing)
                 .padding(.trailing)
+                .frame(width: width, alignment: .trailing)
             Text("\(value)")
                 .font(.system(size: 15, design: .rounded))
-                .frame(alignment: .leading)
                 .fontWeight(.medium)
             Spacer()
         }
@@ -264,5 +226,11 @@ struct DetailDeployView: View {
             }
             Spacer()
         }
+    }
+}
+
+struct DetailPodView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailPodView()
     }
 }

@@ -252,7 +252,7 @@ struct DetailIngressView: View {
                 
             }
             .onAppear(perform: {
-                k8sVM.ingressInfo(resourceName: data.name)
+                k8sVM.ingressInfo(namespace:data.namespace, resourceName: data.name)
             })
             .onReceive(k8sVM.$ingressInfoData, perform: { value in
                 self.uid = value?.detailIngress.uid ?? ""

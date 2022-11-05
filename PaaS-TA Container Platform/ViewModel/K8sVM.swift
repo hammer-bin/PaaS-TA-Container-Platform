@@ -21,6 +21,7 @@ class K8sVM: ObservableObject {
     @Published var deploymemts: [DeployData] = []
     @Published var deployInfoData: DeployInfo? = nil
     @Published var pods: [PodData] = []
+    @Published var podInfoData: PodInfo? = nil
     @Published var services: [ServiceData] = []
     @Published var serviceInfoData: ServiceInfo? = nil
     @Published var ingresses: [IngressData] = []
@@ -29,11 +30,14 @@ class K8sVM: ObservableObject {
     @Published var clusterMetricsData: ClusterMetricInfo? = nil
     @Published var scs : [SCData] = []
     @Published var scInfoData: SCInfo? = nil
+    //@Published var replicaSets:
     
     // Detail View Properties...
     @Published var currentService: ServiceData?
     @Published var currentPVC: PVCData?
     @Published var currentDeploy: DeployData?
+    @Published var currentPod: PodData?
+    //@Published var currentRS: 
     @Published var currentPV: PVData?
     @Published var currentSC: SCData?
     @Published var currentIngress: IngressData?
@@ -59,6 +63,7 @@ class K8sVM: ObservableObject {
         case deployment
         case sc
         case ingress
+        case rs
     }
     
     func collectSearchData() {
@@ -97,7 +102,12 @@ class K8sVM: ObservableObject {
             for data in ingresses {
                 searchedProducts.append(String(data.name))
             }
+        case .rs:
+            for data in ingresses {
+                searchedProducts.append(String(data.name))
+            }
         }
+    
     }
     var searchCancellable: AnyCancellable?
     
@@ -160,7 +170,7 @@ class K8sVM: ObservableObject {
     
     func deployList() {
         print("K8sVM: deployList() called")
-        K8sApiService.deployList()
+        K8sApiService.deployList(namespace: self.currentNS)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: [DeployData]) in
@@ -171,7 +181,7 @@ class K8sVM: ObservableObject {
     
     func deployInfo(namespace: String, resourceName: String) {
         print("K8sVM: deployInfo() called")
-        K8sApiService.deployInfo(nemespace: namespace, resourceName: resourceName)
+        K8sApiService.deployInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: DeployInfo) in
@@ -182,12 +192,23 @@ class K8sVM: ObservableObject {
     
     func podList() {
         print("K8sVM: podList() called")
-        K8sApiService.podList()
+        K8sApiService.podList(namespace: currentNS)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: [PodData]) in
                 print("store")
                 self.pods = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func podInfo(namespace: String, resourceName: String) {
+        print("K8sVM: podInfo() called")
+        K8sApiService.podInfo(namespace: namespace, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: PodInfo) in
+                print("store")
+                self.podInfoData = receivedData
             }.store(in: &subscription)
     }
     
@@ -223,9 +244,9 @@ class K8sVM: ObservableObject {
             }.store(in: &subscription)
     }
     
-    func ingressInfo(resourceName: String) {
+    func ingressInfo(namespace: String, resourceName: String) {
         print("K8sVM: ingressInfo() called")
-        K8sApiService.ingressInfo(namespace: currentNS, resourceName: resourceName)
+        K8sApiService.ingressInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: IngressInfo) in

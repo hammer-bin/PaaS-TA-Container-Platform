@@ -58,16 +58,7 @@ struct PodStatus: Codable {
 struct ResourceInfo: Codable {
     let strategy: String
     let minReadySeconds, revisionHistoryLimit: Int
-    let selector: Selector
-}
-
-// MARK: - Selector
-struct Selector: Codable {
-    let matchLabels: MatchLabels
-}
-
-struct MatchLabels: Codable {
-    var app: String
+    let Selector: [String]
 }
 
 // MARK: - UpdateStrategy

@@ -56,14 +56,12 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
-    static func deployList()-> AnyPublisher<[DeployData], AFError> {
+    static func deployList(namespace: String)-> AnyPublisher<[DeployData], AFError> {
         print("K8sAPIService = deployList() called")
         
         let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
         let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
-        let namespace = "harbor"
-        return K8sAPIClient.shared.session
-            .request(K8sRouter.deploymnetList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        return clientDeploy(storedApiUrl, storedTokenData, namespace)
             .publishDecodable(type: DeployResponse.self)
             .value()
             .map{ receivedValue in
@@ -73,13 +71,24 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
-    static func deployInfo(nemespace: String, resourceName: String)-> AnyPublisher<DeployInfo, AFError> {
-        print("K8sApiService = pvcInfo() called")
+    fileprivate static func clientDeploy(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.deploymentList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.deploymentList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func deployInfo(namespace: String, resourceName: String)-> AnyPublisher<DeployInfo, AFError> {
+        print("K8sApiService = deployInfo() called")
         
         let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
         let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
         return K8sAPIClient.shared.session
-            .request(K8sRouter.deploymentInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: nemespace, resourceName: resourceName))
+            .request(K8sRouter.deploymentInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
             .validate(statusCode: 200...400)
             .publishDecodable(type: DeployInfo.self)
             .value()
@@ -90,19 +99,42 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
-    static func podList()-> AnyPublisher<[PodData], AFError> {
+    static func podList(namespace: String)-> AnyPublisher<[PodData], AFError> {
         print("K8sAPIService = podList() called")
         
         let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
         let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
-        let namespace = "harbor"
-        return K8sAPIClient.shared.session
-            .request(K8sRouter.podList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        return clientPod(storedApiUrl, storedTokenData, namespace)
             .publishDecodable(type: PodResponse.self)
             .value()
             .map{ receivedValue in
-                //debugPrint(receivedValue)
                 return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientPod(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.podList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.podList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func podInfo(namespace: String, resourceName: String)-> AnyPublisher<PodInfo, AFError> {
+        print("K8sApiService = podInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.podInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: PodInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
             }
             .eraseToAnyPublisher()
     }

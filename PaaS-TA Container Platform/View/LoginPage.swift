@@ -93,19 +93,6 @@ struct LoginPage: View {
                             .padding(.top, 10)
                     }
                     
-                    // Forgot Password Button...
-//                    Button {
-//                        userVM.ForgetPassword()
-//                    } label: {
-//
-//                        Text("Forget password?")
-//                            .font(.system(size: 14))
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(Color("Purple"))
-//                    }
-//                    .padding(.top,8)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
                     //Login Button...
                     Button {
                         if userVM.registerUser{

@@ -9,12 +9,20 @@
 /* Begin PBXBuildFile section */
 		89189C7D291313CB00158CFF /* DetailServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89189C7C291313CA00158CFF /* DetailServiceView.swift */; };
 		89189C7F2913143E00158CFF /* ServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89189C7E2913143E00158CFF /* ServiceInfo.swift */; };
+		892D93E82915C47A0096F9BE /* PodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93E72915C47A0096F9BE /* PodView.swift */; };
+		892D93EA2915C5A00096F9BE /* PodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93E92915C5A00096F9BE /* PodCardView.swift */; };
+		892D93EC2915C7410096F9BE /* DetailPodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93EB2915C7410096F9BE /* DetailPodView.swift */; };
+		892D93EE2915C8D40096F9BE /* PodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93ED2915C8D40096F9BE /* PodInfo.swift */; };
+		892D93F02916493B0096F9BE /* RSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93EF2916493B0096F9BE /* RSData.swift */; };
+		892D93F2291649570096F9BE /* RSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F1291649570096F9BE /* RSResponse.swift */; };
 		89336CCD2911BE08007CC659 /* SCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCC2911BE08007CC659 /* SCData.swift */; };
 		89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCE2911BE42007CC659 /* SCResponse.swift */; };
 		89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD02911BE7D007CC659 /* SCInfo.swift */; };
 		89336CD32911C230007CC659 /* SCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD22911C230007CC659 /* SCView.swift */; };
 		89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD42911C3A6007CC659 /* SCCardView.swift */; };
 		89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD62911C6CB007CC659 /* DetailSCView.swift */; };
+		8947B5122915330E000131F7 /* DeploymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947B5112915330E000131F7 /* DeploymentView.swift */; };
+		8947B514291533FD000131F7 /* DeploymentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947B513291533FD000131F7 /* DeploymentCardView.swift */; };
 		8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964DAD3290B2AEA00E77505 /* DetailPVView.swift */; };
 		897E0B34291467AC005DBC3B /* IngressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E0B33291467AC005DBC3B /* IngressView.swift */; };
 		897E0B36291468AC005DBC3B /* IngressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E0B35291468AC005DBC3B /* IngressCardView.swift */; };
@@ -61,7 +69,6 @@
 		8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999790928FF526300E80B84 /* IngressInfo.swift */; };
 		89999C8728E8EB2000DBA981 /* DeployData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8628E8EB2000DBA981 /* DeployData.swift */; };
 		89999C8928E8EB9D00DBA981 /* DeployResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8828E8EB9D00DBA981 /* DeployResponse.swift */; };
-		89999C8B28E9047F00DBA981 /* DeploymentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8A28E9047F00DBA981 /* DeploymentListView.swift */; };
 		89999C8D28E9058B00DBA981 /* PodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8C28E9058B00DBA981 /* PodListView.swift */; };
 		89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */; };
 		89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAA28EA3C5A00DBA981 /* PodData.swift */; };
@@ -93,12 +100,20 @@
 /* Begin PBXFileReference section */
 		89189C7C291313CA00158CFF /* DetailServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailServiceView.swift; sourceTree = "<group>"; };
 		89189C7E2913143E00158CFF /* ServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfo.swift; sourceTree = "<group>"; };
+		892D93E72915C47A0096F9BE /* PodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodView.swift; sourceTree = "<group>"; };
+		892D93E92915C5A00096F9BE /* PodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodCardView.swift; sourceTree = "<group>"; };
+		892D93EB2915C7410096F9BE /* DetailPodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPodView.swift; sourceTree = "<group>"; };
+		892D93ED2915C8D40096F9BE /* PodInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodInfo.swift; sourceTree = "<group>"; };
+		892D93EF2916493B0096F9BE /* RSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSData.swift; sourceTree = "<group>"; };
+		892D93F1291649570096F9BE /* RSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSResponse.swift; sourceTree = "<group>"; };
 		89336CCC2911BE08007CC659 /* SCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCData.swift; sourceTree = "<group>"; };
 		89336CCE2911BE42007CC659 /* SCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCResponse.swift; sourceTree = "<group>"; };
 		89336CD02911BE7D007CC659 /* SCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCInfo.swift; sourceTree = "<group>"; };
 		89336CD22911C230007CC659 /* SCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCView.swift; sourceTree = "<group>"; };
 		89336CD42911C3A6007CC659 /* SCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCardView.swift; sourceTree = "<group>"; };
 		89336CD62911C6CB007CC659 /* DetailSCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSCView.swift; sourceTree = "<group>"; };
+		8947B5112915330E000131F7 /* DeploymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentView.swift; sourceTree = "<group>"; };
+		8947B513291533FD000131F7 /* DeploymentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentCardView.swift; sourceTree = "<group>"; };
 		8964DAD3290B2AEA00E77505 /* DetailPVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVView.swift; sourceTree = "<group>"; };
 		897E0B33291467AC005DBC3B /* IngressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressView.swift; sourceTree = "<group>"; };
 		897E0B35291468AC005DBC3B /* IngressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressCardView.swift; sourceTree = "<group>"; };
@@ -146,7 +161,6 @@
 		8999790928FF526300E80B84 /* IngressInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressInfo.swift; sourceTree = "<group>"; };
 		89999C8628E8EB2000DBA981 /* DeployData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeployData.swift; sourceTree = "<group>"; };
 		89999C8828E8EB9D00DBA981 /* DeployResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeployResponse.swift; sourceTree = "<group>"; };
-		89999C8A28E9047F00DBA981 /* DeploymentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentListView.swift; sourceTree = "<group>"; };
 		89999C8C28E9058B00DBA981 /* PodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodListView.swift; sourceTree = "<group>"; };
 		89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicaSetListView.swift; sourceTree = "<group>"; };
 		89999CAA28EA3C5A00DBA981 /* PodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodData.swift; sourceTree = "<group>"; };
@@ -297,6 +311,7 @@
 				8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */,
 				89336CD02911BE7D007CC659 /* SCInfo.swift */,
 				89189C7E2913143E00158CFF /* ServiceInfo.swift */,
+				892D93ED2915C8D40096F9BE /* PodInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,7 +319,6 @@
 		8989726328F3AB9D0052605C /* ListView */ = {
 			isa = PBXGroup;
 			children = (
-				89999C8A28E9047F00DBA981 /* DeploymentListView.swift */,
 				89999C8C28E9058B00DBA981 /* PodListView.swift */,
 				89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */,
 			);
@@ -357,6 +371,7 @@
 				89336CD62911C6CB007CC659 /* DetailSCView.swift */,
 				89189C7C291313CA00158CFF /* DetailServiceView.swift */,
 				897E0B37291469ED005DBC3B /* DetailIngressView.swift */,
+				892D93EB2915C7410096F9BE /* DetailPodView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -373,6 +388,7 @@
 				8999790728FF506E00E80B84 /* IngressResponse.swift */,
 				8995C6DC2900A088003A0AC0 /* NamespaceResponse.swift */,
 				89336CCE2911BE42007CC659 /* SCResponse.swift */,
+				892D93F1291649570096F9BE /* RSResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -390,6 +406,7 @@
 				8999790528FF4FD000E80B84 /* IngressData.swift */,
 				8995C6DA29009EE5003A0AC0 /* NamespaceData.swift */,
 				89336CCC2911BE08007CC659 /* SCData.swift */,
+				892D93EF2916493B0096F9BE /* RSData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -407,6 +424,10 @@
 				89336CD42911C3A6007CC659 /* SCCardView.swift */,
 				897E0B33291467AC005DBC3B /* IngressView.swift */,
 				897E0B35291468AC005DBC3B /* IngressCardView.swift */,
+				8947B5112915330E000131F7 /* DeploymentView.swift */,
+				8947B513291533FD000131F7 /* DeploymentCardView.swift */,
+				892D93E72915C47A0096F9BE /* PodView.swift */,
+				892D93E92915C5A00096F9BE /* PodCardView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -493,12 +514,16 @@
 				8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */,
 				89336CD32911C230007CC659 /* SCView.swift in Sources */,
 				8993B8B4290C9FB600DB17FB /* ClusterMetricInfo.swift in Sources */,
+				892D93E82915C47A0096F9BE /* PodView.swift in Sources */,
 				89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */,
 				8995F16128F26514001CFAE7 /* ServiceCardView.swift in Sources */,
+				892D93F2291649570096F9BE /* RSResponse.swift in Sources */,
 				89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */,
 				899CDF7328E4EAFA00838335 /* PVCInfo.swift in Sources */,
 				898624E428E253E000024852 /* AuthRouter.swift in Sources */,
+				892D93EA2915C5A00096F9BE /* PodCardView.swift in Sources */,
 				8989726528F3ABEF0052605C /* PVView.swift in Sources */,
+				892D93F02916493B0096F9BE /* RSData.swift in Sources */,
 				89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */,
 				898624DE28E2515000024852 /* APILogger.swift in Sources */,
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
@@ -512,11 +537,12 @@
 				8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
 				899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */,
-				89999C8B28E9047F00DBA981 /* DeploymentListView.swift in Sources */,
+				892D93EC2915C7410096F9BE /* DetailPodView.swift in Sources */,
 				8995F16828F2A58F001CFAE7 /* DetailDeployView.swift in Sources */,
 				8989726228F3A7F30052605C /* Storage.swift in Sources */,
 				8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */,
 				89999CAD28EA3CA600DBA981 /* PodResponse.swift in Sources */,
+				8947B5122915330E000131F7 /* DeploymentView.swift in Sources */,
 				899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */,
 				89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */,
 				898FD6A528FDFF9200D313CE /* K8sAdminRouter.swift in Sources */,
@@ -554,11 +580,13 @@
 				8989725E28F398780052605C /* LowTabButton.swift in Sources */,
 				89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */,
 				899CDF7528E4EB1700838335 /* PVCData.swift in Sources */,
+				892D93EE2915C8D40096F9BE /* PodInfo.swift in Sources */,
 				89910FD728E340CE00A21088 /* UserVM.swift in Sources */,
 				89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */,
 				898624EA28E2548300024852 /* TokenData.swift in Sources */,
 				8999790828FF506E00E80B84 /* IngressResponse.swift in Sources */,
 				897E0B36291468AC005DBC3B /* IngressCardView.swift in Sources */,
+				8947B514291533FD000131F7 /* DeploymentCardView.swift in Sources */,
 				8995C6DD2900A088003A0AC0 /* NamespaceResponse.swift in Sources */,
 				898624F028E256BE00024852 /* AuthResponse.swift in Sources */,
 				898624D928E2508C00024852 /* APIClient.swift in Sources */,

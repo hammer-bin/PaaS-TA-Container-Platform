@@ -15,7 +15,7 @@ struct PodListView: View {
         ZStack{
             //Color("Purple")
             Color("bg")
-                .clipShape(WorkLoadCustomCorner(corner: .topRight, size: 65))
+                //.clipShape(WorkLoadCustomCorner(corner: .topRight, size: 65))
             
             ScrollView(.vertical, showsIndicators: false, content: {
                 VStack(spacing: 20){

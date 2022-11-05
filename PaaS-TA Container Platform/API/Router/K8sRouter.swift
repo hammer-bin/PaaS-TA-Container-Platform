@@ -20,9 +20,10 @@ enum K8sRouter: URLRequestConvertible {
         return request
     }
     
-    case deploymnetList(targetUrl: String, authorization: String, namespace: String)
+    case deploymentList(targetUrl: String, authorization: String, namespace: String)
     case deploymentInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     case podList(targetUrl: String, authorization: String, namespace: String)
+    case podInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case pvcList(targetUrl: String, authorization: String, namespace: String)
     case pvcInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
@@ -43,12 +44,14 @@ enum K8sRouter: URLRequestConvertible {
     
     var endPoint: String {
         switch self {
-        case .deploymnetList:
+        case .deploymentList:
             return "resource/deployment/list"
-        case .podList:
-            return "resource/pod/list"
         case .deploymentInfo:
             return "resource/deployment/info"
+        case .podList:
+            return "resource/pod/list"
+        case .podInfo:
+            return "resource/pod/info"
         case .configmap:
             return "resource/configmap/list"
         case .pvcInfo:
@@ -78,97 +81,57 @@ enum K8sRouter: URLRequestConvertible {
     
     typealias params = [String : String]
     
+    fileprivate func listParam(_ targetUrl: String, _ authorization: String, _ namespace: String) -> K8sRouter.params {
+        var params = params()
+        params["target_url"] = targetUrl
+        params["authorization"] = authorization
+        params["namespace"] = namespace
+        return params
+    }
+    
+    fileprivate func infoParam(_ targetUrl: String, _ authorization: String, _ namespace: String, _ resourceName: String) -> K8sRouter.params {
+        var params = params()
+        params["target_url"] = targetUrl
+        params["authorization"] = authorization
+        params["namespace"] = namespace
+        params["resource_name"] = resourceName
+        return params
+    }
+    
     var parameters: params{
         switch self {
-        case let .deploymnetList(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
+        case let .deploymentList(targetUrl, authorization, namespace):
+            return listParam(targetUrl, authorization, namespace)
+        case let .deploymentInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .podList(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
+            return listParam(targetUrl, authorization, namespace)
+        case let .podInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .configmap(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
-            
-        case let .deploymentInfo(targetUrl, authorization, namespace, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            params["resource_name"] = resourceName
-            return params
-            
-        case let .pvcInfo(targetUrl, authorization, namespace, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            params["resource_name"] = resourceName
-            //print(params)
-            return params
-            
+            return listParam(targetUrl, authorization, namespace)
+      
         case let .pvcList(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
+            return listParam(targetUrl, authorization, namespace)
+        case let .pvcInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .serviceList(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
-            
+            return listParam(targetUrl, authorization, namespace)
         case let .serviceInfo(targetUrl, authorization, namespace, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .ingressList(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
-            
+            return listParam(targetUrl, authorization, namespace)
         case let .ingressInfo(targetUrl, authorization, namespace, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .scList(targetUrl, authorization, namespace):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            return params
-            
+            return listParam(targetUrl, authorization, namespace)
         case let .scInfo(targetUrl, authorization, namespace, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["namespace"] = namespace
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, namespace, resourceName)
         }
         
         

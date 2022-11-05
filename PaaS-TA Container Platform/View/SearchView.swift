@@ -202,6 +202,8 @@ struct SearchView: View {
                 print("onTapGesture sc")
             case .ingress:
                 k8sVM.currentIngress?.name = resource
+            case .rs:
+                print("rs")
             }
             withAnimation(.easeInOut){
                 

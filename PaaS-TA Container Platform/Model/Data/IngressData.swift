@@ -11,8 +11,8 @@ import Foundation
 struct IngressData: Codable, Identifiable {
     var id: UUID = UUID()
     var name, namespace: String
-    let target: [String]
-    let createdTime: String
+    var target: [String]
+    var createdTime: String
 
     enum CodingKeys: String, CodingKey {
         case name, namespace, target

@@ -20,7 +20,7 @@ enum K8sAdminRouter: URLRequestConvertible {
         return request
     }
     
-    case deploymnetList(targetUrl: String, authorization: String)
+    case deploymentList(targetUrl: String, authorization: String)
     case podList(targetUrl: String, authorization: String)
     case deploymentInfo(targetUrl: String, authorization: String, resourceName: String)
     case configmap(targetUrl: String, authorization: String)
@@ -44,7 +44,7 @@ enum K8sAdminRouter: URLRequestConvertible {
     
     var endPoint: String {
         switch self {
-        case .deploymnetList:
+        case .deploymentList:
             return "resource/deployment/list"
         case .podList:
             return "resource/pod/list"
@@ -87,109 +87,70 @@ enum K8sAdminRouter: URLRequestConvertible {
     
     typealias params = [String : String]
     
+    fileprivate func listParam(_ targetUrl: String, _ authorization: String) -> K8sAdminRouter.params {
+        var params = params()
+        params["target_url"] = targetUrl
+        params["authorization"] = authorization
+        return params
+    }
+    
+    fileprivate func infoParam(_ targetUrl: String, _ authorization: String, _ resourceName: String) -> K8sAdminRouter.params {
+        var params = params()
+        params["target_url"] = targetUrl
+        params["authorization"] = authorization
+        params["resource_name"] = resourceName
+        return params
+    }
+    
     var parameters: params{
         switch self {
-        case let .deploymnetList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+        case let .deploymentList(targetUrl, authorization):
+            return listParam(targetUrl, authorization)
             
         case let .podList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .configmap(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .deploymentInfo(targetUrl, authorization, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, resourceName)
             
         case let .pvcInfo(targetUrl, authorization, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, resourceName)
             
         case let .pvcList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .serviceList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .serviceInfo(targetUrl, authorization, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, resourceName)
             
         case let .ingressList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .ingressInfo(targetUrl, authorization, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, resourceName)
             
         case let .pvList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .pvInfo(targetUrl, authorization, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, resourceName)
             
         case let .namespaceList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .clusterMetricInfo(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .scList(targetUrl, authorization):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            return params
+            return listParam(targetUrl, authorization)
             
         case let .scInfo(targetUrl, authorization, resourceName):
-            var params = params()
-            params["target_url"] = targetUrl
-            params["authorization"] = authorization
-            params["resource_name"] = resourceName
-            return params
+            return infoParam(targetUrl, authorization, resourceName)
             
         }
         
