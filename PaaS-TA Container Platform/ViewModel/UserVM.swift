@@ -28,6 +28,10 @@ class UserVM: ObservableObject {
     @Published var re_Enter_Password: String = ""
     @Published var showReEnterPassword: Bool = false
     
+    // Cluster 관리자 여부, false일 경우 namespace 사용자
+    @Published var isClusterAdmin: Bool = false
+    @Published var isLoading: Bool = false
+    
     //회원가입 완료 이벤트
     var registrationSuccess = PassthroughSubject<(), Never>()
     
@@ -49,6 +53,7 @@ class UserVM: ObservableObject {
     //로그인 하기
     func login(email: String, password: String) {
         print("UserVM: register() called")
+        
         AuthAPIService.login(email: email, password: password)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("UserVM completion: \(completion)")
@@ -56,6 +61,11 @@ class UserVM: ObservableObject {
                 self.loggedInUser = receivedUser
                 self.loginSuccess.send()
             }.store(in: &subscription)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.isLoading.toggle()
+        }
+        
     }
     
     // Login Call...

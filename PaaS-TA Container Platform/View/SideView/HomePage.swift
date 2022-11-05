@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomePage: View {
     @EnvironmentObject var k8sVM : K8sVM
+    @EnvironmentObject var userVM : UserVM
     
     @State var name: String = ""
     @State var namespace: String = ""
@@ -91,7 +92,7 @@ struct HomePage: View {
                             .clipShape(Capsule())
                             .padding(.horizontal,35)
                         }
-                    
+                        
                         Text("\(String(format: "%.1f", current == "CPU" ? CpuRatio*100 : MemRatio*100))")
                             .font(.system(size: 35, weight: .black))
                             .foregroundColor(Color("blue"))

@@ -113,11 +113,11 @@ struct ServiceView: View {
                 })
                 .onReceive(k8sVM.$services, perform: { self.serviceData = $0 })
                 .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
-                .onChange(of: k8sVM.showMenu){value in
-                    if value == false {
-                        k8sVM.serviceList()
-                    }
-                }
+//                .onChange(of: k8sVM.showMenu){value in
+//                    if value == false {
+//                        k8sVM.serviceList()
+//                    }
+//                }
                 
             }
             .padding(.top, 5)

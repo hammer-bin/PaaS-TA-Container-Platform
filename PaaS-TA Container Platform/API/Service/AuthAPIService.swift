@@ -11,7 +11,6 @@ import Alamofire
 
 //인증관련 api 호출
 enum AuthAPIService {
-    //static func login(email: String, password: String)->
     //회원가입
     static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String)-> AnyPublisher<UserData, AFError> {
         print("AuthAPIService = register() called")

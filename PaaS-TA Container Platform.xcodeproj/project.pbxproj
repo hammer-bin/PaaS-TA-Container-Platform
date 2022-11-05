@@ -16,6 +16,9 @@
 		892D93F02916493B0096F9BE /* RSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93EF2916493B0096F9BE /* RSData.swift */; };
 		892D93F2291649570096F9BE /* RSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F1291649570096F9BE /* RSResponse.swift */; };
 		892D93F429164D3F0096F9BE /* RSInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F329164D3F0096F9BE /* RSInfo.swift */; };
+		892D93F829170CBC0096F9BE /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F729170CBC0096F9BE /* UserDashboard.swift */; };
+		892D93FA29170D8C0096F9BE /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F929170D8C0096F9BE /* UserStorage.swift */; };
+		892D941629171F710096F9BE /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D941529171F710096F9BE /* LoadingScreen.swift */; };
 		89336CCD2911BE08007CC659 /* SCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCC2911BE08007CC659 /* SCData.swift */; };
 		89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCE2911BE42007CC659 /* SCResponse.swift */; };
 		89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD02911BE7D007CC659 /* SCInfo.swift */; };
@@ -107,6 +110,9 @@
 		892D93EF2916493B0096F9BE /* RSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSData.swift; sourceTree = "<group>"; };
 		892D93F1291649570096F9BE /* RSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSResponse.swift; sourceTree = "<group>"; };
 		892D93F329164D3F0096F9BE /* RSInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSInfo.swift; sourceTree = "<group>"; };
+		892D93F729170CBC0096F9BE /* UserDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDashboard.swift; sourceTree = "<group>"; };
+		892D93F929170D8C0096F9BE /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		892D941529171F710096F9BE /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		89336CCC2911BE08007CC659 /* SCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCData.swift; sourceTree = "<group>"; };
 		89336CCE2911BE42007CC659 /* SCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCResponse.swift; sourceTree = "<group>"; };
 		89336CD02911BE7D007CC659 /* SCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCInfo.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 		892D93F529164F550096F9BE /* SideView */ = {
 			isa = PBXGroup;
 			children = (
+				892D93F629170C920096F9BE /* UserSideView */,
 				899CDF7B28E4EF3A00838335 /* HomePage.swift */,
 				8993E43228E639E7007CA986 /* Workload.swift */,
 				8989725F28F39BE40052605C /* Service.swift */,
@@ -211,6 +218,15 @@
 				899CDF6428E4DF5B00838335 /* SideMenu.swift */,
 			);
 			path = SideView;
+			sourceTree = "<group>";
+		};
+		892D93F629170C920096F9BE /* UserSideView */ = {
+			isa = PBXGroup;
+			children = (
+				892D93F729170CBC0096F9BE /* UserDashboard.swift */,
+				892D93F929170D8C0096F9BE /* UserStorage.swift */,
+			);
+			path = UserSideView;
 			sourceTree = "<group>";
 		};
 		898624B928E24FF800024852 = {
@@ -373,6 +389,7 @@
 				89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */,
 				89AF80A3290F160F00787CD2 /* IndicatorShape.swift */,
 				89AF80A5290F20A400787CD2 /* CpuMemButton.swift */,
+				892D941529171F710096F9BE /* LoadingScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -528,6 +545,7 @@
 				892D93F2291649570096F9BE /* RSResponse.swift in Sources */,
 				89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */,
 				899CDF7328E4EAFA00838335 /* PVCInfo.swift in Sources */,
+				892D941629171F710096F9BE /* LoadingScreen.swift in Sources */,
 				898624E428E253E000024852 /* AuthRouter.swift in Sources */,
 				892D93EA2915C5A00096F9BE /* PodCardView.swift in Sources */,
 				8989726528F3ABEF0052605C /* PVView.swift in Sources */,
@@ -575,6 +593,7 @@
 				899CDF6928E4DFB100838335 /* Home.swift in Sources */,
 				89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */,
 				898FD6A728FE076400D313CE /* K8sData.swift in Sources */,
+				892D93FA29170D8C0096F9BE /* UserStorage.swift in Sources */,
 				899CDF6728E4DF8200838335 /* TabButton.swift in Sources */,
 				899CDF6F28E4E9A300838335 /* K8sRouter.swift in Sources */,
 				898624E028E2519700024852 /* BaseInterceptor.swift in Sources */,
@@ -587,6 +606,7 @@
 				897E0B34291467AC005DBC3B /* IngressView.swift in Sources */,
 				8989725E28F398780052605C /* LowTabButton.swift in Sources */,
 				89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */,
+				892D93F829170CBC0096F9BE /* UserDashboard.swift in Sources */,
 				899CDF7528E4EB1700838335 /* PVCData.swift in Sources */,
 				892D93EE2915C8D40096F9BE /* PodInfo.swift in Sources */,
 				89910FD728E340CE00A21088 /* UserVM.swift in Sources */,

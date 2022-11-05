@@ -113,11 +113,11 @@ struct DeploymentView: View {
                 })
                 .onReceive(k8sVM.$deploymemts, perform: { self.deployData = $0 })
                 .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
-                .onChange(of: k8sVM.showMenu){value in
-                    if value == false {
-                        k8sVM.deployList()
-                    }
-                }
+//                .onChange(of: k8sVM.showMenu){value in
+//                    if value == false {
+//                        k8sVM.deployList()
+//                    }
+//                }
                 
             }
             .padding(.top, 5)

@@ -99,6 +99,7 @@ struct LoginPage: View {
                             userVM.Register()
                         }
                         else {
+                            userVM.isLoading.toggle()
                             userVM.login(email: userVM.email, password: userVM.password)
                         }
                     } label: {
@@ -163,6 +164,13 @@ struct LoginPage: View {
                 if status {
                     MainView()
                         .transition(.move(edge: .trailing))
+                }
+            }
+        )
+        .overlay(
+            Group {
+                if userVM.isLoading {
+                    LoadingScreen()
                 }
             }
         )

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Home: View {
     @EnvironmentObject var k8sVM : K8sVM
+    @EnvironmentObject var userVM : UserVM
     @Binding var selectedTab: String
     
     @State var name: String = ""
@@ -27,21 +28,40 @@ struct Home: View {
         // Tab View With Tabs...
         TabView(selection: $selectedTab){
             
-            //Views...
-            HomePage()
-                .tag("Home")
+            if !userVM.isClusterAdmin {
+                UserDashboard()
+                    .tag("Home")
+                
+                Workload()
+                    .tag("Workload")
+                
+                Service()
+                    .tag("Service")
+                
+                UserStorage()
+                    .tag("Storage")
+                
+                Notifications()
+                    .tag("Notifications")
+            }
+            else {
+                HomePage()
+                    .tag("Home")
+                
+                Workload()
+                    .tag("Workload")
+                
+                Service()
+                    .tag("Service")
+                
+                Storage()
+                    .tag("Storage")
+                
+                Notifications()
+                    .tag("Notifications")
+            }
             
-            Workload()
-                .tag("Workload")
             
-            Service()
-                .tag("Service")
-            
-            Storage()
-                .tag("Storage")
-            
-            Notifications()
-                .tag("Notifications")
         }
     }
 }
