@@ -23,16 +23,10 @@ struct SideMenu: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 200, height: 70)
                 .cornerRadius(10)
-            // Padding top for Top Close Button...
                 .padding(.top, 50)
             
             VStack(alignment: .leading, spacing: 6, content: {
-                
-//                Text("Lee Ha Rin")
-//                    .font(.title)
-//                    .fontWeight(.heavy)
-//                    .foregroundColor(.white)
-                
+
                 Button(action: {}, label: {
                     Text("Namespace")
                         .fontWeight(.semibold)

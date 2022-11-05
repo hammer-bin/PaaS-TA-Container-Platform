@@ -15,6 +15,7 @@
 		892D93EE2915C8D40096F9BE /* PodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93ED2915C8D40096F9BE /* PodInfo.swift */; };
 		892D93F02916493B0096F9BE /* RSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93EF2916493B0096F9BE /* RSData.swift */; };
 		892D93F2291649570096F9BE /* RSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F1291649570096F9BE /* RSResponse.swift */; };
+		892D93F429164D3F0096F9BE /* RSInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F329164D3F0096F9BE /* RSInfo.swift */; };
 		89336CCD2911BE08007CC659 /* SCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCC2911BE08007CC659 /* SCData.swift */; };
 		89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCE2911BE42007CC659 /* SCResponse.swift */; };
 		89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD02911BE7D007CC659 /* SCInfo.swift */; };
@@ -69,7 +70,6 @@
 		8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999790928FF526300E80B84 /* IngressInfo.swift */; };
 		89999C8728E8EB2000DBA981 /* DeployData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8628E8EB2000DBA981 /* DeployData.swift */; };
 		89999C8928E8EB9D00DBA981 /* DeployResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8828E8EB9D00DBA981 /* DeployResponse.swift */; };
-		89999C8D28E9058B00DBA981 /* PodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8C28E9058B00DBA981 /* PodListView.swift */; };
 		89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */; };
 		89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAA28EA3C5A00DBA981 /* PodData.swift */; };
 		89999CAD28EA3CA600DBA981 /* PodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAC28EA3CA600DBA981 /* PodResponse.swift */; };
@@ -106,6 +106,7 @@
 		892D93ED2915C8D40096F9BE /* PodInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodInfo.swift; sourceTree = "<group>"; };
 		892D93EF2916493B0096F9BE /* RSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSData.swift; sourceTree = "<group>"; };
 		892D93F1291649570096F9BE /* RSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSResponse.swift; sourceTree = "<group>"; };
+		892D93F329164D3F0096F9BE /* RSInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSInfo.swift; sourceTree = "<group>"; };
 		89336CCC2911BE08007CC659 /* SCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCData.swift; sourceTree = "<group>"; };
 		89336CCE2911BE42007CC659 /* SCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCResponse.swift; sourceTree = "<group>"; };
 		89336CD02911BE7D007CC659 /* SCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCInfo.swift; sourceTree = "<group>"; };
@@ -161,7 +162,6 @@
 		8999790928FF526300E80B84 /* IngressInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressInfo.swift; sourceTree = "<group>"; };
 		89999C8628E8EB2000DBA981 /* DeployData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeployData.swift; sourceTree = "<group>"; };
 		89999C8828E8EB9D00DBA981 /* DeployResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeployResponse.swift; sourceTree = "<group>"; };
-		89999C8C28E9058B00DBA981 /* PodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodListView.swift; sourceTree = "<group>"; };
 		89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicaSetListView.swift; sourceTree = "<group>"; };
 		89999CAA28EA3C5A00DBA981 /* PodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodData.swift; sourceTree = "<group>"; };
 		89999CAC28EA3CA600DBA981 /* PodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodResponse.swift; sourceTree = "<group>"; };
@@ -201,6 +201,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		892D93F529164F550096F9BE /* SideView */ = {
+			isa = PBXGroup;
+			children = (
+				899CDF7B28E4EF3A00838335 /* HomePage.swift */,
+				8993E43228E639E7007CA986 /* Workload.swift */,
+				8989725F28F39BE40052605C /* Service.swift */,
+				8989726128F3A7F30052605C /* Storage.swift */,
+				899CDF6428E4DF5B00838335 /* SideMenu.swift */,
+			);
+			path = SideView;
+			sourceTree = "<group>";
+		};
 		898624B928E24FF800024852 = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +324,7 @@
 				89336CD02911BE7D007CC659 /* SCInfo.swift */,
 				89189C7E2913143E00158CFF /* ServiceInfo.swift */,
 				892D93ED2915C8D40096F9BE /* PodInfo.swift */,
+				892D93F329164D3F0096F9BE /* RSInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,8 +332,14 @@
 		8989726328F3AB9D0052605C /* ListView */ = {
 			isa = PBXGroup;
 			children = (
-				89999C8C28E9058B00DBA981 /* PodListView.swift */,
 				89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */,
+				8947B5112915330E000131F7 /* DeploymentView.swift */,
+				892D93E72915C47A0096F9BE /* PodView.swift */,
+				8995F15E28F26466001CFAE7 /* ServiceView.swift */,
+				897E0B33291467AC005DBC3B /* IngressView.swift */,
+				8989726428F3ABEF0052605C /* PVView.swift */,
+				8989726628F3AC6D0052605C /* PVCView.swift */,
+				89336CD22911C230007CC659 /* SCView.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -338,17 +357,13 @@
 		89910FD828E3426D00A21088 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				892D93F529164F550096F9BE /* SideView */,
 				8989726328F3AB9D0052605C /* ListView */,
 				8995F16628F2A547001CFAE7 /* DetailView */,
-				899CDF7A28E4EF2B00838335 /* SubView */,
-				899CDF7B28E4EF3A00838335 /* HomePage.swift */,
-				8993E43228E639E7007CA986 /* Workload.swift */,
-				8989725F28F39BE40052605C /* Service.swift */,
-				8989726128F3A7F30052605C /* Storage.swift */,
+				899CDF7A28E4EF2B00838335 /* CardView */,
 				89910FD928E3427B00A21088 /* LoginPage.swift */,
 				89910FDB28E343CC00A21088 /* CustomCorner.swift */,
 				899CDF6228E4735B00838335 /* MainView.swift */,
-				899CDF6428E4DF5B00838335 /* SideMenu.swift */,
 				899CDF6628E4DF8200838335 /* TabButton.swift */,
 				899CDF6A28E4E04400838335 /* CustomCorners.swift */,
 				899CDF6828E4DFB100838335 /* Home.swift */,
@@ -411,25 +426,18 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		899CDF7A28E4EF2B00838335 /* SubView */ = {
+		899CDF7A28E4EF2B00838335 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
 				8995F16028F26514001CFAE7 /* ServiceCardView.swift */,
-				8995F15E28F26466001CFAE7 /* ServiceView.swift */,
-				8989726428F3ABEF0052605C /* PVView.swift */,
-				8989726628F3AC6D0052605C /* PVCView.swift */,
 				8989726828F3AD520052605C /* PVCCardView.swift */,
 				89DF549628FCCD3900A84640 /* PVCardView.swift */,
-				89336CD22911C230007CC659 /* SCView.swift */,
 				89336CD42911C3A6007CC659 /* SCCardView.swift */,
-				897E0B33291467AC005DBC3B /* IngressView.swift */,
 				897E0B35291468AC005DBC3B /* IngressCardView.swift */,
-				8947B5112915330E000131F7 /* DeploymentView.swift */,
 				8947B513291533FD000131F7 /* DeploymentCardView.swift */,
-				892D93E72915C47A0096F9BE /* PodView.swift */,
 				892D93E92915C5A00096F9BE /* PodCardView.swift */,
 			);
-			path = SubView;
+			path = CardView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,12 +536,12 @@
 				898624DE28E2515000024852 /* APILogger.swift in Sources */,
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
 				8993E43328E639E7007CA986 /* Workload.swift in Sources */,
-				89999C8D28E9058B00DBA981 /* PodListView.swift in Sources */,
 				897E0B38291469ED005DBC3B /* DetailIngressView.swift in Sources */,
 				89336CCD2911BE08007CC659 /* SCData.swift in Sources */,
 				898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */,
 				89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */,
 				8989726728F3AC6D0052605C /* PVCView.swift in Sources */,
+				892D93F429164D3F0096F9BE /* RSInfo.swift in Sources */,
 				8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
 				899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */,
