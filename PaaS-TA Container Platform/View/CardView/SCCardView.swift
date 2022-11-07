@@ -28,7 +28,7 @@ struct SCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(scInfo.provider)
+                        Text(scInfo.provider ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -39,7 +39,7 @@ struct SCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        ForEach(scInfo.parameter, id: \.self) { p in
+                        ForEach(scInfo.parameter ?? [], id: \.self) { p in
                             Text(p)
                                 //.clipShape(Rectangle())
                                 .font(.caption)
@@ -52,7 +52,7 @@ struct SCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(scInfo.createdTime)
+                        Text(scInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }

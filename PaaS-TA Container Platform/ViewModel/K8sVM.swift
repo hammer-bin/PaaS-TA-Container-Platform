@@ -30,6 +30,8 @@ class K8sVM: ObservableObject {
     @Published var clusterMetricsData: ClusterMetricInfo? = nil
     @Published var scs : [SCData] = []
     @Published var scInfoData: SCInfo? = nil
+    @Published var rss: [RSData] = []
+    @Published var rsInfoData: RSInfo? = nil
     //@Published var replicaSets:
     
     // Detail View Properties...
@@ -41,6 +43,7 @@ class K8sVM: ObservableObject {
     @Published var currentPV: PVData?
     @Published var currentSC: SCData?
     @Published var currentIngress: IngressData?
+    @Published var currentRS: RSData?
     
     @Published var showDetail = false
     @Published var showDetailSearch = false
@@ -49,8 +52,8 @@ class K8sVM: ObservableObject {
     @Published var searchActivated: Bool = false
     @Published var searchText: String = ""
     @Published var searchResource: resource = .deployment   //초기값으로 변경이 필요하다. 개발완료 시
-    @Published var searchedProducts: [String] = []
-    @Published var filterdResource: [String] = []
+    @Published var searchItem: [SearchItem] = []
+    @Published var filterItem: [SearchItem] = []
     
     @Published var currentView = "Home"
     @Published var showMenu = false
@@ -67,44 +70,52 @@ class K8sVM: ObservableObject {
     }
     
     func collectSearchData() {
-        searchedProducts = []
+        var element: SearchItem
         switch searchResource {
         case .deployment:
             for data in deploymemts {
-                searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
             }
         case .pv:
             print("collectSearchData() .pv")
             for data in pvs {
-                searchedProducts.append(String(data.name))
+                //searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name)
+                searchItem.append(element)
             }
-            print("count            :: \(searchedProducts.count)")
-            print("showDetail       :: \(self.showDetail)")
-            print("showDetailSearch :: \(self.showDetailSearch)")
         case .pvc:
             print("collectSearchData() .pvc")
             for data in pvcs {
-                searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
             }
         case .svc:
             for data in services {
-                searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
             }
         case .pod:
             for data in pods {
-                searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
             }
         case .sc:
             for data in scs {
-                searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name)
+                searchItem.append(element)
             }
         case .ingress:
             for data in ingresses {
-                searchedProducts.append(String(data.name))
+                //searchedProducts.append(String(data.name))
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
             }
         case .rs:
-            for data in ingresses {
-                searchedProducts.append(String(data.name))
+            for data in rss {
+                print("rs :: \(data.name)")
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
             }
         }
     
@@ -119,9 +130,11 @@ class K8sVM: ObservableObject {
             .sink(receiveValue: { str in
                 if str != "" {
                     self.filterProductBySearch()
+                    print("filterProductBySearch")
                 }
                 else {
-                    self.filterdResource = []
+                    //self.filterdResource = []
+                    self.filterItem = []
                 }
             })
     }
@@ -130,15 +143,15 @@ class K8sVM: ObservableObject {
         
         // Filtering Product By Product Type...
         DispatchQueue.global(qos: .userInteractive).async {
-            let results = self.searchedProducts
-            // Since it will repuire more memory so were using lazy to perform more...
+            
+            let results = self.searchItem
                 .lazy
                 .filter { product in
-                    return product.lowercased().contains(self.searchText.lowercased())
+                    return product.name.lowercased().contains(self.searchText.lowercased())
                 }
             
             DispatchQueue.main.async {
-                self.filterdResource = results.compactMap({ product in
+                self.filterItem = results.compactMap({ product in
                     return product
                 })
             }
@@ -209,6 +222,26 @@ class K8sVM: ObservableObject {
             } receiveValue: { (receivedData: PodInfo) in
                 print("store")
                 self.podInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func rsList() {
+        print("K8sVM: rsList() called")
+        K8sApiService.rsList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: [RSData]) in
+                self.rss = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func rsInfo(namespace: String, resourceName: String) {
+        print("K8sVM: rsInfo() called")
+        K8sApiService.rsInfo(namespace: namespace, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: RSInfo) in
+                self.rsInfoData = receivedData
             }.store(in: &subscription)
     }
     

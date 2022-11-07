@@ -122,7 +122,7 @@ struct IngressView: View {
             }
             .padding(.top, 5)
             .overlay(
-                Image("svc-256")
+                Image("ing-ori")
                     //.renderingMode(.template)
                     
                     .resizable()
@@ -131,9 +131,9 @@ struct IngressView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
-            .overlay(
+            .sheet(isPresented: $k8sVM.showDetail){
                 DetailIngressView()
-            )
+            }
             
         }
     }

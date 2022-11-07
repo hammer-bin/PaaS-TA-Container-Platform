@@ -39,7 +39,7 @@ struct PVCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvcInfo.status)
+                        Text(pvcInfo.status ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -49,7 +49,7 @@ struct PVCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvcInfo.capacity)
+                        Text(pvcInfo.capacity ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -59,7 +59,7 @@ struct PVCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvcInfo.volume)
+                        Text(pvcInfo.volume ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -69,7 +69,7 @@ struct PVCCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvcInfo.createdTime)
+                        Text(pvcInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }

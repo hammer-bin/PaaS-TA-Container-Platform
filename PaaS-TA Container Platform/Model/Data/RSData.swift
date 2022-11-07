@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct RSData: Codable {
-    let name, namespace, pods: String
-    let image: [String]
-    let createdTime: String
+struct RSData: Codable, Identifiable {
+    var id: UUID = UUID()
+    var name, namespace: String
+    var pods: String?
+    var image: [String]?
+    var createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name, namespace, pods, image

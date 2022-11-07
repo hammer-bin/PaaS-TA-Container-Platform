@@ -12,11 +12,11 @@ import Alamofire
 //인증관련 api 호출
 enum AuthAPIService {
     //회원가입
-    static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String)-> AnyPublisher<UserData, AFError> {
+    static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool)-> AnyPublisher<UserData, AFError> {
         print("AuthAPIService = register() called")
         
         return APIClient.shared.session
-            .request(AuthRouter.register(name: name, email: email, password: password, apiUrl: apiUrl, k8sToken: k8SToken))
+            .request(AuthRouter.register(name: name, email: email, password: password, apiUrl: apiUrl, k8sToken: k8SToken, isAdmin: isAdmin))
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map{ receivedValue in

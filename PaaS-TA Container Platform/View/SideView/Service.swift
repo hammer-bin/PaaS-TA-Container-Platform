@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Service: View {
+    @EnvironmentObject var k8sVM : K8sVM
     @State var current = "Service"
     var body: some View {
         
@@ -25,11 +26,11 @@ struct Service: View {
             HStack(spacing: 0){
                 
                 //TabButton...
-                LowTabButton(title: "Service", image: "svc-128", selected: $current)
+                LowTabButton(title: "Service", image: "svc-gray", selected: $current)
                 
                 Spacer(minLength: 0)
                 
-                LowTabButton(title: "Ingress", image: "ing-128", selected: $current)
+                LowTabButton(title: "Ingress", image: "ing-gray", selected: $current)
                 
             }
             .padding(.vertical, 12)
@@ -37,6 +38,20 @@ struct Service: View {
             .background(Color("tab"))
             .clipShape(Capsule())
             .padding(.horizontal,70)
+        }
+        .onAppear{
+            print("Service onAppear")
+            k8sVM.searchResource = .svc
+        }
+        .onChange(of: current) { value in
+            switch value {
+            case "Service":
+                k8sVM.searchResource = .svc
+            case "Ingress":
+                k8sVM.searchResource = .ingress
+            default:
+                k8sVM.searchResource = .svc
+            }
         }
     }
 }

@@ -139,6 +139,46 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
+    static func rsList(namespace: String)-> AnyPublisher<[RSData], AFError> {
+        print("K8sAPIService = rsList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return clientRS(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: RSResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientRS(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.rsList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.rsList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func rsInfo(namespace: String, resourceName: String)-> AnyPublisher<RSInfo, AFError> {
+        print("K8sApiService = rsInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.rsInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: RSInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
     static func serviceList(namespace: String)-> AnyPublisher<[ServiceData], AFError> {
         print("K8sAPIService = serviceList() called")
         

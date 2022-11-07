@@ -11,14 +11,16 @@ struct UserData : Codable, Identifiable {
     
     var uuid: UUID = UUID()
     var id : Int
-    var userName: String
+    var userID: String
     var k8sToken : String
     var apiUrl: String
+    var isAdmin: Bool
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case userName  = "user_name"
+        case userID = "user_id"
         case k8sToken = "k8s_token"
         case apiUrl = "api_url"
+        case isAdmin = "is_admin"
     }
 }

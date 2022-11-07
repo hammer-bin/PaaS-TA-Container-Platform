@@ -8,5 +8,5 @@
 import Foundation
 
 struct RSResponse: Codable {
-    let data: [RSData]
+    let data: [RSData]?
 }

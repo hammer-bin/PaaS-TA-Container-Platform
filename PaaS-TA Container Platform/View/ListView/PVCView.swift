@@ -118,7 +118,7 @@ struct PVCView: View {
             }
             .padding(.top, 5)
             .overlay(
-                Image("pvc-256")
+                Image("pvc-ori")
                     //.renderingMode(.template)
                     
                     .resizable()
@@ -127,9 +127,9 @@ struct PVCView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
-            .overlay(
+            .sheet(isPresented: $k8sVM.showDetail){
                 DetailPVCView()
-            )
+            }
             
         }
     }

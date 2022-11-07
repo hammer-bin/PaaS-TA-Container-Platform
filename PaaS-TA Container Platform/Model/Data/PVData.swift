@@ -10,15 +10,19 @@ import Foundation
 struct PVData: Codable, Identifiable {
     
     var id: UUID = UUID()
-    var name, capacity: String
-    let accessMode: [String]
-    let status, claim: String
-    let createdTime: String
+    var name: String
+    var capacity: String?
+    var accessMode: [String]?
+    var status: String?
+    var claim: String?
+    var createdTime: String?
 
     enum CodingKeys: String, CodingKey {
-        case name, capacity
+        case name
+        case capacity
         case accessMode = "access_mode"
-        case status, claim
+        case status
+        case claim
         case createdTime = "created_time"
     }
 }

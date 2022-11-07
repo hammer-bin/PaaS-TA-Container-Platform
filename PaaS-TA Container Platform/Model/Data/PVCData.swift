@@ -10,7 +10,8 @@ import Foundation
 struct PVCData: Codable, Identifiable {
     
     var id: UUID = UUID()
-    var name, namespace, status, volume, capacity, createdTime: String
+    var name, namespace: String
+    var status, volume, capacity, createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name, namespace, status, volume, capacity

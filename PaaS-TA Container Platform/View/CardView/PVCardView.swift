@@ -29,7 +29,7 @@ struct PVCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvInfo.status)
+                        Text(pvInfo.status ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -39,7 +39,7 @@ struct PVCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvInfo.capacity)
+                        Text(pvInfo.capacity ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -51,7 +51,7 @@ struct PVCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(pvInfo.createdTime)
+                        Text(pvInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }

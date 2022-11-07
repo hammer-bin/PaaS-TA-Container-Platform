@@ -89,7 +89,7 @@ struct PVView: View {
             }
             .padding(.top, 5)
             .overlay(
-                Image("pvc-256")
+                Image("pv-ori")
                     //.renderingMode(.template)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -97,12 +97,9 @@ struct PVView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
-            .overlay(
-                ZStack{
-                    DetailPVView()
-                }
-                
-            )
+            .sheet(isPresented: $k8sVM.showDetail){
+                DetailPVView()
+            }
             
         }
     }

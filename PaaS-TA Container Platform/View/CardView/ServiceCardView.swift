@@ -39,7 +39,7 @@ struct ServiceCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(serviceInfo.type)
+                        Text(serviceInfo.type ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -49,7 +49,7 @@ struct ServiceCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(serviceInfo.clusterIP)
+                        Text(serviceInfo.clusterIP ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -59,7 +59,7 @@ struct ServiceCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(serviceInfo.createdTime)
+                        Text(serviceInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }

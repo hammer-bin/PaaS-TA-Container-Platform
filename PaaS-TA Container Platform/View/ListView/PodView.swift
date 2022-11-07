@@ -122,7 +122,7 @@ struct PodView: View {
             }
             .padding(.top, 5)
             .overlay(
-                Image("svc-256")
+                Image("pod-ori")
                     //.renderingMode(.template)
                     
                     .resizable()

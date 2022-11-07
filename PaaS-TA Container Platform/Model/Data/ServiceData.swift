@@ -9,8 +9,9 @@ import Foundation
 
 struct ServiceData: Codable, Identifiable {
     var id: UUID = UUID()
-    var name, namespace, type, clusterIP: String
-    var createdTime: String
+    var name, namespace: String
+    var type, clusterIP: String?
+    var createdTime: String?
     var offset: CGFloat = 0
 
     enum CodingKeys: String, CodingKey {

@@ -50,7 +50,7 @@ struct DeploymentCardView: View {
                             .lineLimit(1)
                         
                         VStack(spacing: 3){
-                            ForEach(deployInfo.image, id: \.self){ am in
+                            ForEach(deployInfo.image ?? [], id: \.self){ am in
                                 Text(am)
                                     .font(.caption)
                                     .lineLimit(1)
@@ -63,7 +63,7 @@ struct DeploymentCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(deployInfo.createdTime)
+                        Text(deployInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }

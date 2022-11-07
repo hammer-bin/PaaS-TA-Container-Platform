@@ -29,15 +29,15 @@ struct Workload: View {
             HStack(spacing: 0){
                 
                 //TabButton...
-                LowTabButton(title: "Deployment", image: "svc-128", selected: $current)
+                LowTabButton(title: "Deployment", image: "deploy-gray", selected: $current)
                 
                 Spacer(minLength: 0)
                 
-                LowTabButton(title: "Pod", image: "ing-128", selected: $current)
+                LowTabButton(title: "Pod", image: "pod-gray", selected: $current)
                 
                 Spacer(minLength: 0)
                 
-                LowTabButton(title: "ReplicaSet", image: "ing-128", selected: $current)
+                LowTabButton(title: "ReplicaSet", image: "rs-gray", selected: $current)
                 
             }
             .padding(.vertical, 12)
@@ -58,9 +58,9 @@ struct Workload: View {
             case "Pod":
                 k8sVM.searchResource = .pod
             case "ReplicaSet":
-                k8sVM.searchResource = .pod
+                k8sVM.searchResource = .rs
             default:
-                k8sVM.searchResource = .pv
+                k8sVM.searchResource = .deployment
             }
         }
     }

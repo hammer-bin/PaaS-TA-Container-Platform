@@ -63,13 +63,13 @@ struct SideMenu: View {
             
             // tab Button...
             VStack(alignment: .leading,spacing: 10){
-                TabButton(image: "house", title: "Home", selectedTab: $selectedTab, animation: animation)
+                TabButton(image: "list.dash.header.rectangle", title: "Home", selectedTab: $selectedTab, animation: animation)
                 
                 TabButton(image: "clock.arrow.circlepath", title: "Workload", selectedTab: $selectedTab, animation: animation)
                 
-                TabButton(image: "bell.badge", title: "Service", selectedTab: $selectedTab, animation: animation)
+                TabButton(image: "network", title: "Service", selectedTab: $selectedTab, animation: animation)
                 
-                TabButton(image: "gearshape.fill", title: "Storage", selectedTab: $selectedTab, animation: animation)
+                TabButton(image: "externaldrive.badge.icloud", title: "Storage", selectedTab: $selectedTab, animation: animation)
                 
                 TabButton(image: "questionmark.circle", title: "Help", selectedTab: $selectedTab, animation: animation)
             }

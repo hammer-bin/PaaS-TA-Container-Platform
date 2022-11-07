@@ -39,7 +39,7 @@ struct IngressCardView: View {
                             .lineLimit(1)
                         
                         VStack{
-                            ForEach(ingressInfo.target, id: \.self){ data in
+                            ForEach(ingressInfo.target ?? [], id: \.self){ data in
                                 Text(data)
                                     .font(.caption)
                                     .lineLimit(1)
@@ -52,7 +52,7 @@ struct IngressCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(ingressInfo.createdTime)
+                        Text(ingressInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }

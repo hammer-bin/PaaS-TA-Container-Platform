@@ -57,7 +57,7 @@ struct DetailDeployView: View {
                             VStack(alignment: .leading, spacing: 10){
                                 Item(title: "Name", value: deploy.name, width: 90)
                                 Item(title: "Namespace", value: deploy.namespace, width: 90)
-                                Item(title: "Replica", value: "\(deploy.availableReplicas)/\(deploy.replicas)", width: 90)
+                                //Item(title: "Replica", value: "\(deploy.availableReplicas)/\(deploy.replicas)", width: 90)
                                 Item(title: "UID", value: uid, width: 90)
                             }
                             .padding(.vertical)

@@ -9,10 +9,11 @@ import Foundation
 
 struct DeployData: Codable, Identifiable {
     var id: UUID = UUID()
-    let name, namespace: String
-    let replicas, availableReplicas: Int
-    let image: [String]
-    let createdTime: String
+    var name, namespace: String
+    var replicas: Int = 0
+    var availableReplicas: Int = 0
+    var image: [String]?
+    var createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name, namespace, replicas, availableReplicas, image

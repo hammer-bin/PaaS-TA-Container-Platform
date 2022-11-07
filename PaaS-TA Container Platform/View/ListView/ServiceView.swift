@@ -113,16 +113,16 @@ struct ServiceView: View {
                 })
                 .onReceive(k8sVM.$services, perform: { self.serviceData = $0 })
                 .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
-//                .onChange(of: k8sVM.showMenu){value in
-//                    if value == false {
-//                        k8sVM.serviceList()
-//                    }
-//                }
+                .onChange(of: k8sVM.showMenu){value in
+                    if value == false && k8sVM.currentNS != "All" {
+                        k8sVM.serviceList()
+                    }
+                }
                 
             }
             .padding(.top, 5)
             .overlay(
-                Image("svc-256")
+                Image("svc-ori")
                     //.renderingMode(.template)
                     
                     .resizable()
@@ -131,6 +131,9 @@ struct ServiceView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
+//            .sheet(isPresented: $k8sVM.showDetail){
+//                DetailServiceView()
+//            }
             .overlay(
                 DetailServiceView()
             )

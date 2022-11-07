@@ -58,7 +58,7 @@ struct SearchView: View {
             
             // Showing Progress if searching
             // else showing no results found if empty...
-            if let products = k8sVM.filterdResource {
+            if let products = k8sVM.filterItem {
                 
                 if products.isEmpty {
                     // No Results Found...
@@ -90,14 +90,9 @@ struct SearchView: View {
                                 .font(.system(size: 24).bold())
                                 .padding(.vertical)
                             
-                            // Staggered Grid...
-                            // See my Staggered Video..
-                            // Link in Bio...
-                            //StaggeredGrid(columns: 2, spacing: 20, list: products) { product in
-                            
                             // Card View...
                             ForEach(products, id:\.self){product in
-                                SearchCardView(resource: product)
+                                SearchCardView(resource: product.name, namespace: product.namespace ?? "")
                             }
                             .padding(.bottom, 10)
                         }
@@ -125,36 +120,36 @@ struct SearchView: View {
                 startTF = true
             }
         }
-        .overlay(
-            ZStack{
-                if k8sVM.searchResource == .pvc {
-                    DetailPVCView()
-                } else if k8sVM.searchResource == .deployment {
-                    DetailDeployView()
-                } else if k8sVM.searchResource == .pv {
-                    //ZStack{
-                        DetailPVView()
-                    //}
-                    
-                    
-                }
-            }
-            .frame(maxHeight: .infinity)
-            .background(
-                Color("blue")
-                    .opacity(0.3)
-                    .cornerRadius(12)
-                    .edgesIgnoringSafeArea(.bottom)
-            )
-            .padding()
-            .padding(.top, 50)
-            
-        )
+//        .overlay(
+//            ZStack{
+//                if k8sVM.searchResource == .pvc {
+//                    DetailPVCView()
+//                } else if k8sVM.searchResource == .deployment {
+//                    DetailDeployView()
+//                } else if k8sVM.searchResource == .pv {
+//                    //ZStack{
+//                        DetailPVView()
+//                    //}
+//
+//
+//                }
+//            }
+//            .frame(maxHeight: .infinity)
+//            .background(
+//                Color("blue")
+//                    .opacity(0.3)
+//                    .cornerRadius(12)
+//                    .edgesIgnoringSafeArea(.bottom)
+//            )
+//            .padding()
+//            .padding(.top, 50)
+//
+//        )
         
         
     }
     @ViewBuilder
-    func SearchCardView(resource: String) -> some View {
+    func SearchCardView(resource: String, namespace: String) -> some View {
         
         HStack(spacing: 10){
             Image(systemName: "chevron.right.square")
@@ -178,33 +173,30 @@ struct SearchView: View {
         .onTapGesture {
             k8sVM.showDetail = true
             k8sVM.showDetailSearch = true
-            k8sVM.currentPV?.name = resource
+            print("searchResource   :: \(k8sVM.searchResource)")
+            print("resource         :: \(resource)")
+            print("namespace        :: \(namespace)")
+            print("showDetail       :: \(k8sVM.showDetail)")
+            print("showDetailSearch :: \(k8sVM.showDetailSearch)")
             switch k8sVM.searchResource {
             case .pv:
-                print("resource         :: \(resource)")
-                k8sVM.currentPV?.name = resource
-                
-                print("onTapGesture pv")
-                print("showDetail       :: \(k8sVM.showDetail)")
-                print("showDetailSearch :: \(k8sVM.showDetailSearch)")
-                
-                print(".currentPV?.name :: \(String(describing: k8sVM.currentPV?.name))")
+                k8sVM.currentPV = PVData(name: resource)
             case .pvc:
-                k8sVM.currentPVC?.name = resource
-                print("onTapGesture pvc")
+                k8sVM.currentPVC = PVCData(name: resource, namespace: namespace)
             case .svc:
-                k8sVM.currentService?.name = resource
+                k8sVM.currentService = ServiceData(name: resource, namespace: namespace)
             case .pod:
-                print("onTapGesture pod")
+                k8sVM.currentPod = PodData(name: resource, namespace: namespace)
             case .deployment:
-                print("onTapGesture dep")
+                k8sVM.currentDeploy = DeployData(name: resource, namespace: namespace)
             case .sc:
-                print("onTapGesture sc")
+                k8sVM.currentSC = SCData(name: resource)
             case .ingress:
-                k8sVM.currentIngress?.name = resource
+                k8sVM.currentIngress = IngressData(name: resource, namespace: namespace)
             case .rs:
-                print("rs")
+                k8sVM.currentRS = RSData(name: resource, namespace: namespace)
             }
+            
             withAnimation(.easeInOut){
                 
                 k8sVM.showDetail = true

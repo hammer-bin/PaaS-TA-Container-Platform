@@ -299,7 +299,7 @@ struct ExpenseView: View {
                     .foregroundColor(.gray)
                     .frame(width: width, alignment: .leading)
                 
-                Text(aCM.status)
+                Text(aCM.status ?? "")
                     .font(.callout)
                     .foregroundColor(.black)
                 
@@ -314,7 +314,7 @@ struct ExpenseView: View {
                     .foregroundColor(.gray)
                     .frame(width: width, alignment: .leading)
                 
-                Text(aCM.volume)
+                Text(aCM.volume ?? "")
                     .font(.callout)
                     .foregroundColor(.black)
                 
@@ -329,7 +329,7 @@ struct ExpenseView: View {
                     .foregroundColor(.gray)
                     .frame(width: width, alignment: .leading)
                 
-                Text(aCM.capacity)
+                Text(aCM.capacity ?? "")
                     .font(.callout)
                     .foregroundColor(.black)
                 
@@ -344,7 +344,7 @@ struct ExpenseView: View {
                     .foregroundColor(.gray)
                     .frame(width: width, alignment: .leading)
                 
-                Text(aCM.createdTime)
+                Text(aCM.createdTime ?? "")
                     .font(.callout)
                     .foregroundColor(.black)
                 

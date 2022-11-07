@@ -91,12 +91,19 @@ struct LoginPage: View {
                         
                         CustomTextField(icon: "envelope", title: "Re-Enter Password", hint: "123456", value: $userVM.re_Enter_Password, showPassword: $userVM.showReEnterPassword).textInputAutocapitalization(.none)
                             .padding(.top, 10)
+                        
+                        HStack{
+                            Image(systemName: "person.badge.key")
+                            Toggle("ClusterAdmin", isOn: $userVM.isClusterAdmin)
+                                .font(.system(size: 14))
+                        }
+                        
                     }
                     
                     //Login Button...
                     Button {
                         if userVM.registerUser{
-                            userVM.Register()
+                            userVM.register(name: userVM.email, email: userVM.email, password: userVM.password, apiUrl: userVM.apiUrl, k8SToken: userVM.k8sToken, isAdmin: userVM.isClusterAdmin)
                         }
                         else {
                             userVM.isLoading.toggle()

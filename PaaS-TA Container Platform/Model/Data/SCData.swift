@@ -9,9 +9,10 @@ import Foundation
 
 struct SCData: Codable, Identifiable {
     var id: UUID = UUID()
-    let name, provider: String
-    let parameter: [String]
-    let createdTime: String
+    var name: String
+    var provider: String?
+    var parameter: [String]?
+    var createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name, provider, parameter

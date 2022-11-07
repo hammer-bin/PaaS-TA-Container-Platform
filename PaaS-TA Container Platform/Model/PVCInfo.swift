@@ -8,14 +8,14 @@
 import Foundation
 
 struct PVCInfo: Codable {
-    let detailPVC: DetailPVC
-    let resourcePVC: ResourcePVC
+    var detailPVC: DetailPVC
+    var resourcePVC: ResourcePVC
 }
 
 // MARK: - DetailPVC
 struct DetailPVC: Codable {
-    let name, uid, namespace: String
-    let createdTime: String
+    var name, uid, namespace: String
+    var createdTime: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -27,9 +27,9 @@ struct DetailPVC: Codable {
 
 // MARK: - ResourcePVC
 struct ResourcePVC: Codable {
-    let status, storageClass: String
-    let capacity: Capacity
-    let accessMode: [String]
+    var status, storageClass: String
+    var capacity: Capacity
+    var accessMode: [String]
 
     enum CodingKeys: String, CodingKey {
         case status, storageClass
@@ -40,6 +40,6 @@ struct ResourcePVC: Codable {
 
 // MARK: - Capacity
 struct Capacity: Codable {
-    let storage: String
+    var storage: String
 }
 

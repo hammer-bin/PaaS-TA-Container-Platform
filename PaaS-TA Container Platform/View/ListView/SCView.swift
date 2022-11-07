@@ -73,7 +73,7 @@ struct SCView: View {
             }
             .padding(.top, 5)
             .overlay(
-                Image("pvc-256")
+                Image("sc-ori")
                     //.renderingMode(.template)
                     
                     .resizable()
@@ -82,9 +82,9 @@ struct SCView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
-            .overlay(
+            .sheet(isPresented: $k8sVM.showDetail){
                 DetailSCView()
-            )
+            }
             
         }
     }

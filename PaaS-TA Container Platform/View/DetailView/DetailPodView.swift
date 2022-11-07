@@ -12,8 +12,11 @@ struct DetailPodView: View {
     @State var uid: String = ""
     @State var labels: [String] = []
     @State var annotations: [String] = []
+    @State var node: String = ""
+    @State var status: String = ""
     @State var ip: String = ""
     @State var qosClass: String = ""
+    @State var restarts: Int = 0
     @State var controllers: [String] = []
     @State var volumes: [String] = []
     @State var containerName: [String] = []
@@ -96,11 +99,11 @@ struct DetailPodView: View {
                             
                             VStack(alignment: .leading, spacing: 10){
                                 
-                                Item(title: "Nodes", value: podData.node, width: 90)
-                                Item(title: "Status", value: podData.status, width: 90)
+                                Item(title: "Nodes", value: node, width: 90)
+                                Item(title: "Status", value: status, width: 90)
                                 Item(title: "IP", value: ip, width: 90)
                                 Item(title: "qo_s_class", value: qosClass, width: 90)
-                                Item(title: "restart", value: String(podData.restarts), width: 90)
+                                Item(title: "restart", value: String(restarts), width: 90)
  
                             }
                             .padding(.vertical)
@@ -171,8 +174,11 @@ struct DetailPodView: View {
                 self.uid = value?.detailPod.uid ?? ""
                 self.labels = value?.detailPod.labels ?? []
                 self.annotations = value?.detailPod.annotations ?? []
+                self.node = value?.resourcePod.nodes ?? ""
+                self.status = value?.resourcePod.status ?? ""
                 self.ip = value?.resourcePod.ip ?? ""
                 self.qosClass = value?.resourcePod.qoSClass ?? ""
+                self.restarts = value?.resourcePod.restart ?? 0
                 self.controllers = value?.resourcePod.controllers ?? []
                 self.volumes = value?.resourcePod.volumes ?? []
                 self.containerName = value?.containerPod.name ?? []

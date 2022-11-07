@@ -9,10 +9,10 @@ import Foundation
 
 // MARK: - PVInfo
 struct PVInfo: Codable {
-    let detailPV: DetailPV
-    let resourcePV: ResourcePV
-    let sourcePV: SourcePV
-    let capacityPV: CapacityPV
+    var detailPV: DetailPV
+    var resourcePV: ResourcePV
+    var sourcePV: SourcePV
+    var capacityPV: CapacityPV
 
     enum CodingKeys: String, CodingKey {
         case detailPV = "detail_pv"
@@ -34,11 +34,11 @@ struct CapacityPV: Codable {
 
 // MARK: - DetailPV
 struct DetailPV: Codable {
-    let name, uid: String
-    let labels: JSONNull?
-    let annotations: [String]
-    let createdTime: String
-
+    var name, uid: String
+    var labels: [JSONNull?]
+    var annotations: [String]
+    var createdTime: String
+ 
     enum CodingKeys: String, CodingKey {
         case name
         case uid = "UID"
@@ -48,8 +48,8 @@ struct DetailPV: Codable {
 
 // MARK: - ResourcePV
 struct ResourcePV: Codable {
-    let status, claim, returnPolicy, storageClass: String
-    let accessMode: [String]
+    var status, claim, returnPolicy, storageClass: String
+    var accessMode: [String]
 
     enum CodingKeys: String, CodingKey {
         case status, claim
@@ -61,7 +61,7 @@ struct ResourcePV: Codable {
 
 // MARK: - SourcePV
 struct SourcePV: Codable {
-    let type, server, path: String
+    var type, server, path: String
 }
 
 class JSONNull: Codable, Hashable {

@@ -29,15 +29,15 @@ struct Storage: View {
             HStack(spacing: 0){
                 
                 //TabButton...
-                LowTabButton(title: "Persistent Volumes", image: "svc-128", selected: $current)
+                LowTabButton(title: "Persistent Volumes", image: "pv-gray", selected: $current)
                 
                 Spacer(minLength: 0)
                 
-                LowTabButton(title: "Persistent Volumes Claims", image: "ing-128", selected: $current)
+                LowTabButton(title: "Persistent Volumes Claims", image: "pvc-gray", selected: $current)
                 
                 Spacer(minLength: 0)
                 
-                LowTabButton(title: "Storage Classes", image: "ing-128", selected: $current)
+                LowTabButton(title: "Storage Classes", image: "sc-gray", selected: $current)
                 
             }
             .padding(.vertical, 12)

@@ -24,6 +24,8 @@ enum K8sRouter: URLRequestConvertible {
     case deploymentInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     case podList(targetUrl: String, authorization: String, namespace: String)
     case podInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    case rsList(targetUrl: String, authorization: String, namespace: String)
+    case rsInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case pvcList(targetUrl: String, authorization: String, namespace: String)
     case pvcInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
@@ -52,6 +54,10 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/pod/list"
         case .podInfo:
             return "resource/pod/info"
+        case .rsList:
+            return "resource/rs/list"
+        case .rsInfo:
+            return "resource/rs/info"
         case .configmap:
             return "resource/configmap/list"
         case .pvcInfo:
@@ -108,6 +114,11 @@ enum K8sRouter: URLRequestConvertible {
         case let .podList(targetUrl, authorization, namespace):
             return listParam(targetUrl, authorization, namespace)
         case let .podInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
+            
+        case let .rsList(targetUrl, authorization, namespace):
+            return listParam(targetUrl, authorization, namespace)
+        case let .rsInfo(targetUrl, authorization, namespace, resourceName):
             return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .configmap(targetUrl, authorization, namespace):

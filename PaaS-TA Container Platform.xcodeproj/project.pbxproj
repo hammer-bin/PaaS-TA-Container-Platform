@@ -19,6 +19,7 @@
 		892D93F829170CBC0096F9BE /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F729170CBC0096F9BE /* UserDashboard.swift */; };
 		892D93FA29170D8C0096F9BE /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D93F929170D8C0096F9BE /* UserStorage.swift */; };
 		892D941629171F710096F9BE /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D941529171F710096F9BE /* LoadingScreen.swift */; };
+		892D941B2917A5750096F9BE /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D941A2917A5750096F9BE /* SearchItem.swift */; };
 		89336CCD2911BE08007CC659 /* SCData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCC2911BE08007CC659 /* SCData.swift */; };
 		89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CCE2911BE42007CC659 /* SCResponse.swift */; };
 		89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD02911BE7D007CC659 /* SCInfo.swift */; };
@@ -76,7 +77,6 @@
 		89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */; };
 		89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAA28EA3C5A00DBA981 /* PodData.swift */; };
 		89999CAD28EA3CA600DBA981 /* PodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89999CAC28EA3CA600DBA981 /* PodResponse.swift */; };
-		8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */; };
 		899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A3A3729072DC2008EBEC4 /* SearchView.swift */; };
 		899CDF6328E4735B00838335 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6228E4735B00838335 /* MainView.swift */; };
 		899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF6428E4DF5B00838335 /* SideMenu.swift */; };
@@ -91,6 +91,8 @@
 		899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7628E4EB2F00838335 /* PVCResponse.swift */; };
 		899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7828E4EBFC00838335 /* K8sVM.swift */; };
 		899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7B28E4EF3A00838335 /* HomePage.swift */; };
+		89AEC69B2919AD3C00A31230 /* RSCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AEC69A2919AD3C00A31230 /* RSCardView.swift */; };
+		89AEC69D2919AE3600A31230 /* DetailRSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AEC69C2919AE3600A31230 /* DetailRSView.swift */; };
 		89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */; };
 		89AF80A4290F160F00787CD2 /* IndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A3290F160F00787CD2 /* IndicatorShape.swift */; };
 		89AF80A6290F20A400787CD2 /* CpuMemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A5290F20A400787CD2 /* CpuMemButton.swift */; };
@@ -113,6 +115,7 @@
 		892D93F729170CBC0096F9BE /* UserDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDashboard.swift; sourceTree = "<group>"; };
 		892D93F929170D8C0096F9BE /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		892D941529171F710096F9BE /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		892D941A2917A5750096F9BE /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		89336CCC2911BE08007CC659 /* SCData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCData.swift; sourceTree = "<group>"; };
 		89336CCE2911BE42007CC659 /* SCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCResponse.swift; sourceTree = "<group>"; };
 		89336CD02911BE7D007CC659 /* SCInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCInfo.swift; sourceTree = "<group>"; };
@@ -171,7 +174,6 @@
 		89999C8E28E9059800DBA981 /* ReplicaSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicaSetListView.swift; sourceTree = "<group>"; };
 		89999CAA28EA3C5A00DBA981 /* PodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodData.swift; sourceTree = "<group>"; };
 		89999CAC28EA3CA600DBA981 /* PodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodResponse.swift; sourceTree = "<group>"; };
-		8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaggeredGrid.swift; path = ../../../../Documents/Kavsoft/StaggeredGrid/StaggeredGrid/StaggeredGrid.swift; sourceTree = "<group>"; };
 		899A3A3729072DC2008EBEC4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		899CDF6228E4735B00838335 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		899CDF6428E4DF5B00838335 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
@@ -186,6 +188,8 @@
 		899CDF7628E4EB2F00838335 /* PVCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCResponse.swift; sourceTree = "<group>"; };
 		899CDF7828E4EBFC00838335 /* K8sVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sVM.swift; sourceTree = "<group>"; };
 		899CDF7B28E4EF3A00838335 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		89AEC69A2919AD3C00A31230 /* RSCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSCardView.swift; sourceTree = "<group>"; };
+		89AEC69C2919AE3600A31230 /* DetailRSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRSView.swift; sourceTree = "<group>"; };
 		89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeedoMeter.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/SpeedoMeter.swift"; sourceTree = "<group>"; };
 		89AF80A3290F160F00787CD2 /* IndicatorShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndicatorShape.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/IndicatorShape.swift"; sourceTree = "<group>"; };
 		89AF80A5290F20A400787CD2 /* CpuMemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuMemButton.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 				89189C7E2913143E00158CFF /* ServiceInfo.swift */,
 				892D93ED2915C8D40096F9BE /* PodInfo.swift */,
 				892D93F329164D3F0096F9BE /* RSInfo.swift */,
+				892D941A2917A5750096F9BE /* SearchItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,7 +390,6 @@
 				899CDF6828E4DFB100838335 /* Home.swift */,
 				8989725D28F398780052605C /* LowTabButton.swift */,
 				899A3A3729072DC2008EBEC4 /* SearchView.swift */,
-				8999CD5229087F8E000CBB67 /* StaggeredGrid.swift */,
 				89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */,
 				89AF80A3290F160F00787CD2 /* IndicatorShape.swift */,
 				89AF80A5290F20A400787CD2 /* CpuMemButton.swift */,
@@ -404,6 +408,7 @@
 				89189C7C291313CA00158CFF /* DetailServiceView.swift */,
 				897E0B37291469ED005DBC3B /* DetailIngressView.swift */,
 				892D93EB2915C7410096F9BE /* DetailPodView.swift */,
+				89AEC69C2919AE3600A31230 /* DetailRSView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				897E0B35291468AC005DBC3B /* IngressCardView.swift */,
 				8947B513291533FD000131F7 /* DeploymentCardView.swift */,
 				892D93E92915C5A00096F9BE /* PodCardView.swift */,
+				89AEC69A2919AD3C00A31230 /* RSCardView.swift */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				8995F16C28F2AEF4001CFAE7 /* DeployInfo.swift in Sources */,
 				89999C8728E8EB2000DBA981 /* DeployData.swift in Sources */,
 				8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */,
+				89AEC69D2919AE3600A31230 /* DetailRSView.swift in Sources */,
 				89336CD32911C230007CC659 /* SCView.swift in Sources */,
 				8993B8B4290C9FB600DB17FB /* ClusterMetricInfo.swift in Sources */,
 				892D93E82915C47A0096F9BE /* PodView.swift in Sources */,
@@ -553,6 +560,7 @@
 				89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */,
 				898624DE28E2515000024852 /* APILogger.swift in Sources */,
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
+				89AEC69B2919AD3C00A31230 /* RSCardView.swift in Sources */,
 				8993E43328E639E7007CA986 /* Workload.swift in Sources */,
 				897E0B38291469ED005DBC3B /* DetailIngressView.swift in Sources */,
 				89336CCD2911BE08007CC659 /* SCData.swift in Sources */,
@@ -560,7 +568,6 @@
 				89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */,
 				8989726728F3AC6D0052605C /* PVCView.swift in Sources */,
 				892D93F429164D3F0096F9BE /* RSInfo.swift in Sources */,
-				8999CD5329087F8E000CBB67 /* StaggeredGrid.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
 				899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */,
 				892D93EC2915C7410096F9BE /* DetailPodView.swift in Sources */,
@@ -621,6 +628,7 @@
 				8989726028F39BE40052605C /* Service.swift in Sources */,
 				899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */,
 				8995F16328F2685B001CFAE7 /* ServiceData.swift in Sources */,
+				892D941B2917A5750096F9BE /* SearchItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

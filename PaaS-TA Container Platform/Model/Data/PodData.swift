@@ -9,9 +9,10 @@ import Foundation
 
 struct PodData: Codable, Identifiable {
     var id: UUID = UUID()
-    let name, namespace, node, status: String
-    let restarts: Int
-    let createdTime: String
+    var name, namespace: String
+    var node, status: String?
+    var restarts: Int = 0
+    var createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name, namespace, node, status, restarts

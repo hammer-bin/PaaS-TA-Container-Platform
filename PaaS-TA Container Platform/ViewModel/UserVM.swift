@@ -29,7 +29,7 @@ class UserVM: ObservableObject {
     @Published var showReEnterPassword: Bool = false
     
     // Cluster 관리자 여부, false일 경우 namespace 사용자
-    @Published var isClusterAdmin: Bool = false
+    @Published var isClusterAdmin: Bool = true
     @Published var isLoading: Bool = false
     
     //회원가입 완료 이벤트
@@ -39,9 +39,9 @@ class UserVM: ObservableObject {
     var loginSuccess = PassthroughSubject<(), Never>()
     
     //회원가입 하기
-    func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String) {
+    func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool) {
         print("UserVM: register() called")
-        AuthAPIService.register(name: name, email: email, password: password, apiUrl: apiUrl, k8SToken: k8SToken)
+        AuthAPIService.register(name: name, email: email, password: password, apiUrl: apiUrl, k8SToken: k8SToken, isAdmin: isAdmin)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("UserVM completion: \(completion)")
             } receiveValue: { (receivedUser: UserData) in

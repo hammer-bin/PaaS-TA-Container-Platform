@@ -39,7 +39,7 @@ struct PodCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(podInfo.node)
+                        Text(podInfo.node ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -49,7 +49,7 @@ struct PodCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(podInfo.status)
+                        Text(podInfo.status ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
@@ -69,7 +69,7 @@ struct PodCardView: View {
                             .font(.caption)
                             .lineLimit(1)
                         
-                        Text(podInfo.createdTime)
+                        Text(podInfo.createdTime ?? "")
                             .font(.caption)
                             .lineLimit(1)
                     }
