@@ -239,6 +239,10 @@ struct DetailPVCView: View {
                 self.storage = value?.resourcePVC.capacity.storage ?? ""
                 self.accessMode = value?.resourcePVC.accessMode ?? []
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: PVC")
+                k8sVM.currentPVC = nil
+            })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
             

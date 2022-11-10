@@ -16,10 +16,10 @@ struct PVCView: View {
         
         VStack{
             
-            Text("Persistent Volumes Claims")
+            Text("Persistent Volumes\nClaims")
                 .font(.title)
                 .fontWeight(.heavy)
-                .padding(.top, 50)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{

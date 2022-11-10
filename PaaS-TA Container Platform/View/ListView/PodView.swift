@@ -19,6 +19,7 @@ struct PodView: View {
             Text("Pod")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{

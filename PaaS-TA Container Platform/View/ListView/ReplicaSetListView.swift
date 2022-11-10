@@ -19,6 +19,7 @@ struct ReplicaSetListView: View {
             Text("ReplicaSet")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{

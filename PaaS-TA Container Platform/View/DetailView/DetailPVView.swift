@@ -241,6 +241,10 @@ struct DetailPVView: View {
                 self.claim = value?.resourcePV.claim ?? ""
                 self.accessMode = value?.resourcePV.accessMode ?? []
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: PV")
+                k8sVM.currentPV = nil
+            })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
             

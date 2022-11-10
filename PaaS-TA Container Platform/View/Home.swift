@@ -30,7 +30,7 @@ struct Home: View {
             
             if !userVM.isClusterAdmin {
                 UserDashboard()
-                    .tag("Home")
+                    .tag("Dashbaord")
                 
                 Workload()
                     .tag("Workload")
@@ -41,12 +41,12 @@ struct Home: View {
                 UserStorage()
                     .tag("Storage")
                 
-                Notifications()
-                    .tag("Notifications")
+                ProfileView()
+                    .tag("Info")
             }
             else {
                 HomePage()
-                    .tag("Home")
+                    .tag("Dashboard")
                 
                 Workload()
                     .tag("Workload")
@@ -57,8 +57,8 @@ struct Home: View {
                 Storage()
                     .tag("Storage")
                 
-                Notifications()
-                    .tag("Notifications")
+                ProfileView()
+                    .tag("Info")
             }
             
             

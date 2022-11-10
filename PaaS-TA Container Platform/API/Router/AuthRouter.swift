@@ -61,12 +61,12 @@ enum AuthRouter: URLRequestConvertible {
         
         case .register(let name, let email, let password, let apiUrl, let k8sToken, let isAdmin):
             var params = Parameters()
-            params["name"] = name
-            params["email"] = email
-            params["password"] = password
-            params["apiUrl"] = apiUrl
-            params["k8sToken"] = k8sToken
-            params["isAdmin"] = isAdmin
+            params["user_name"] = name
+            params["user_id"] = email
+            params["user_password"] = password
+            params["api_url"] = apiUrl
+            params["k8S_token"] = k8sToken
+            params["is_admin"] = isAdmin
             return params
             
         case .tokenRefresh:

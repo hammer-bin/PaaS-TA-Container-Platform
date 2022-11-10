@@ -14,7 +14,11 @@ enum AuthAPIService {
     //회원가입
     static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool)-> AnyPublisher<UserData, AFError> {
         print("AuthAPIService = register() called")
-        
+        print("email:: \(email)")
+        print("password:: \(password)")
+        print("apiUrl:: \(apiUrl)")
+        print("k8SToken:: \(k8SToken)")
+        print("isAdmin:: \(isAdmin)")
         return APIClient.shared.session
             .request(AuthRouter.register(name: name, email: email, password: password, apiUrl: apiUrl, k8sToken: k8SToken, isAdmin: isAdmin))
             .publishDecodable(type: AuthResponse.self)
@@ -31,7 +35,7 @@ enum AuthAPIService {
     
     //로그인
     static func login(email: String, password: String)-> AnyPublisher<UserData, AFError> {
-        print("AuthAPIService = register() called")
+        print("AuthAPIService = login() called")
         print(email)
         print(password)
         return APIClient.shared.session

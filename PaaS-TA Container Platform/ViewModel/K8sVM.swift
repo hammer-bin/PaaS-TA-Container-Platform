@@ -71,6 +71,7 @@ class K8sVM: ObservableObject {
     
     func collectSearchData() {
         var element: SearchItem
+        searchItem = []
         switch searchResource {
         case .deployment:
             for data in deploymemts {
@@ -135,6 +136,7 @@ class K8sVM: ObservableObject {
                 else {
                     //self.filterdResource = []
                     self.filterItem = []
+                    print("filterItem []")
                 }
             })
     }
@@ -256,9 +258,9 @@ class K8sVM: ObservableObject {
             }.store(in: &subscription)
     }
     
-    func serviceInfo(resourceName: String) {
+    func serviceInfo(namespace: String, resourceName: String) {
         print("K8sVM: serviceInfo() called")
-        K8sApiService.serviceInfo(namespace: currentNS, resourceName: resourceName)
+        K8sApiService.serviceInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: ServiceInfo) in

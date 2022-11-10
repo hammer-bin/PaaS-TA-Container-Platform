@@ -184,6 +184,10 @@ struct DetailPodView: View {
                 self.containerName = value?.containerPod.name ?? []
                 self.containerImage = value?.containerPod.image ?? []
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: Pod")
+                k8sVM.currentPod = nil
+            })
             .edgesIgnoringSafeArea(.all)
             
         }

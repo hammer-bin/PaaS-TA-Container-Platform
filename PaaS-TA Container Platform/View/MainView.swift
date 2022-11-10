@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     // selected Tab...
-    @State var selectedTab = "Home"
+    @State var selectedTab = "Dashboard"
     @State var showMenu = false
     @State var translation: CGSize = .zero
     @State var offsetX: CGFloat = -120

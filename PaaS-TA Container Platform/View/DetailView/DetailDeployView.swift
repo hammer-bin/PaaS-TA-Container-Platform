@@ -218,6 +218,10 @@ struct DetailDeployView: View {
                 self.total = value?.podStatus.total ?? 0
                 self.available = value?.podStatus.available ?? 0
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: Deployment")
+                k8sVM.currentDeploy = nil
+            })
             .edgesIgnoringSafeArea(.all)
             
         }

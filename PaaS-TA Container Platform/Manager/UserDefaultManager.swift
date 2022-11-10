@@ -11,6 +11,9 @@ class UserDefaultManager {
     enum Key: String, CaseIterable {
         case refreshToken, accessToken, k8sToken, apiUrl
     }
+    enum userKey: String, CaseIterable {
+        case userId, userName, clusterName, apiUrl, k8sToken, isAdmin
+    }
     
     static let shared: UserDefaultManager = {
         return UserDefaultManager()
@@ -31,6 +34,17 @@ class UserDefaultManager {
         UserDefaults.standard.set(apiUrl, forKey: Key.apiUrl.rawValue)
         UserDefaults.standard.synchronize()
     }
+    
+//    func setUserData(userId: String, userName: String, clusterName: String, apiUrl: String, k8sToken: String, isAdmin: Bool) {
+//        UserDefaults.standard.set(userId, forKey: userKey.userId.rawValue)
+//        UserDefaults.standard.set(userName, forKey: userKey.userName.rawValue)
+//        UserDefaults.standard.set(clusterName, forKey: userKey.clusterName.rawValue)
+//        UserDefaults.standard.set(apiUrl, forKey: userKey.apiUrl.rawValue)
+//        UserDefaults.standard.set(k8sToken, forKey: userKey.k8sToken.rawValue)
+//        UserDefaults.standard.set(isAdmin, forKey: userKey.isAdmin.rawValue)
+//    }
+    
+    //func getUserData()->
     
     // Auth Token 가져오기
     func getTokens()->TokenData{

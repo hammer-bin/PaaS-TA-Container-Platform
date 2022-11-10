@@ -12,12 +12,14 @@ struct LoginPage: View {
     
     @AppStorage("log_Status") var status = false
     
+    @State fileprivate var shouldShowAlert: Bool = false
+    
     var body: some View {
         
         VStack{
             
             // Welcome Back text for 3 half of the screen...
-            Text("Welcome\nback")
+            Text("Welcome!\nCloud Travel")
                 .font(.system(size: 55).bold())
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -153,6 +155,21 @@ struct LoginPage: View {
                     .ignoresSafeArea()
             )
             
+        }
+        .onReceive(userVM.registrationSuccess, perform: {
+            print("Register - registrationSuccess!")
+            self.shouldShowAlert = true
+        })
+        .alert("회원가입이 완료되었습니다.\n email : \(userVM.email)", isPresented: $shouldShowAlert){
+            Button("확인", role: .cancel){
+                userVM.email = ""
+                userVM.password = ""
+                userVM.re_Enter_Password = ""
+                userVM.k8sToken = ""
+                userVM.showPassword = false
+                userVM.showReEnterPassword = false
+                userVM.registerUser = false
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Purple"))

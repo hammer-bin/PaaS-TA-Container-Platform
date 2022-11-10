@@ -258,53 +258,26 @@ struct DetailServiceView: View {
                     .background(Color.white)
                     //.transition(.opacity)
                     
-                    // MARK: - Back Button
-                    HStack{
-                        
-                        Button(action: {
-                            withAnimation{
-                                k8sVM.showDetail = false
-                            }
-                        }) {
-                            
-                            HStack{
-                                
-                                Image(systemName: "arrow.backward")
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                
-                                Text("Back")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                
-                                
-                            }
-                            .padding(.vertical)
-                            .padding(.horizontal)
-                            .background(
-                                
-                                Color("blue2")
-                                
-                            )
-                            .cornerRadius(10)
-                        }
-                    }
                 }
                 
             }
             .onAppear(perform: {
-                k8sVM.serviceInfo(resourceName: data.name)
+                k8sVM.serviceInfo(namespace: data.namespace, resourceName: data.name)
             })
             .onReceive(k8sVM.$serviceInfoData, perform: { value in
                 self.uid = value?.detailService.uid ?? ""
                 self.namespace = value?.detailService.namespace ?? ""
-                self.labels = value?.detailService.labels ?? []
-                self.annotations = value?.detailService.annotations ?? []
+                self.labels = value?.detailService.labels ?? ["-"]
+                self.annotations = value?.detailService.annotations ?? ["-"]
                 self.type = value?.resourceService.type ?? ""
                 self.clusterIp = value?.resourceService.clusterIP ?? ""
                 self.sessionAffinity = value?.resourceService.sessionAffinity ?? ""
-                self.selector = value?.resourceService.selector ?? []
+                self.selector = value?.resourceService.selector ?? ["-"]
                 self.createdTime = value?.detailService.createdTime ?? ""
+            })
+            .onDisappear(perform: {
+                print(".onDisappear :: Service")
+                k8sVM.currentService = nil
             })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)

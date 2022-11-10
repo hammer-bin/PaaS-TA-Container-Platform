@@ -19,6 +19,7 @@ struct ServiceView: View {
             Text("Service")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{
@@ -131,12 +132,12 @@ struct ServiceView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
-//            .sheet(isPresented: $k8sVM.showDetail){
-//                DetailServiceView()
-//            }
-            .overlay(
+            .sheet(isPresented: $k8sVM.showDetail){
                 DetailServiceView()
-            )
+            }
+//            .overlay(
+//                DetailServiceView()
+//            )
             
         }
     }

@@ -261,6 +261,10 @@ struct DetailIngressView: View {
                 self.ri = value?.resourceIngress ?? []
                 
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: Ingress")
+                k8sVM.currentIngress = nil
+            })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
             

@@ -248,6 +248,10 @@ struct DetailSCView: View {
                 self.provider = value?.resourceSc.provider ?? ""
                 self.archiveOnDelete = value?.resourceSc.archiveOnDelete ?? ""
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: SC")
+                k8sVM.currentSC = nil
+            })
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
             

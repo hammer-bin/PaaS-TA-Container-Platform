@@ -18,7 +18,7 @@ struct SCView: View {
             Text("StorageClass")
                 .font(.title)
                 .fontWeight(.heavy)
-                .padding(.top, 50)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{

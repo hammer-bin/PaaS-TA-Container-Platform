@@ -15,7 +15,7 @@ struct ServiceInfo: Codable {
 // MARK: - DetailService
 struct DetailService: Codable {
     let name, uid, namespace: String
-    let labels, annotations: [String]
+    let labels, annotations: [String]?
     let createdTime: String
 
     enum CodingKeys: String, CodingKey {
@@ -28,7 +28,7 @@ struct DetailService: Codable {
 // MARK: - ResourceService
 struct ResourceService: Codable {
     let type, clusterIP, sessionAffinity: String
-    let selector: [String]
+    let selector: [String]?
 
     enum CodingKeys: String, CodingKey {
         case type

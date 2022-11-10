@@ -19,6 +19,7 @@ struct IngressView: View {
             Text("Ingress")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{

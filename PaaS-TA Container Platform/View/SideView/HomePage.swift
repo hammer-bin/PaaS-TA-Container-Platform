@@ -168,7 +168,7 @@ struct HomePage: View {
                     
                 }
                 .padding(20)
-                .navigationTitle("Home")
+                .navigationTitle("Dashboard")
             }
             .onAppear{
                 k8sVM.clusterMetricInfo()

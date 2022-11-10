@@ -129,6 +129,10 @@ struct DetailRSView: View {
                 self.selector = value?.resourceRS.selector ?? []
                 self.image = value?.resourceRS.image ?? []
             })
+            .onDisappear(perform: {
+                print(".onDisappear :: RS")
+                k8sVM.currentRS = nil
+            })
             .edgesIgnoringSafeArea(.all)
             
         }

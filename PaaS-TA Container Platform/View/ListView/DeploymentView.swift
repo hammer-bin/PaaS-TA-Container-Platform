@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DeploymentView: View {
     @EnvironmentObject var k8sVM : K8sVM
+    @EnvironmentObject var userVM : UserVM
     @State var deployData : [DeployData] = []
     @State var namespaceData : [NamespaceData] = []
        
@@ -39,34 +40,59 @@ struct DeploymentView: View {
                         Spacer(minLength: 15)
                         
                         // Menu Button...
-                        
-                        Menu(content: {
-                            
-                            Button(action: {
-                                k8sVM.currentNS = "All"
-                                k8sVM.deployList()
+                        if userVM.isClusterAdmin {
+                            Menu(content: {
+                                
+                                Button(action: {
+                                    k8sVM.currentNS = "All"
+                                    k8sVM.deployList()
+                                }) {
+                                    Text("All namespace")
+                                }
+                                ForEach(namespaceData) { datum in
+                                    NamespaceButton(namespaceName: datum.name)
+                                }
+                                
                             }) {
-                                Text("All namespace")
+                                
+                                Label(title: {
+                                    Text(k8sVM.currentNS)
+                                        .foregroundColor(.white)
+                                }) {
+                                    Image(systemName: "rectangle.split.3x1")
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.vertical,10)
+                                .padding(.horizontal)
+                                .frame(maxWidth: 240, alignment: .leading)
+                                .fontWeight(.semibold)
+                                .background(Color.black)
+                                .clipShape(Capsule())
                             }
-                            ForEach(namespaceData) { datum in
-                                NamespaceButton(namespaceName: datum.name)
-                            }
-                
-                        }) {
-                            
-                            Label(title: {
-                                Text(k8sVM.currentNS)
-                                    .foregroundColor(.white)
+                        } else {
+                            Menu(content: {
+                                
+                                Button(action: {}) {
+                                    Text(userVM.userNamespace)
+                                }
+                                
                             }) {
-                                Image(systemName: "rectangle.split.3x1")
-                                    .foregroundColor(.white)
+                                
+                                Label(title: {
+                                    Text(userVM.userNamespace)
+                                        .lineLimit(1)
+                                        .foregroundColor(.white)
+                                }) {
+                                    Image(systemName: "rectangle.split.3x1")
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.vertical,10)
+                                .padding(.horizontal)
+                                .frame(maxWidth: 240, alignment: .leading)
+                                .fontWeight(.semibold)
+                                .background(Color.black)
+                                .clipShape(Capsule())
                             }
-                            .padding(.vertical,10)
-                            .padding(.horizontal)
-                            .frame(maxWidth: 240, alignment: .leading)
-                            .fontWeight(.semibold)
-                            .background(Color.black)
-                            .clipShape(Capsule())
                         }
                     }
                     .padding()
@@ -109,6 +135,9 @@ struct DeploymentView: View {
                     print("ServiceView onAppear() called")
                 })
                 .onAppear(perform: {
+                    if !userVM.isClusterAdmin {
+                        k8sVM.currentNS = userVM.userNamespace
+                    }
                     k8sVM.deployList()
                 })
                 .onReceive(k8sVM.$deploymemts, perform: { self.deployData = $0 })
