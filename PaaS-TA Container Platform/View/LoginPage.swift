@@ -13,6 +13,8 @@ struct LoginPage: View {
     @AppStorage("log_Status") var status = false
     
     @State fileprivate var shouldShowAlert: Bool = false
+    @State fileprivate var shouldShowFailAlert: Bool = false
+    @State var enableButten: Bool = false
     
     var body: some View {
         
@@ -113,17 +115,27 @@ struct LoginPage: View {
                         }
                     } label: {
                         
-                        Text(userVM.registerUser ? "Register" : "Login")
-                            .font(.system(size: 17))
-                            .padding(.vertical, 20)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(.white)
-                            .background(Color("Purple"))
-                            .cornerRadius(15)
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                        VStack {
+                            
+                            
+                            Text(userVM.registerUser ? "Register" : "Login")
+                                .font(.system(size: 17))
+                                .padding(.vertical, 20)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(.white)
+                                .background(Color("Purple"))
+                                .cornerRadius(15)
+                                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                                
+                                
+                        }
+                        
                     }
                     .padding(.top,25)
                     .padding(.horizontal)
+                    .disabled(getEnable(registerUser: userVM.registerUser, emailError: userVM.emailCharError, passError: userVM.passwordCharError, equalError: userVM.equalsPasswordError))
+                    .disabled(userVM.email.count == 0 || userVM.password.count == 0)
+                    //.disabled()
                     
                     // Register User Button...
                     
@@ -143,6 +155,14 @@ struct LoginPage: View {
                         print("LoginView - loginSuccess() called")
                         status.toggle()
                     })
+                    .onReceive(userVM.loginFailed, perform: {
+                        print("LoginView - loginFiled() called")
+                        self.shouldShowFailAlert = true
+                    })
+                    .alert("로그인 실패", isPresented: $shouldShowFailAlert){
+                        Button("확인", role: .cancel){
+                        }
+                    }
                     
                 }
                 .padding(30)
@@ -207,8 +227,26 @@ struct LoginPage: View {
         VStack(alignment: .leading, spacing: 12) {
             
             Label {
-                Text(title)
-                    .font(.system(size: 14))
+                HStack{
+                    Text(title)
+                        .font(.system(size: 14))
+                    if title.contains("Email") {
+                        Text(userVM.emailCharError)
+                            .foregroundColor(.red)
+                            .opacity(0.8)
+                            .font(.system(size:12))
+                    } else if title == "Password" {
+                        Text(userVM.passwordCharError)
+                            .foregroundColor(.red)
+                            .opacity(0.8)
+                            .font(.system(size:12))
+                    } else if title.contains("Re") {
+                        Text(userVM.equalsPasswordError)
+                            .foregroundColor(.red)
+                            .opacity(0.8)
+                            .font(.system(size:12))
+                    }
+                }
             } icon: {
                 Image(systemName: icon)
             }
@@ -247,6 +285,23 @@ struct LoginPage: View {
             }
             , alignment: .trailing
         )
+    }
+    
+    func getEnable(registerUser: Bool, emailError: String, passError: String, equalError: String) -> Bool {
+        print("registerUser :: \(registerUser)")
+        if registerUser {
+            if emailError == "" && passError == "" && equalError == "OK" {
+                print("register confirm")
+                return false
+            }
+        } else {
+            if emailError == "" && passError == "" {
+                print("loginUser confirm")
+                return false
+            }
+        }
+        
+        return true
     }
 }
 
