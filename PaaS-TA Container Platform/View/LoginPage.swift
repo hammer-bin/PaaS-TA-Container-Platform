@@ -15,6 +15,7 @@ struct LoginPage: View {
     @State fileprivate var shouldShowAlert: Bool = false
     @State fileprivate var shouldShowFailAlert: Bool = false
     @State var enableButten: Bool = false
+    @State var buttonOpacity: CGFloat = 0.5
     
     var body: some View {
         
@@ -135,6 +136,16 @@ struct LoginPage: View {
                     .padding(.horizontal)
                     .disabled(getEnable(registerUser: userVM.registerUser, emailError: userVM.emailCharError, passError: userVM.passwordCharError, equalError: userVM.equalsPasswordError))
                     .disabled(userVM.email.count == 0 || userVM.password.count == 0)
+                    .opacity(
+                        withAnimation{
+                            getEnable(registerUser: userVM.registerUser, emailError: userVM.emailCharError, passError: userVM.passwordCharError, equalError: userVM.equalsPasswordError) ? 0.5 : 1
+                        }
+                    )
+                    .opacity(
+                        withAnimation{
+                            (userVM.email.count == 0 || userVM.password.count == 0) ? 1 : 1
+                        }
+                    )
                     //.disabled()
                     
                     // Register User Button...
@@ -288,19 +299,15 @@ struct LoginPage: View {
     }
     
     func getEnable(registerUser: Bool, emailError: String, passError: String, equalError: String) -> Bool {
-        print("registerUser :: \(registerUser)")
         if registerUser {
             if emailError == "" && passError == "" && equalError == "OK" {
-                print("register confirm")
                 return false
             }
         } else {
             if emailError == "" && passError == "" {
-                print("loginUser confirm")
                 return false
             }
         }
-        
         return true
     }
 }

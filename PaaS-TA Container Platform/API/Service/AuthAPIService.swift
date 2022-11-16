@@ -28,7 +28,7 @@ enum AuthAPIService {
                 // userdefaults, keychain
                 print(receivedValue.token.accessToken)
                 print(receivedValue.token.refreshToken)
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: "", nsName: "")
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }
@@ -46,7 +46,7 @@ enum AuthAPIService {
                 print(receivedValue)
                 // 받은 토큰 정보 어딘가에 영구 저장
                 // userdefaults, keychain
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: receivedValue.user.k8sName, nsName: receivedValue.user.nsName)
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }

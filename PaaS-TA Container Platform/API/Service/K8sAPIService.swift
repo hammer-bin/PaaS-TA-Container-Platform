@@ -221,6 +221,47 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
+    static func configmapList(namespace: String)-> AnyPublisher<[ConfigmapData], AFError> {
+        print("K8sAPIService = configmapList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+
+        return clientConfigmap(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: ConfigmapResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientConfigmap(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.configmapList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.configmapList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func configmapInfo(namespace: String, resourceName: String)-> AnyPublisher<ConfigmapInfo, AFError> {
+        print("K8sApiService = configmapInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.configmapInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: ConfigmapInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
     static func PVList()-> AnyPublisher<[PVData], AFError> {
         print("K8sApiService = PVList() called")
         
@@ -322,6 +363,24 @@ enum K8sApiService {
             .request(K8sAdminRouter.clusterMetricInfo(targetUrl: storedApiUrl, authorization: storedTokenData))
             .validate(statusCode: 200...400)
             .publishDecodable(type: ClusterMetricInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func namespaceMetricInfo()-> AnyPublisher<NamespaceMetricInfo, AFError> {
+        print("K8sApiService = namespaceMetricInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        let namespace = UserDefaultManager.shared.getNamespace()
+
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.namespaceMetricInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: NamespaceMetricInfo.self)
             .value()
             .map{ receivedValue in
                 return receivedValue.self

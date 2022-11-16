@@ -27,8 +27,7 @@ struct Home: View {
         
         // Tab View With Tabs...
         TabView(selection: $selectedTab){
-            
-            if !userVM.isClusterAdmin {
+            if !UserDefaultManager.shared.getIsAdmin() {
                 UserDashboard()
                     .tag("Dashbaord")
                 
@@ -41,8 +40,8 @@ struct Home: View {
                 UserStorage()
                     .tag("Storage")
                 
-                ProfileView()
-                    .tag("Info")
+                Config()
+                    .tag("Config")
             }
             else {
                 HomePage()
@@ -57,8 +56,8 @@ struct Home: View {
                 Storage()
                     .tag("Storage")
                 
-                ProfileView()
-                    .tag("Info")
+                Config()
+                    .tag("Config")
             }
             
             

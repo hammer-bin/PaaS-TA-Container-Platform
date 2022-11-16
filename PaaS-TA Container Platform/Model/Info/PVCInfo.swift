@@ -29,7 +29,7 @@ struct DetailPVC: Codable {
 struct ResourcePVC: Codable {
     var status, storageClass: String
     var capacity: Capacity
-    var accessMode: [String]
+    var accessMode: [String]?
 
     enum CodingKeys: String, CodingKey {
         case status, storageClass

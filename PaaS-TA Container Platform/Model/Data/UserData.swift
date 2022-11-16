@@ -15,6 +15,8 @@ struct UserData : Codable, Identifiable {
     var k8sToken : String
     var apiUrl: String
     var isAdmin: Bool
+    var nsName: String
+    var k8sName: String
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -22,5 +24,7 @@ struct UserData : Codable, Identifiable {
         case k8sToken = "k8s_token"
         case apiUrl = "api_url"
         case isAdmin = "is_admin"
+        case nsName = "ns_name"
+        case k8sName = "k8s_name"
     }
 }

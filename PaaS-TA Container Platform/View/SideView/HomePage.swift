@@ -29,14 +29,19 @@ struct HomePage: View {
     @State var PodTCnt: CGFloat = 0.0
     @State var CpuRatio: CGFloat = 0.0
     @State var MemRatio: CGFloat = 0.0
+    @State var APIUrl: String = UserDefaultManager.shared.getK8sToken().apiUrl
+    @State var K8sName: String = UserDefaultManager.shared.getK8sName()
     
     @State var pvcdatas : [PVCData] = []
     @State var callList: Bool = false
     
     @State var progress: CGFloat = 0.1
     @State var current = "CPU"
+    @State var moreInfo: Bool = false
     
     var columns = Array(repeating: GridItem(.flexible(), spacing: 20), count:2)
+    
+    let timer = Timer.publish(every: 10.0, on: .current, in: .common).autoconnect()
     
     var body: some View{
         
@@ -46,21 +51,65 @@ struct HomePage: View {
                 VStack(alignment: .leading, spacing: 20){
                     // MARK: - Version
                     VStack{
-                        VStack{
+                        VStack(spacing: 8){
                             HStack{
                                 Image(systemName: "chevron.right.circle.fill")
-                                Text("Kubelet Version")
+                                Text("K8s Name")
                                     .font(.system(size:15))
                                     .fontWeight(.bold)
                                     .foregroundColor(.gray)
                                     .frame(width: 120, alignment: .leading)
                                 
-                                Text(kubeletVersion)
-                                    .font(.callout)
+                                Text(K8sName)
+                                    .font(.system(size: 15, design: .rounded))
                                     .foregroundColor(.black)
                                 
                                 Spacer()
+                                
+                                Button(action: {
+                                    withAnimation{
+                                        moreInfo.toggle()
+                                    }
+                                }, label: {
+                                    Image(systemName: moreInfo ? "arrowtriangle.up.square" : "arrowtriangle.down.square")
+                                        .foregroundColor(.black)
+                                        .opacity(0.8)
+                                })
+                                
                                     
+                            }
+                            if moreInfo {
+                                HStack{
+                                    Image(systemName: "chevron.right.circle.fill")
+                                    Text("K8s Version")
+                                        .font(.system(size:15))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.gray)
+                                        .frame(width: 120, alignment: .leading)
+                                    
+                                    Text(kubeletVersion)
+                                        .font(.system(size: 15, design: .rounded))
+                                        .foregroundColor(.black)
+                                    
+                                    Spacer()
+                                    
+                                }
+                                
+                                HStack{
+                                    Image(systemName: "chevron.right.circle.fill")
+                                    Text("API URL")
+                                        .font(.system(size:15))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.gray)
+                                        .frame(width: 120, alignment: .leading)
+                                    
+                                    Text(APIUrl)
+                                        .font(.callout)
+                                        .foregroundColor(.black)
+                                    
+                                    Spacer()
+                                    
+                                }
                             }
                         }
                     }
@@ -92,12 +141,13 @@ struct HomePage: View {
                             .clipShape(Capsule())
                             .padding(.horizontal,35)
                         }
-                        
-                        Text("\(String(format: "%.1f", current == "CPU" ? CpuRatio*100 : MemRatio*100))")
+                        RoundedRectangle(cornerRadius: 8).fill(Color("blue"))
+                            .frame(maxWidth: 150, maxHeight: 50)
                             .font(.system(size: 35, weight: .black))
                             .foregroundColor(Color("blue"))
-                            .padding(.top, 5)
+                            //.padding(.top, 5)
                             .lineLimit(1)
+                            .modifier(CountingModifier(number: current == "CPU" ? CpuRatio*100 : MemRatio*100))
                         
                         // MARK: - SpeedMeter
                         SpeedoMeter(progress: current == "CPU" ? $CpuRatio : $MemRatio)
@@ -175,19 +225,23 @@ struct HomePage: View {
             }
             .onReceive(k8sVM.$clusterMetricsData, perform: { value in
                 self.kubeletVersion = value?.kubeletVersion ?? "-"
-                self.NodeCnt = value?.nodeCnt ?? 0
-                self.NodeTCnt = value?.nodeTCnt ?? 0
-                self.NamespaceCnt = value?.nameSpaceCnt ?? 0
-                self.NamespaceTCnt = value?.nameSpaceTCnt ?? 0
-                self.PvCnt = value?.pvCnt ?? 0
-                self.PvTCnt = value?.pvTCnt ?? 0
-                self.PvcCnt = value?.pvcCnt ?? 0
-                self.PvcTCnt = value?.pvcTCnt ?? 0
-                self.PodCnt = value?.podCnt ?? 0
-                self.PodTCnt = value?.podTCnt ?? 0
-                self.CpuRatio = value?.cpuRatio ?? 0.0
-                self.MemRatio = value?.memRatio ?? 0.0
-                
+                withAnimation(.easeInOut(duration: 2)){
+                    self.NodeCnt = value?.nodeCnt ?? 0
+                    self.NodeTCnt = value?.nodeTCnt ?? 0
+                    self.NamespaceCnt = value?.nameSpaceCnt ?? 0
+                    self.NamespaceTCnt = value?.nameSpaceTCnt ?? 0
+                    self.PvCnt = value?.pvCnt ?? 0
+                    self.PvTCnt = value?.pvTCnt ?? 0
+                    self.PvcCnt = value?.pvcCnt ?? 0
+                    self.PvcTCnt = value?.pvcTCnt ?? 0
+                    self.PodCnt = value?.podCnt ?? 0
+                    self.PodTCnt = value?.podTCnt ?? 0
+                    self.CpuRatio = value?.cpuRatio ?? 0.0
+                    self.MemRatio = value?.memRatio ?? 0.0
+                }
+            })
+            .onReceive(timer, perform: { value in
+                k8sVM.clusterMetricInfo()
             })
         }
     }
@@ -210,10 +264,15 @@ struct HomePage: View {
                     .stroke(Color("blue").opacity(0.05), lineWidth: 10)
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
                 
-                Circle()
-                    .trim(from: 0, to: (useCnt / totalCnt   ))
-                    .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                    .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+                withAnimation(.spring(response: 1.0, dampingFraction: 1.0, blendDuration: 1.0)) {
+                    Circle()
+                        .trim(from: 0, to: (useCnt / totalCnt   ))
+                        .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                        //.fill(AngularGradient(gradient: .init(colors: [Color("blue")]), center: .center))
+                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+                        
+                }
+                
                 
                 Text(getPercent(current: useCnt, Goal: totalCnt) + " %")
                     .font(.system(size: 22))

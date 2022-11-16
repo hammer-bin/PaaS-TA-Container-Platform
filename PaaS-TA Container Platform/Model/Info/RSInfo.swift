@@ -16,8 +16,8 @@ struct RSInfo: Codable {
 // MARK: - DetailRS
 struct DetailRS: Codable {
     let name, uid, namespace: String
-    let labels: [String]
-    let annotations: [String]
+    let labels: [String]?
+    let annotations: [String]?
     let createdTime: String
 
     enum CodingKeys: String, CodingKey {

@@ -195,6 +195,10 @@ struct SearchView: View {
                 k8sVM.currentIngress = IngressData(name: resource, namespace: namespace)
             case .rs:
                 k8sVM.currentRS = RSData(name: resource, namespace: namespace)
+            case .configmap:
+                k8sVM.currentConfigmap = ConfigmapData(name: resource, namespace: namespace)
+            case .secret:
+                k8sVM.currentConfigmap = ConfigmapData(name: resource, namespace: namespace)
             }
             
             withAnimation(.easeInOut){

@@ -9,7 +9,7 @@ import Foundation
 
 class UserDefaultManager {
     enum Key: String, CaseIterable {
-        case refreshToken, accessToken, k8sToken, apiUrl
+        case refreshToken, accessToken, k8sToken, apiUrl, isAdmin, k8sName, nsName
     }
     enum userKey: String, CaseIterable {
         case userId, userName, clusterName, apiUrl, k8sToken, isAdmin
@@ -26,12 +26,15 @@ class UserDefaultManager {
     }
     
     // 토큰 저장. 영구적데이터는 KeyChain에 저장하는것이 좋다.
-    func setTokens(accessToken: String, refreshToken: String, k8sToken: String, apiUrl: String){
+    func setTokens(accessToken: String, refreshToken: String, k8sToken: String, apiUrl: String, isAdmin: Bool, k8sName: String, nsName: String){
         print("UserDefaultManger - setToken() called")
         UserDefaults.standard.set(accessToken, forKey: Key.accessToken.rawValue)
         UserDefaults.standard.set(refreshToken, forKey: Key.refreshToken.rawValue)
         UserDefaults.standard.set(k8sToken, forKey: Key.k8sToken.rawValue)
         UserDefaults.standard.set(apiUrl, forKey: Key.apiUrl.rawValue)
+        UserDefaults.standard.set(isAdmin, forKey: Key.isAdmin.rawValue)
+        UserDefaults.standard.set(k8sName, forKey: Key.k8sName.rawValue)
+        UserDefaults.standard.set(nsName, forKey: Key.nsName.rawValue)
         UserDefaults.standard.synchronize()
     }
     
@@ -58,5 +61,17 @@ class UserDefaultManager {
         let k8sToken = UserDefaults.standard.string(forKey: Key.k8sToken.rawValue) ?? ""
         let apiUrl = UserDefaults.standard.string(forKey: Key.apiUrl.rawValue) ?? ""
         return K8sData(k8sToken: k8sToken, apiUrl: apiUrl)
+    }
+    
+    func getIsAdmin()->Bool{
+        return UserDefaults.standard.bool(forKey: Key.isAdmin.rawValue)
+    }
+    
+    func getK8sName()->String {
+        return UserDefaults.standard.string(forKey: Key.k8sName.rawValue) ?? ""
+    }
+    
+    func getNamespace()->String {
+        return UserDefaults.standard.string(forKey: Key.nsName.rawValue) ?? ""
     }
 }

@@ -35,10 +35,13 @@ enum K8sRouter: URLRequestConvertible {
     case ingressList(targetUrl: String, authorization: String, namespace: String)
     case ingressInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
-    case configmap(targetUrl: String, authorization: String, namespace: String)
+    case configmapList(targetUrl: String, authorization: String, namespace: String)
+    case configmapInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case scList(targetUrl: String, authorization: String, namespace: String)
     case scInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    
+    case namespaceMetricInfo(targetUrl: String, authorization: String, namespace: String)
     
     var baseURL: URL {
         return URL(string: K8sAPIClient.BASE_URL)!
@@ -58,8 +61,10 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/rs/list"
         case .rsInfo:
             return "resource/rs/info"
-        case .configmap:
+        case .configmapList:
             return "resource/configmap/list"
+        case .configmapInfo:
+            return "resource/configmap/info"
         case .pvcInfo:
             return "resource/pvc/info"
         case .pvcList:
@@ -76,6 +81,8 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/sc/list"
         case .scInfo:
             return "resource/sc/info"
+        case .namespaceMetricInfo:
+            return "metrics/namespace/count"
         }
     }
     
@@ -121,8 +128,10 @@ enum K8sRouter: URLRequestConvertible {
         case let .rsInfo(targetUrl, authorization, namespace, resourceName):
             return infoParam(targetUrl, authorization, namespace, resourceName)
             
-        case let .configmap(targetUrl, authorization, namespace):
+        case let .configmapList(targetUrl, authorization, namespace):
             return listParam(targetUrl, authorization, namespace)
+        case let .configmapInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
       
         case let .pvcList(targetUrl, authorization, namespace):
             return listParam(targetUrl, authorization, namespace)
@@ -143,6 +152,9 @@ enum K8sRouter: URLRequestConvertible {
             return listParam(targetUrl, authorization, namespace)
         case let .scInfo(targetUrl, authorization, namespace, resourceName):
             return infoParam(targetUrl, authorization, namespace, resourceName)
+            
+        case let .namespaceMetricInfo(targetUrl, authorization, namespace):
+            return listParam(targetUrl, authorization, namespace)
         }
         
         

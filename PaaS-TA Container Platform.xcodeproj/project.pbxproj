@@ -26,6 +26,7 @@
 		89336CD32911C230007CC659 /* SCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD22911C230007CC659 /* SCView.swift */; };
 		89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD42911C3A6007CC659 /* SCCardView.swift */; };
 		89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89336CD62911C6CB007CC659 /* DetailSCView.swift */; };
+		893F431029243AB700DCEACD /* NamespaceMetricInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F430F29243AB700DCEACD /* NamespaceMetricInfo.swift */; };
 		8947B5122915330E000131F7 /* DeploymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947B5112915330E000131F7 /* DeploymentView.swift */; };
 		8947B514291533FD000131F7 /* DeploymentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947B513291533FD000131F7 /* DeploymentCardView.swift */; };
 		8964DAD4290B2AEA00E77505 /* DetailPVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964DAD3290B2AEA00E77505 /* DetailPVView.swift */; };
@@ -53,6 +54,14 @@
 		8989726728F3AC6D0052605C /* PVCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989726628F3AC6D0052605C /* PVCView.swift */; };
 		8989726928F3AD520052605C /* PVCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989726828F3AD520052605C /* PVCCardView.swift */; };
 		8989726B28F3AFFC0052605C /* DetailPVCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8989726A28F3AFFC0052605C /* DetailPVCView.swift */; };
+		898BF6182924F41300260F82 /* ConfigmapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF6172924F41300260F82 /* ConfigmapData.swift */; };
+		898BF61A2924F46800260F82 /* ConfigmapResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF6192924F46800260F82 /* ConfigmapResponse.swift */; };
+		898BF61C2924F49800260F82 /* ConfigmapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF61B2924F49800260F82 /* ConfigmapInfo.swift */; };
+		898BF61E2924FD4C00260F82 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF61D2924FD4C00260F82 /* Config.swift */; };
+		898BF6202924FDD300260F82 /* ConfigmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF61F2924FDD300260F82 /* ConfigmapView.swift */; };
+		898BF6222924FED800260F82 /* ConfigmapCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF6212924FED800260F82 /* ConfigmapCardView.swift */; };
+		898BF624292502D300260F82 /* DetailConfigmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF623292502D300260F82 /* DetailConfigmapView.swift */; };
+		898BF626292510AF00260F82 /* SecretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BF625292510AF00260F82 /* SecretView.swift */; };
 		898FD6A528FDFF9200D313CE /* K8sAdminRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898FD6A428FDFF9200D313CE /* K8sAdminRouter.swift */; };
 		898FD6A728FE076400D313CE /* K8sData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898FD6A628FE076400D313CE /* K8sData.swift */; };
 		89910FD728E340CE00A21088 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89910FD628E340CE00A21088 /* UserVM.swift */; };
@@ -101,6 +110,7 @@
 		89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549228FCCA0A00A84640 /* PVResponse.swift */; };
 		89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549428FCCB2F00A84640 /* PVInfo.swift */; };
 		89DF549728FCCD3900A84640 /* PVCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549628FCCD3900A84640 /* PVCardView.swift */; };
+		89E62B442922E02400ABBD38 /* CountingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E62B432922E02400ABBD38 /* CountingModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +133,7 @@
 		89336CD22911C230007CC659 /* SCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCView.swift; sourceTree = "<group>"; };
 		89336CD42911C3A6007CC659 /* SCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCardView.swift; sourceTree = "<group>"; };
 		89336CD62911C6CB007CC659 /* DetailSCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSCView.swift; sourceTree = "<group>"; };
+		893F430F29243AB700DCEACD /* NamespaceMetricInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceMetricInfo.swift; sourceTree = "<group>"; };
 		8947B5112915330E000131F7 /* DeploymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentView.swift; sourceTree = "<group>"; };
 		8947B513291533FD000131F7 /* DeploymentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentCardView.swift; sourceTree = "<group>"; };
 		8964DAD3290B2AEA00E77505 /* DetailPVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVView.swift; sourceTree = "<group>"; };
@@ -150,6 +161,14 @@
 		8989726628F3AC6D0052605C /* PVCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCView.swift; sourceTree = "<group>"; };
 		8989726828F3AD520052605C /* PVCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCCardView.swift; sourceTree = "<group>"; };
 		8989726A28F3AFFC0052605C /* DetailPVCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVCView.swift; sourceTree = "<group>"; };
+		898BF6172924F41300260F82 /* ConfigmapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigmapData.swift; sourceTree = "<group>"; };
+		898BF6192924F46800260F82 /* ConfigmapResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigmapResponse.swift; sourceTree = "<group>"; };
+		898BF61B2924F49800260F82 /* ConfigmapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigmapInfo.swift; sourceTree = "<group>"; };
+		898BF61D2924FD4C00260F82 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		898BF61F2924FDD300260F82 /* ConfigmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigmapView.swift; sourceTree = "<group>"; };
+		898BF6212924FED800260F82 /* ConfigmapCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigmapCardView.swift; sourceTree = "<group>"; };
+		898BF623292502D300260F82 /* DetailConfigmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigmapView.swift; sourceTree = "<group>"; };
+		898BF625292510AF00260F82 /* SecretView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretView.swift; sourceTree = "<group>"; };
 		898FD6A428FDFF9200D313CE /* K8sAdminRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sAdminRouter.swift; sourceTree = "<group>"; };
 		898FD6A628FE076400D313CE /* K8sData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sData.swift; sourceTree = "<group>"; };
 		89910FD628E340CE00A21088 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
@@ -199,6 +218,7 @@
 		89DF549228FCCA0A00A84640 /* PVResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVResponse.swift; sourceTree = "<group>"; };
 		89DF549428FCCB2F00A84640 /* PVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVInfo.swift; sourceTree = "<group>"; };
 		89DF549628FCCD3900A84640 /* PVCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCardView.swift; sourceTree = "<group>"; };
+		89E62B432922E02400ABBD38 /* CountingModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +242,7 @@
 				8989725F28F39BE40052605C /* Service.swift */,
 				8989726128F3A7F30052605C /* Storage.swift */,
 				899CDF6428E4DF5B00838335 /* SideMenu.swift */,
+				898BF61D2924FD4C00260F82 /* Config.swift */,
 			);
 			path = SideView;
 			sourceTree = "<group>";
@@ -335,18 +356,9 @@
 		898624E828E2547900024852 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				898BF6162924F3DE00260F82 /* Info */,
 				8999790428FF4EC500E80B84 /* Data */,
 				8999790328FF4E9E00E80B84 /* Response */,
-				899CDF7228E4EAFA00838335 /* PVCInfo.swift */,
-				8995F16B28F2AEF4001CFAE7 /* DeployInfo.swift */,
-				89DF549428FCCB2F00A84640 /* PVInfo.swift */,
-				898FD6A628FE076400D313CE /* K8sData.swift */,
-				8999790928FF526300E80B84 /* IngressInfo.swift */,
-				8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */,
-				89336CD02911BE7D007CC659 /* SCInfo.swift */,
-				89189C7E2913143E00158CFF /* ServiceInfo.swift */,
-				892D93ED2915C8D40096F9BE /* PodInfo.swift */,
-				892D93F329164D3F0096F9BE /* RSInfo.swift */,
 				892D941A2917A5750096F9BE /* SearchItem.swift */,
 			);
 			path = Model;
@@ -363,8 +375,29 @@
 				8989726428F3ABEF0052605C /* PVView.swift */,
 				8989726628F3AC6D0052605C /* PVCView.swift */,
 				89336CD22911C230007CC659 /* SCView.swift */,
+				898BF61F2924FDD300260F82 /* ConfigmapView.swift */,
+				898BF625292510AF00260F82 /* SecretView.swift */,
 			);
 			path = ListView;
+			sourceTree = "<group>";
+		};
+		898BF6162924F3DE00260F82 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				893F430F29243AB700DCEACD /* NamespaceMetricInfo.swift */,
+				899CDF7228E4EAFA00838335 /* PVCInfo.swift */,
+				8995F16B28F2AEF4001CFAE7 /* DeployInfo.swift */,
+				89DF549428FCCB2F00A84640 /* PVInfo.swift */,
+				898FD6A628FE076400D313CE /* K8sData.swift */,
+				8999790928FF526300E80B84 /* IngressInfo.swift */,
+				8993B8B3290C9FB600DB17FB /* ClusterMetricInfo.swift */,
+				89336CD02911BE7D007CC659 /* SCInfo.swift */,
+				89189C7E2913143E00158CFF /* ServiceInfo.swift */,
+				892D93ED2915C8D40096F9BE /* PodInfo.swift */,
+				892D93F329164D3F0096F9BE /* RSInfo.swift */,
+				898BF61B2924F49800260F82 /* ConfigmapInfo.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		89910FD528E340BD00A21088 /* ViewModel */ = {
@@ -397,6 +430,7 @@
 				89AF80A5290F20A400787CD2 /* CpuMemButton.swift */,
 				892D941529171F710096F9BE /* LoadingScreen.swift */,
 				899AC6D3291BD240001669B5 /* ProfileView.swift */,
+				89E62B432922E02400ABBD38 /* CountingModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +446,7 @@
 				897E0B37291469ED005DBC3B /* DetailIngressView.swift */,
 				892D93EB2915C7410096F9BE /* DetailPodView.swift */,
 				89AEC69C2919AE3600A31230 /* DetailRSView.swift */,
+				898BF623292502D300260F82 /* DetailConfigmapView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -429,6 +464,7 @@
 				8995C6DC2900A088003A0AC0 /* NamespaceResponse.swift */,
 				89336CCE2911BE42007CC659 /* SCResponse.swift */,
 				892D93F1291649570096F9BE /* RSResponse.swift */,
+				898BF6192924F46800260F82 /* ConfigmapResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -447,6 +483,7 @@
 				8995C6DA29009EE5003A0AC0 /* NamespaceData.swift */,
 				89336CCC2911BE08007CC659 /* SCData.swift */,
 				892D93EF2916493B0096F9BE /* RSData.swift */,
+				898BF6172924F41300260F82 /* ConfigmapData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -462,6 +499,7 @@
 				8947B513291533FD000131F7 /* DeploymentCardView.swift */,
 				892D93E92915C5A00096F9BE /* PodCardView.swift */,
 				89AEC69A2919AD3C00A31230 /* RSCardView.swift */,
+				898BF6212924FED800260F82 /* ConfigmapCardView.swift */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
@@ -560,7 +598,9 @@
 				892D93EA2915C5A00096F9BE /* PodCardView.swift in Sources */,
 				8989726528F3ABEF0052605C /* PVView.swift in Sources */,
 				892D93F02916493B0096F9BE /* RSData.swift in Sources */,
+				898BF624292502D300260F82 /* DetailConfigmapView.swift in Sources */,
 				89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */,
+				898BF6202924FDD300260F82 /* ConfigmapView.swift in Sources */,
 				898624DE28E2515000024852 /* APILogger.swift in Sources */,
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
 				89AEC69B2919AD3C00A31230 /* RSCardView.swift in Sources */,
@@ -569,6 +609,7 @@
 				89336CCD2911BE08007CC659 /* SCData.swift in Sources */,
 				898624E728E2544B00024852 /* UserDefaultManager.swift in Sources */,
 				89336CCF2911BE42007CC659 /* SCResponse.swift in Sources */,
+				89E62B442922E02400ABBD38 /* CountingModifier.swift in Sources */,
 				8989726728F3AC6D0052605C /* PVCView.swift in Sources */,
 				892D93F429164D3F0096F9BE /* RSInfo.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
@@ -582,19 +623,23 @@
 				899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */,
 				89336CD52911C3A6007CC659 /* SCCardView.swift in Sources */,
 				898FD6A528FDFF9200D313CE /* K8sAdminRouter.swift in Sources */,
+				898BF626292510AF00260F82 /* SecretView.swift in Sources */,
 				899AC6D4291BD240001669B5 /* ProfileView.swift in Sources */,
 				89DF549728FCCD3900A84640 /* PVCardView.swift in Sources */,
 				89189C7D291313CB00158CFF /* DetailServiceView.swift in Sources */,
 				899CDF6D28E4E8FB00838335 /* K8sAPIClient.swift in Sources */,
 				8995F16A28F2A6DB001CFAE7 /* BaseVM.swift in Sources */,
+				898BF61C2924F49800260F82 /* ConfigmapInfo.swift in Sources */,
 				8999790628FF4FD000E80B84 /* IngressData.swift in Sources */,
 				89910FDC28E343CC00A21088 /* CustomCorner.swift in Sources */,
 				89AF80A6290F20A400787CD2 /* CpuMemButton.swift in Sources */,
 				898624EE28E2568900024852 /* UserData.swift in Sources */,
 				8995F15F28F26466001CFAE7 /* ServiceView.swift in Sources */,
+				898BF6222924FED800260F82 /* ConfigmapCardView.swift in Sources */,
 				899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */,
 				89AF80A4290F160F00787CD2 /* IndicatorShape.swift in Sources */,
 				89999C8928E8EB9D00DBA981 /* DeployResponse.swift in Sources */,
+				898BF6182924F41300260F82 /* ConfigmapData.swift in Sources */,
 				8989726928F3AD520052605C /* PVCCardView.swift in Sources */,
 				899CDF6528E4DF5B00838335 /* SideMenu.swift in Sources */,
 				8995F16528F268C9001CFAE7 /* ServiceResponse.swift in Sources */,
@@ -606,13 +651,16 @@
 				898FD6A728FE076400D313CE /* K8sData.swift in Sources */,
 				892D93FA29170D8C0096F9BE /* UserStorage.swift in Sources */,
 				899CDF6728E4DF8200838335 /* TabButton.swift in Sources */,
+				893F431029243AB700DCEACD /* NamespaceMetricInfo.swift in Sources */,
 				899CDF6F28E4E9A300838335 /* K8sRouter.swift in Sources */,
 				898624E028E2519700024852 /* BaseInterceptor.swift in Sources */,
 				89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */,
 				899CDF6328E4735B00838335 /* MainView.swift in Sources */,
 				8995C6DB29009EE5003A0AC0 /* NamespaceData.swift in Sources */,
+				898BF61E2924FD4C00260F82 /* Config.swift in Sources */,
 				899CDF7128E4EA2000838335 /* K8sAPIService.swift in Sources */,
 				898624C828E24FF800024852 /* ContentView.swift in Sources */,
+				898BF61A2924F46800260F82 /* ConfigmapResponse.swift in Sources */,
 				898624C628E24FF800024852 /* PaaS_TA_Container_PlatformApp.swift in Sources */,
 				897E0B34291467AC005DBC3B /* IngressView.swift in Sources */,
 				8989725E28F398780052605C /* LowTabButton.swift in Sources */,

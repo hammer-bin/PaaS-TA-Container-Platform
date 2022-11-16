@@ -52,7 +52,7 @@ struct SideMenu: View {
                         .opacity(0.5)
                 })
             })
-            if userVM.isClusterAdmin {
+            if UserDefaultManager.shared.getIsAdmin() {
                 Menu(content: {
                     
                     Button(action: {k8sVM.currentNS = "All"}) {
@@ -114,7 +114,7 @@ struct SideMenu: View {
                 
                 TabButton(image: "externaldrive.badge.icloud", title: "Storage", selectedTab: $selectedTab, animation: animation)
                 
-                TabButton(image: "questionmark.circle", title: "Info", selectedTab: $selectedTab, animation: animation)
+                TabButton(image: "questionmark.circle", title: "Config", selectedTab: $selectedTab, animation: animation)
             }
             .padding(.leading, -15)
             .padding(.top,50)
@@ -139,7 +139,7 @@ struct SideMenu: View {
         .onAppear(perform: {
             print("ServiceView onAppear() called")
         })
-        .onAppear(perform: { if userVM.isClusterAdmin { k8sVM.namespaceList() }})
+        .onAppear(perform: { if UserDefaultManager.shared.getIsAdmin() { k8sVM.namespaceList() }})
         .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
         //.overlay(ProfileView())
     }

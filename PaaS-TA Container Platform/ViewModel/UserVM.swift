@@ -151,6 +151,7 @@ class UserVM: ObservableObject {
                 print("login in")
                 self.loggedInUser = receivedUser
                 self.loginSuccess.send()
+                self.isClusterAdmin = UserDefaultManager.shared.getIsAdmin()
             }.store(in: &subscription)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

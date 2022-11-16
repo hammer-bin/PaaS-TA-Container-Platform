@@ -24,10 +24,13 @@ class K8sVM: ObservableObject {
     @Published var podInfoData: PodInfo? = nil
     @Published var services: [ServiceData] = []
     @Published var serviceInfoData: ServiceInfo? = nil
+    @Published var configmaps: [ConfigmapData] = []
+    @Published var configmapInfoData: ConfigmapInfo? = nil
     @Published var ingresses: [IngressData] = []
     @Published var ingressInfoData: IngressInfo? = nil
     @Published var namespaces: [NamespaceData] = []
     @Published var clusterMetricsData: ClusterMetricInfo? = nil
+    @Published var namespaceMetricsData: NamespaceMetricInfo? = nil
     @Published var scs : [SCData] = []
     @Published var scInfoData: SCInfo? = nil
     @Published var rss: [RSData] = []
@@ -39,11 +42,11 @@ class K8sVM: ObservableObject {
     @Published var currentPVC: PVCData?
     @Published var currentDeploy: DeployData?
     @Published var currentPod: PodData?
-    //@Published var currentRS: 
     @Published var currentPV: PVData?
     @Published var currentSC: SCData?
     @Published var currentIngress: IngressData?
     @Published var currentRS: RSData?
+    @Published var currentConfigmap: ConfigmapData?
     
     @Published var showDetail = false
     @Published var showDetailSearch = false
@@ -67,6 +70,8 @@ class K8sVM: ObservableObject {
         case sc
         case ingress
         case rs
+        case configmap
+        case secret
     }
     
     func collectSearchData() {
@@ -115,6 +120,17 @@ class K8sVM: ObservableObject {
         case .rs:
             for data in rss {
                 print("rs :: \(data.name)")
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
+            }
+        case .configmap:
+            for data in configmaps {
+                print("configmaps :: \(data.name)")
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
+            }
+        case .secret:
+            for data in configmaps {
                 element = SearchItem(name: data.name, namespace: data.namespace)
                 searchItem.append(element)
             }
@@ -333,6 +349,16 @@ class K8sVM: ObservableObject {
             }.store(in: &subscription)
     }
     
+    func namespaceMetricInfo() {
+        print("K8sVM: namespaceMetricInfo() called")
+        K8sApiService.namespaceMetricInfo()
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: NamespaceMetricInfo) in
+                self.namespaceMetricsData = receivedData
+            }.store(in: &subscription)
+    }
+    
     func scList() {
         print("K8sVM: scList() called")
         K8sApiService.scList(namespace: currentNS)
@@ -351,6 +377,27 @@ class K8sVM: ObservableObject {
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: SCInfo) in
                 self.scInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func configmapList() {
+        print("K8sVM: configmapList() called \(currentNS)")
+        K8sApiService.configmapList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+                     } receiveValue: { (receivedData: [ConfigmapData]) in
+                print("store")
+                         self.configmaps = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func configmapInfo(namespace: String, resourceName: String) {
+        print("K8sVM: configmapInfo() called")
+        K8sApiService.configmapInfo(namespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: ConfigmapInfo) in
+                self.configmapInfoData = receivedData
             }.store(in: &subscription)
     }
 }
