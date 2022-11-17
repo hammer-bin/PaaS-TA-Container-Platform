@@ -27,6 +27,8 @@ enum K8sAdminRouter: URLRequestConvertible {
     case rsInfo(targetUrl: String, authorization: String, resourceName: String)
     case configmapList(targetUrl: String, authorization: String)
     case configmapInfo(targetUrl: String, authorization: String, resourceName: String)
+    case secretList(targetUrl: String, authorization: String)
+    case secretInfo(targetUrl: String, authorization: String, resourceName: String)
     case pvcList(targetUrl: String, authorization: String)
     case pvcInfo(targetUrl: String, authorization: String, resourceName: String)
     case serviceList(targetUrl: String, authorization: String)
@@ -40,6 +42,12 @@ enum K8sAdminRouter: URLRequestConvertible {
     
     case scList(targetUrl: String, authorization: String)
     case scInfo(targetUrl: String, authorization: String, resourceName: String)
+    
+    case resourceQuotaList(targetUrl: String, authorization: String)
+    case resourceQuotaInfo(targetUrl: String, authorization: String, resourceName: String)
+    
+    case limitRangeList(targetUrl: String, authorization: String)
+    case limitRangeInfo(targetUrl: String, authorization: String, resourceName: String)
     
     var baseURL: URL {
         return URL(string: K8sAPIClient.BASE_URL)!
@@ -61,6 +69,10 @@ enum K8sAdminRouter: URLRequestConvertible {
             return "resource/configmap/list"
         case .configmapInfo:
             return "resource/configmap/info"
+        case .secretList:
+            return "resource/secret/list"
+        case .secretInfo:
+            return "resource/secret/info"
         case .pvcInfo:
             return "resource/pvc/info"
         case .pvcList:
@@ -85,6 +97,14 @@ enum K8sAdminRouter: URLRequestConvertible {
             return "resource/sc/list"
         case .scInfo:
             return "resource/sc/info"
+        case .resourceQuotaList:
+            return "resource/resourcequota/list"
+        case .resourceQuotaInfo:
+            return "resource/resourcequota/info"
+        case .limitRangeList:
+            return "resource/limitrange/list"
+        case .limitRangeInfo:
+            return "resource/limitrange/info"
         }
     }
     
@@ -129,6 +149,11 @@ enum K8sAdminRouter: URLRequestConvertible {
         case let .configmapInfo(targetUrl, authorization, resourceName):
             return infoParam(targetUrl, authorization, resourceName)
             
+        case let .secretList(targetUrl, authorization):
+            return listParam(targetUrl, authorization)
+        case let .secretInfo(targetUrl, authorization, resourceName):
+            return infoParam(targetUrl, authorization, resourceName)
+            
         case let .deploymentInfo(targetUrl, authorization, resourceName):
             return infoParam(targetUrl, authorization, resourceName)
             
@@ -166,6 +191,16 @@ enum K8sAdminRouter: URLRequestConvertible {
             return listParam(targetUrl, authorization)
             
         case let .scInfo(targetUrl, authorization, resourceName):
+            return infoParam(targetUrl, authorization, resourceName)
+            
+        case let .resourceQuotaList(targetUrl, authorization):
+            return listParam(targetUrl, authorization)
+        case let .resourceQuotaInfo(targetUrl, authorization, resourceName):
+            return infoParam(targetUrl, authorization, resourceName)
+            
+        case let .limitRangeList(targetUrl, authorization):
+            return listParam(targetUrl, authorization)
+        case let .limitRangeInfo(targetUrl, authorization, resourceName):
             return infoParam(targetUrl, authorization, resourceName)
             
         }

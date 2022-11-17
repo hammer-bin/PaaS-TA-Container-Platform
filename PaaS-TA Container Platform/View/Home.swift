@@ -12,11 +12,11 @@ struct Home: View {
     @EnvironmentObject var userVM : UserVM
     @Binding var selectedTab: String
     
-    @State var name: String = ""
-    @State var namespace: String = ""
-    @State var uid: String = ""
-    @State var status: String = ""
-    @State var pvcdatas : [PVCData] = []
+//    @State var name: String = ""
+//    @State var namespace: String = ""
+//    @State var uid: String = ""
+//    @State var status: String = ""
+//    @State var pvcdatas : [PVCData] = []
     
     // Hiding Tab bar...
     init(selectedTab: Binding<String>) {
@@ -42,6 +42,9 @@ struct Home: View {
                 
                 Config()
                     .tag("Config")
+                
+                //Quota()
+                    //.tag("Quota")
             }
             else {
                 HomePage()
@@ -58,6 +61,9 @@ struct Home: View {
                 
                 Config()
                     .tag("Config")
+                
+                //Quota()
+                    //.tag("Quota")
             }
             
             
@@ -68,30 +74,5 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-struct Notifications: View {
-    var body: some View{
-        
-        NavigationView{
-            Text("Notifications")
-                .font(.largeTitle)
-                .fontWeight(.heavy)
-                .foregroundColor(.primary)
-                .navigationTitle("Notifications")
-        }
-    }
-}
-struct Help: View {
-    var body: some View{
-        
-        NavigationView{
-            Text("Help")
-                .font(.largeTitle)
-                .fontWeight(.heavy)
-                .foregroundColor(.primary)
-                .navigationTitle("Help")
-        }
     }
 }

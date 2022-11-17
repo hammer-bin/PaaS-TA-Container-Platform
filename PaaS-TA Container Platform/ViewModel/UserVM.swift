@@ -100,7 +100,7 @@ class UserVM: ObservableObject {
     // Cluster 관리자 여부, false일 경우 namespace 사용자
     @Published var isClusterAdmin: Bool = false
     @Published var isLoading: Bool = false
-    @Published var userNamespace: String = "paas-a9f80a5c-f0a0-41f6-92a3-6e11599a2551-caas"
+    @Published var userNamespace: String = "All"
     
     //회원가입 완료 이벤트
     var registrationSuccess = PassthroughSubject<(), Never>()

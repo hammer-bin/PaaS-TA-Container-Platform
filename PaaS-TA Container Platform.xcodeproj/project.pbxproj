@@ -78,6 +78,12 @@
 		8995F16828F2A58F001CFAE7 /* DetailDeployView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995F16728F2A58F001CFAE7 /* DetailDeployView.swift */; };
 		8995F16A28F2A6DB001CFAE7 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995F16928F2A6DB001CFAE7 /* BaseVM.swift */; };
 		8995F16C28F2AEF4001CFAE7 /* DeployInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995F16B28F2AEF4001CFAE7 /* DeployInfo.swift */; };
+		8997C90729263ED0008D0C88 /* ResourceQuotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C90629263ED0008D0C88 /* ResourceQuotaView.swift */; };
+		8997C909292645BC008D0C88 /* ResourceQuotaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C908292645BC008D0C88 /* ResourceQuotaCardView.swift */; };
+		8997C90B29264674008D0C88 /* DetailResourceQuotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C90A29264674008D0C88 /* DetailResourceQuotaView.swift */; };
+		8997C90D29264BB4008D0C88 /* Quota.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C90C29264BB4008D0C88 /* Quota.swift */; };
+		8997C90F29265034008D0C88 /* LimitRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C90E29265034008D0C88 /* LimitRangeView.swift */; };
+		8997C9112926625B008D0C88 /* CountingModifierS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C9102926625B008D0C88 /* CountingModifierS.swift */; };
 		8999790628FF4FD000E80B84 /* IngressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999790528FF4FD000E80B84 /* IngressData.swift */; };
 		8999790828FF506E00E80B84 /* IngressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999790728FF506E00E80B84 /* IngressResponse.swift */; };
 		8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8999790928FF526300E80B84 /* IngressInfo.swift */; };
@@ -106,6 +112,17 @@
 		89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */; };
 		89AF80A4290F160F00787CD2 /* IndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A3290F160F00787CD2 /* IndicatorShape.swift */; };
 		89AF80A6290F20A400787CD2 /* CpuMemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A5290F20A400787CD2 /* CpuMemButton.swift */; };
+		89D7DF9629258E31000DAE33 /* SecretData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DF9529258E31000DAE33 /* SecretData.swift */; };
+		89D7DF9829258E9E000DAE33 /* SecretResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DF9729258E9E000DAE33 /* SecretResponse.swift */; };
+		89D7DF9A29259149000DAE33 /* SecretInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DF9929259149000DAE33 /* SecretInfo.swift */; };
+		89D7DF9C2925951E000DAE33 /* SecretCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DF9B2925951E000DAE33 /* SecretCardView.swift */; };
+		89D7DFA02925964B000DAE33 /* DetaiSecretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DF9F2925964B000DAE33 /* DetaiSecretView.swift */; };
+		89D7DFA229259A0A000DAE33 /* ResourceQuotaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DFA129259A0A000DAE33 /* ResourceQuotaData.swift */; };
+		89D7DFA429259A5E000DAE33 /* ResourceQuotaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DFA329259A5E000DAE33 /* ResourceQuotaResponse.swift */; };
+		89D7DFA629259AD0000DAE33 /* ResourceQuotaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DFA529259AD0000DAE33 /* ResourceQuotaInfo.swift */; };
+		89D7DFA829259FBB000DAE33 /* LimitRangeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DFA729259FBB000DAE33 /* LimitRangeData.swift */; };
+		89D7DFAA29259FF1000DAE33 /* LimitRangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DFA929259FF1000DAE33 /* LimitRangeResponse.swift */; };
+		89D7DFAC2925A047000DAE33 /* LimitRangeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7DFAB2925A047000DAE33 /* LimitRangeInfo.swift */; };
 		89DF549128FCC95200A84640 /* PVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549028FCC95200A84640 /* PVData.swift */; };
 		89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549228FCCA0A00A84640 /* PVResponse.swift */; };
 		89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF549428FCCB2F00A84640 /* PVInfo.swift */; };
@@ -186,6 +203,12 @@
 		8995F16728F2A58F001CFAE7 /* DetailDeployView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDeployView.swift; sourceTree = "<group>"; };
 		8995F16928F2A6DB001CFAE7 /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
 		8995F16B28F2AEF4001CFAE7 /* DeployInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeployInfo.swift; sourceTree = "<group>"; };
+		8997C90629263ED0008D0C88 /* ResourceQuotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuotaView.swift; sourceTree = "<group>"; };
+		8997C908292645BC008D0C88 /* ResourceQuotaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuotaCardView.swift; sourceTree = "<group>"; };
+		8997C90A29264674008D0C88 /* DetailResourceQuotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResourceQuotaView.swift; sourceTree = "<group>"; };
+		8997C90C29264BB4008D0C88 /* Quota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quota.swift; sourceTree = "<group>"; };
+		8997C90E29265034008D0C88 /* LimitRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitRangeView.swift; sourceTree = "<group>"; };
+		8997C9102926625B008D0C88 /* CountingModifierS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingModifierS.swift; sourceTree = "<group>"; };
 		8999790528FF4FD000E80B84 /* IngressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressData.swift; sourceTree = "<group>"; };
 		8999790728FF506E00E80B84 /* IngressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressResponse.swift; sourceTree = "<group>"; };
 		8999790928FF526300E80B84 /* IngressInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressInfo.swift; sourceTree = "<group>"; };
@@ -214,6 +237,17 @@
 		89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeedoMeter.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/SpeedoMeter.swift"; sourceTree = "<group>"; };
 		89AF80A3290F160F00787CD2 /* IndicatorShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndicatorShape.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/IndicatorShape.swift"; sourceTree = "<group>"; };
 		89AF80A5290F20A400787CD2 /* CpuMemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuMemButton.swift; sourceTree = "<group>"; };
+		89D7DF9529258E31000DAE33 /* SecretData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretData.swift; sourceTree = "<group>"; };
+		89D7DF9729258E9E000DAE33 /* SecretResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretResponse.swift; sourceTree = "<group>"; };
+		89D7DF9929259149000DAE33 /* SecretInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretInfo.swift; sourceTree = "<group>"; };
+		89D7DF9B2925951E000DAE33 /* SecretCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretCardView.swift; sourceTree = "<group>"; };
+		89D7DF9F2925964B000DAE33 /* DetaiSecretView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaiSecretView.swift; sourceTree = "<group>"; };
+		89D7DFA129259A0A000DAE33 /* ResourceQuotaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuotaData.swift; sourceTree = "<group>"; };
+		89D7DFA329259A5E000DAE33 /* ResourceQuotaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuotaResponse.swift; sourceTree = "<group>"; };
+		89D7DFA529259AD0000DAE33 /* ResourceQuotaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuotaInfo.swift; sourceTree = "<group>"; };
+		89D7DFA729259FBB000DAE33 /* LimitRangeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitRangeData.swift; sourceTree = "<group>"; };
+		89D7DFA929259FF1000DAE33 /* LimitRangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitRangeResponse.swift; sourceTree = "<group>"; };
+		89D7DFAB2925A047000DAE33 /* LimitRangeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitRangeInfo.swift; sourceTree = "<group>"; };
 		89DF549028FCC95200A84640 /* PVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVData.swift; sourceTree = "<group>"; };
 		89DF549228FCCA0A00A84640 /* PVResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVResponse.swift; sourceTree = "<group>"; };
 		89DF549428FCCB2F00A84640 /* PVInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVInfo.swift; sourceTree = "<group>"; };
@@ -243,6 +277,7 @@
 				8989726128F3A7F30052605C /* Storage.swift */,
 				899CDF6428E4DF5B00838335 /* SideMenu.swift */,
 				898BF61D2924FD4C00260F82 /* Config.swift */,
+				8997C90C29264BB4008D0C88 /* Quota.swift */,
 			);
 			path = SideView;
 			sourceTree = "<group>";
@@ -377,6 +412,8 @@
 				89336CD22911C230007CC659 /* SCView.swift */,
 				898BF61F2924FDD300260F82 /* ConfigmapView.swift */,
 				898BF625292510AF00260F82 /* SecretView.swift */,
+				8997C90629263ED0008D0C88 /* ResourceQuotaView.swift */,
+				8997C90E29265034008D0C88 /* LimitRangeView.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -396,6 +433,9 @@
 				892D93ED2915C8D40096F9BE /* PodInfo.swift */,
 				892D93F329164D3F0096F9BE /* RSInfo.swift */,
 				898BF61B2924F49800260F82 /* ConfigmapInfo.swift */,
+				89D7DF9929259149000DAE33 /* SecretInfo.swift */,
+				89D7DFA529259AD0000DAE33 /* ResourceQuotaInfo.swift */,
+				89D7DFAB2925A047000DAE33 /* LimitRangeInfo.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -431,6 +471,7 @@
 				892D941529171F710096F9BE /* LoadingScreen.swift */,
 				899AC6D3291BD240001669B5 /* ProfileView.swift */,
 				89E62B432922E02400ABBD38 /* CountingModifier.swift */,
+				8997C9102926625B008D0C88 /* CountingModifierS.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,6 +488,8 @@
 				892D93EB2915C7410096F9BE /* DetailPodView.swift */,
 				89AEC69C2919AE3600A31230 /* DetailRSView.swift */,
 				898BF623292502D300260F82 /* DetailConfigmapView.swift */,
+				89D7DF9F2925964B000DAE33 /* DetaiSecretView.swift */,
+				8997C90A29264674008D0C88 /* DetailResourceQuotaView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -465,6 +508,9 @@
 				89336CCE2911BE42007CC659 /* SCResponse.swift */,
 				892D93F1291649570096F9BE /* RSResponse.swift */,
 				898BF6192924F46800260F82 /* ConfigmapResponse.swift */,
+				89D7DF9729258E9E000DAE33 /* SecretResponse.swift */,
+				89D7DFA329259A5E000DAE33 /* ResourceQuotaResponse.swift */,
+				89D7DFA929259FF1000DAE33 /* LimitRangeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -484,6 +530,9 @@
 				89336CCC2911BE08007CC659 /* SCData.swift */,
 				892D93EF2916493B0096F9BE /* RSData.swift */,
 				898BF6172924F41300260F82 /* ConfigmapData.swift */,
+				89D7DF9529258E31000DAE33 /* SecretData.swift */,
+				89D7DFA129259A0A000DAE33 /* ResourceQuotaData.swift */,
+				89D7DFA729259FBB000DAE33 /* LimitRangeData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -500,6 +549,8 @@
 				892D93E92915C5A00096F9BE /* PodCardView.swift */,
 				89AEC69A2919AD3C00A31230 /* RSCardView.swift */,
 				898BF6212924FED800260F82 /* ConfigmapCardView.swift */,
+				89D7DF9B2925951E000DAE33 /* SecretCardView.swift */,
+				8997C908292645BC008D0C88 /* ResourceQuotaCardView.swift */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
@@ -580,18 +631,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8997C90D29264BB4008D0C88 /* Quota.swift in Sources */,
 				8989726B28F3AFFC0052605C /* DetailPVCView.swift in Sources */,
 				8995F16C28F2AEF4001CFAE7 /* DeployInfo.swift in Sources */,
 				89999C8728E8EB2000DBA981 /* DeployData.swift in Sources */,
 				8999790A28FF526300E80B84 /* IngressInfo.swift in Sources */,
 				89AEC69D2919AE3600A31230 /* DetailRSView.swift in Sources */,
+				89D7DF9A29259149000DAE33 /* SecretInfo.swift in Sources */,
 				89336CD32911C230007CC659 /* SCView.swift in Sources */,
 				8993B8B4290C9FB600DB17FB /* ClusterMetricInfo.swift in Sources */,
 				892D93E82915C47A0096F9BE /* PodView.swift in Sources */,
 				89336CD12911BE7D007CC659 /* SCInfo.swift in Sources */,
 				8995F16128F26514001CFAE7 /* ServiceCardView.swift in Sources */,
 				892D93F2291649570096F9BE /* RSResponse.swift in Sources */,
+				89D7DFAA29259FF1000DAE33 /* LimitRangeResponse.swift in Sources */,
 				89999CAB28EA3C5A00DBA981 /* PodData.swift in Sources */,
+				89D7DF9C2925951E000DAE33 /* SecretCardView.swift in Sources */,
 				899CDF7328E4EAFA00838335 /* PVCInfo.swift in Sources */,
 				892D941629171F710096F9BE /* LoadingScreen.swift in Sources */,
 				898624E428E253E000024852 /* AuthRouter.swift in Sources */,
@@ -600,9 +655,12 @@
 				892D93F02916493B0096F9BE /* RSData.swift in Sources */,
 				898BF624292502D300260F82 /* DetailConfigmapView.swift in Sources */,
 				89DF549328FCCA0A00A84640 /* PVResponse.swift in Sources */,
+				89D7DFAC2925A047000DAE33 /* LimitRangeInfo.swift in Sources */,
+				8997C9112926625B008D0C88 /* CountingModifierS.swift in Sources */,
 				898BF6202924FDD300260F82 /* ConfigmapView.swift in Sources */,
 				898624DE28E2515000024852 /* APILogger.swift in Sources */,
 				898624EC28E2564100024852 /* AuthAPIService.swift in Sources */,
+				8997C909292645BC008D0C88 /* ResourceQuotaCardView.swift in Sources */,
 				89AEC69B2919AD3C00A31230 /* RSCardView.swift in Sources */,
 				8993E43328E639E7007CA986 /* Workload.swift in Sources */,
 				897E0B38291469ED005DBC3B /* DetailIngressView.swift in Sources */,
@@ -613,6 +671,7 @@
 				8989726728F3AC6D0052605C /* PVCView.swift in Sources */,
 				892D93F429164D3F0096F9BE /* RSInfo.swift in Sources */,
 				89910FDA28E3427B00A21088 /* LoginPage.swift in Sources */,
+				89D7DF9629258E31000DAE33 /* SecretData.swift in Sources */,
 				899A3A3829072DC2008EBEC4 /* SearchView.swift in Sources */,
 				892D93EC2915C7410096F9BE /* DetailPodView.swift in Sources */,
 				8995F16828F2A58F001CFAE7 /* DetailDeployView.swift in Sources */,
@@ -629,6 +688,7 @@
 				89189C7D291313CB00158CFF /* DetailServiceView.swift in Sources */,
 				899CDF6D28E4E8FB00838335 /* K8sAPIClient.swift in Sources */,
 				8995F16A28F2A6DB001CFAE7 /* BaseVM.swift in Sources */,
+				8997C90B29264674008D0C88 /* DetailResourceQuotaView.swift in Sources */,
 				898BF61C2924F49800260F82 /* ConfigmapInfo.swift in Sources */,
 				8999790628FF4FD000E80B84 /* IngressData.swift in Sources */,
 				89910FDC28E343CC00A21088 /* CustomCorner.swift in Sources */,
@@ -645,6 +705,7 @@
 				8995F16528F268C9001CFAE7 /* ServiceResponse.swift in Sources */,
 				899CDF6B28E4E04400838335 /* CustomCorners.swift in Sources */,
 				89189C7F2913143E00158CFF /* ServiceInfo.swift in Sources */,
+				89D7DF9829258E9E000DAE33 /* SecretResponse.swift in Sources */,
 				89DF549128FCC95200A84640 /* PVData.swift in Sources */,
 				899CDF6928E4DFB100838335 /* Home.swift in Sources */,
 				89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */,
@@ -653,8 +714,10 @@
 				899CDF6728E4DF8200838335 /* TabButton.swift in Sources */,
 				893F431029243AB700DCEACD /* NamespaceMetricInfo.swift in Sources */,
 				899CDF6F28E4E9A300838335 /* K8sRouter.swift in Sources */,
+				89D7DFA829259FBB000DAE33 /* LimitRangeData.swift in Sources */,
 				898624E028E2519700024852 /* BaseInterceptor.swift in Sources */,
 				89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */,
+				89D7DFA429259A5E000DAE33 /* ResourceQuotaResponse.swift in Sources */,
 				899CDF6328E4735B00838335 /* MainView.swift in Sources */,
 				8995C6DB29009EE5003A0AC0 /* NamespaceData.swift in Sources */,
 				898BF61E2924FD4C00260F82 /* Config.swift in Sources */,
@@ -667,7 +730,10 @@
 				89336CD72911C6CB007CC659 /* DetailSCView.swift in Sources */,
 				892D93F829170CBC0096F9BE /* UserDashboard.swift in Sources */,
 				899CDF7528E4EB1700838335 /* PVCData.swift in Sources */,
+				89D7DFA629259AD0000DAE33 /* ResourceQuotaInfo.swift in Sources */,
+				8997C90F29265034008D0C88 /* LimitRangeView.swift in Sources */,
 				892D93EE2915C8D40096F9BE /* PodInfo.swift in Sources */,
+				89D7DFA229259A0A000DAE33 /* ResourceQuotaData.swift in Sources */,
 				89910FD728E340CE00A21088 /* UserVM.swift in Sources */,
 				89DF549528FCCB2F00A84640 /* PVInfo.swift in Sources */,
 				898624EA28E2548300024852 /* TokenData.swift in Sources */,
@@ -677,7 +743,9 @@
 				8995C6DD2900A088003A0AC0 /* NamespaceResponse.swift in Sources */,
 				898624F028E256BE00024852 /* AuthResponse.swift in Sources */,
 				898624D928E2508C00024852 /* APIClient.swift in Sources */,
+				89D7DFA02925964B000DAE33 /* DetaiSecretView.swift in Sources */,
 				8989726028F39BE40052605C /* Service.swift in Sources */,
+				8997C90729263ED0008D0C88 /* ResourceQuotaView.swift in Sources */,
 				899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */,
 				8995F16328F2685B001CFAE7 /* ServiceData.swift in Sources */,
 				892D941B2917A5750096F9BE /* SearchItem.swift in Sources */,

@@ -1,25 +1,26 @@
 //
-//  DeploymentView.swift
+//  ResourceQuotaView.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/11/04.
+//  Created by minkyuLee on 2022/11/17.
 //
 
 import SwiftUI
 
-struct DeploymentView: View {
+struct ResourceQuotaView: View {
     @EnvironmentObject var k8sVM : K8sVM
     @EnvironmentObject var userVM : UserVM
-    @State var deployData : [DeployData] = []
+    @State var resourceQuotaData : [ResourceQuotaData] = []
     @State var namespaceData : [NamespaceData] = []
        
     var body: some View {
         
         VStack{
             
-            Text("Deployment")
+            Text("ResourceQuota")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.top, 10)
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack{
@@ -29,7 +30,7 @@ struct DeploymentView: View {
                         VStack(alignment: .center, spacing: 0) {
                             
                             VStack(alignment: .leading, content: {
-                                Text("You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate. You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.")
+                                Text("A resource quota, defined by a ResourceQuota object, provides constraints that limit aggregate resource consumption per namespace. It can limit the quantity of objects that can be created in a namespace by type, as well as the total amount of compute resources that may be consumed by resources in that namespace.")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                     .fontWeight(.bold)
@@ -45,7 +46,7 @@ struct DeploymentView: View {
                                 
                                 Button(action: {
                                     k8sVM.currentNS = "All"
-                                    k8sVM.deployList()
+                                    k8sVM.resourceQuotaList()
                                 }) {
                                     Text("All namespace")
                                 }
@@ -97,15 +98,15 @@ struct DeploymentView: View {
                     }
                     .padding()
                     
-                    if deployData.count > 0 {
-                        ForEach(deployData) {sData in
+                    if resourceQuotaData.count > 0 {
+                        ForEach(resourceQuotaData) {sData in
                             //Group
                             ZStack{
-                                DeploymentCardView(deployInfo: sData)
+                                ResourceQuotaCardView(resourceQuotaInfo: sData)
                                     .onTapGesture {
                                         withAnimation{
                                             print("sData :: \(sData)")
-                                            k8sVM.currentDeploy = sData
+                                            k8sVM.currentResourceQuota = sData
                                             k8sVM.showDetail = true
                                             print("showDetail :: \(k8sVM.showDetail)")
                                         }
@@ -132,27 +133,23 @@ struct DeploymentView: View {
                 }
                 
                 .onAppear(perform: {
-                    print("ServiceView onAppear() called")
-                    print("isClusterAdmin :: \(userVM.isClusterAdmin)")
+                    print("ResourceQuotaView onAppear() called")
                 })
                 .onAppear(perform: {
-                    if !userVM.isClusterAdmin {
-                        k8sVM.currentNS = userVM.userNamespace
-                    }
-                    k8sVM.deployList()
+                    k8sVM.resourceQuotaList()
                 })
-                .onReceive(k8sVM.$deploymemts, perform: { self.deployData = $0 })
+                .onReceive(k8sVM.$resourceQuotas, perform: { self.resourceQuotaData = $0 })
                 .onReceive(k8sVM.$namespaces, perform: { self.namespaceData = $0 })
                 .onChange(of: k8sVM.showMenu){value in
-                    if value == false && k8sVM.currentNS != "All" {
-                        k8sVM.deployList()
+                    if value == false {
+                        k8sVM.resourceQuotaList()
                     }
                 }
                 
             }
             .padding(.top, 5)
             .overlay(
-                Image("deploy-ori")
+                Image("quota-ori")
                     //.renderingMode(.template)
                     
                     .resizable()
@@ -161,8 +158,8 @@ struct DeploymentView: View {
                     .frame(width: 250, height: 250)
                     .opacity(0.1)
             )
-            .sheet(isPresented: $k8sVM.showDetail) {
-                DetailDeployView()
+            .sheet(isPresented: $k8sVM.showDetail){
+                DetailResourceQuotaView()
             }
         }
     }
@@ -171,15 +168,15 @@ struct DeploymentView: View {
         
         Button(action: {
             k8sVM.currentNS = namespaceName
-            k8sVM.deployList()
+            k8sVM.resourceQuotaList()
         }) {
             Text(namespaceName)
         }
     }
 }
 
-struct DeploymentView_Previews: PreviewProvider {
+struct ResourceQuotaView_Previews: PreviewProvider {
     static var previews: some View {
-        DeploymentView()
+        ResourceQuotaView()
     }
 }

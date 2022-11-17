@@ -1,13 +1,13 @@
 //
-//  CountingModifier.swift
+//  CountingModifierA.swift
 //  PaaS-TA Container Platform
 //
-//  Created by minkyuLee on 2022/11/15.
+//  Created by minkyuLee on 2022/11/18.
 //
 
 import SwiftUI
 
-struct CountingModifier: AnimatableModifier {
+struct CountingModifierA: AnimatableModifier {
     
     var number : CGFloat = 0
     
@@ -23,10 +23,10 @@ struct CountingModifier: AnimatableModifier {
     // 숫자 라벨 뷰
     struct NumberLabelView : View {
         let number : CGFloat
-        
+
         var body: some View {
-            Text("\(String(format:"%.2f", number))%")
-                .font(.largeTitle)
+            Text("\(String(format:"%.0f", number))")
+                .font(.system(size: 18)).bold()
                 .fontWeight(.black)
                 .foregroundColor(Color("blue"))
         }

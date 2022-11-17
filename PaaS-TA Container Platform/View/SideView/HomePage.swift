@@ -29,6 +29,12 @@ struct HomePage: View {
     @State var PodTCnt: CGFloat = 0.0
     @State var CpuRatio: CGFloat = 0.0
     @State var MemRatio: CGFloat = 0.0
+    @State var NodeRatio: CGFloat = 0.0
+    @State var NSRatio: CGFloat = 0.0
+    @State var PvRatio: CGFloat = 0.0
+    @State var PvcRatio: CGFloat = 0.0
+    @State var PodRatio: CGFloat = 0.0
+    
     @State var APIUrl: String = UserDefaultManager.shared.getK8sToken().apiUrl
     @State var K8sName: String = UserDefaultManager.shared.getK8sName()
     
@@ -141,7 +147,7 @@ struct HomePage: View {
                             .clipShape(Capsule())
                             .padding(.horizontal,35)
                         }
-                        RoundedRectangle(cornerRadius: 8).fill(Color("blue"))
+                        RoundedRectangle(cornerRadius: 8).fill(Color.clear)
                             .frame(maxWidth: 150, maxHeight: 50)
                             .font(.system(size: 35, weight: .black))
                             .foregroundColor(Color("blue"))
@@ -176,7 +182,7 @@ struct HomePage: View {
                     LazyVGrid(columns: columns, spacing: 10) {
                         
                         VStack(spacing: 32){
-                            getCircleGraph(title: "Node", useCnt: NodeCnt, totalCnt: NodeTCnt)
+                            getCircleGraph(title: "Node", useCnt: NodeCnt, totalCnt: NodeTCnt, ratio: NodeRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -184,7 +190,7 @@ struct HomePage: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32){
-                            getCircleGraph(title: "Namespace", useCnt: NamespaceCnt, totalCnt: NamespaceTCnt)
+                            getCircleGraph(title: "Namespace", useCnt: NamespaceCnt, totalCnt: NamespaceTCnt, ratio: NSRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -192,7 +198,7 @@ struct HomePage: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32){
-                            getCircleGraph(title: "Pod", useCnt: PodCnt, totalCnt: PodTCnt)
+                            getCircleGraph(title: "Pod", useCnt: PodCnt, totalCnt: PodTCnt, ratio: PodRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -200,7 +206,7 @@ struct HomePage: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32){
-                            getCircleGraph(title: "PVC", useCnt: PvcCnt, totalCnt: PvcTCnt)
+                            getCircleGraph(title: "PVC", useCnt: PvcCnt, totalCnt: PvcTCnt, ratio: PvcRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -208,7 +214,7 @@ struct HomePage: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32){
-                            getCircleGraph(title: "PV", useCnt: PvCnt, totalCnt: PvTCnt)
+                            getCircleGraph(title: "PV", useCnt: PvCnt, totalCnt: PvTCnt, ratio: PvRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -222,32 +228,38 @@ struct HomePage: View {
             }
             .onAppear{
                 k8sVM.clusterMetricInfo()
+                userVM.isClusterAdmin = true
             }
             .onReceive(k8sVM.$clusterMetricsData, perform: { value in
                 self.kubeletVersion = value?.kubeletVersion ?? "-"
                 withAnimation(.easeInOut(duration: 2)){
                     self.NodeCnt = value?.nodeCnt ?? 0
-                    self.NodeTCnt = value?.nodeTCnt ?? 0
                     self.NamespaceCnt = value?.nameSpaceCnt ?? 0
-                    self.NamespaceTCnt = value?.nameSpaceTCnt ?? 0
                     self.PvCnt = value?.pvCnt ?? 0
-                    self.PvTCnt = value?.pvTCnt ?? 0
                     self.PvcCnt = value?.pvcCnt ?? 0
-                    self.PvcTCnt = value?.pvcTCnt ?? 0
                     self.PodCnt = value?.podCnt ?? 0
-                    self.PodTCnt = value?.podTCnt ?? 0
                     self.CpuRatio = value?.cpuRatio ?? 0.0
                     self.MemRatio = value?.memRatio ?? 0.0
+                    self.NodeRatio = value?.nodeRatio ?? 0.0
+                    self.NSRatio = value?.namespaceRatio ?? 0.0
+                    self.PvcRatio = value?.pvcRatio ?? 0.0
+                    self.PvRatio = value?.pvRatio ?? 0.0
+                    self.PodRatio = value?.podRatio ?? 0.0
                 }
+                self.NodeTCnt = value?.nodeTCnt ?? 0
+                self.NamespaceTCnt = value?.nameSpaceTCnt ?? 0
+                self.PvTCnt = value?.pvTCnt ?? 0
+                self.PvcTCnt = value?.pvcTCnt ?? 0
+                self.PodTCnt = value?.podTCnt ?? 0
             })
             .onReceive(timer, perform: { value in
-                k8sVM.clusterMetricInfo()
+                //k8sVM.clusterMetricInfo()
             })
         }
     }
     
     @ViewBuilder
-    func getCircleGraph(title: String, useCnt: CGFloat, totalCnt: CGFloat) -> some View {
+    func getCircleGraph(title: String, useCnt: CGFloat, totalCnt: CGFloat, ratio: CGFloat) -> some View {
         VStack{
             HStack{
                 
@@ -264,28 +276,32 @@ struct HomePage: View {
                     .stroke(Color("blue").opacity(0.05), lineWidth: 10)
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
                 
-                withAnimation(.spring(response: 1.0, dampingFraction: 1.0, blendDuration: 1.0)) {
-                    Circle()
-                        .trim(from: 0, to: (useCnt / totalCnt   ))
-                        .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                        //.fill(AngularGradient(gradient: .init(colors: [Color("blue")]), center: .center))
-                        .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                        
-                }
+                Circle()
+                    .trim(from: 0, to: ratio)
+                    .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                    .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+                    .animation(Animation.easeInOut(duration: 20), value: ratio)
                 
                 
-                Text(getPercent(current: useCnt, Goal: totalCnt) + " %")
-                    .font(.system(size: 22))
-                    .fontWeight(.bold)
+                RoundedRectangle(cornerRadius: 8).fill(.clear)
+                    .frame(maxWidth: 100, maxHeight: 30)
                     .foregroundColor(Color("blue"))
+                    .modifier(CountingModifierS(number: ratio ,unit: "%", format: "%.1f"))
                     .rotationEffect(.init(degrees: 90))
+                    
             }
             .rotationEffect(.init(degrees: -90))
             
-            Text(getDec(val: useCnt) + " / " + getDec(val: totalCnt))
-                .font(.system(size: 22))
-                .foregroundColor(Color("blue"))
-                .fontWeight(.bold)
+            HStack(spacing: 2) {
+                RoundedRectangle(cornerRadius: 8).fill(.clear)
+                    .frame(maxWidth: 30, maxHeight: 30)
+                    .foregroundColor(Color("blue"))
+                    .modifier(CountingModifierS(number: useCnt ,unit: "", format: "%.0f"))
+                Text("/  \(getDec(val: totalCnt))")
+                    .font(.system(size: 22)).bold()
+                    .fontWeight(.black)
+                    .foregroundColor(Color("blue"))
+            }
         }
         
     }

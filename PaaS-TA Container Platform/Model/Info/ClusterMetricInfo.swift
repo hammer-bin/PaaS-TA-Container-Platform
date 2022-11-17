@@ -14,6 +14,7 @@ struct ClusterMetricInfo: Codable {
     let podCnt, podTCnt : CGFloat
     let cpuRatio, memRatio : CGFloat
     let updateTime: String
+    var nodeRatio, namespaceRatio, pvRatio, pvcRatio, podRatio: CGFloat
 
     enum CodingKeys: String, CodingKey {
         case kubeletVersion = "KubeletVersion"
@@ -30,5 +31,10 @@ struct ClusterMetricInfo: Codable {
         case cpuRatio = "CpuRatio"
         case memRatio = "MemRatio"
         case updateTime = "UpdateTime"
+        case nodeRatio = "node_ratio"
+        case namespaceRatio = "namespace_ratio"
+        case pvRatio = "pv_ratio"
+        case pvcRatio = "pvc_ratio"
+        case podRatio = "pod_ratio"
     }
 }

@@ -26,6 +26,8 @@ class K8sVM: ObservableObject {
     @Published var serviceInfoData: ServiceInfo? = nil
     @Published var configmaps: [ConfigmapData] = []
     @Published var configmapInfoData: ConfigmapInfo? = nil
+    @Published var secrets: [SecretData] = []
+    @Published var secretInfoData: SecretInfo? = nil
     @Published var ingresses: [IngressData] = []
     @Published var ingressInfoData: IngressInfo? = nil
     @Published var namespaces: [NamespaceData] = []
@@ -35,6 +37,10 @@ class K8sVM: ObservableObject {
     @Published var scInfoData: SCInfo? = nil
     @Published var rss: [RSData] = []
     @Published var rsInfoData: RSInfo? = nil
+    @Published var resourceQuotas: [ResourceQuotaData] = []
+    @Published var resourceQuotaInfoData: ResourceQuotaInfo? = nil
+    @Published var limitRanges: [LimitRangeData] = []
+    @Published var limitRangeInfoData: LimitRangeInfo? = nil
     //@Published var replicaSets:
     
     // Detail View Properties...
@@ -47,6 +53,9 @@ class K8sVM: ObservableObject {
     @Published var currentIngress: IngressData?
     @Published var currentRS: RSData?
     @Published var currentConfigmap: ConfigmapData?
+    @Published var currentSecret: SecretData?
+    @Published var currentResourceQuota: ResourceQuotaData?
+    @Published var currentLimitRange: LimitRangeData?
     
     @Published var showDetail = false
     @Published var showDetailSearch = false
@@ -72,6 +81,8 @@ class K8sVM: ObservableObject {
         case rs
         case configmap
         case secret
+        case resourceQuota
+        case limitRange
     }
     
     func collectSearchData() {
@@ -130,7 +141,17 @@ class K8sVM: ObservableObject {
                 searchItem.append(element)
             }
         case .secret:
-            for data in configmaps {
+            for data in secrets {
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
+            }
+        case .resourceQuota:
+            for data in resourceQuotas {
+                element = SearchItem(name: data.name, namespace: data.namespace)
+                searchItem.append(element)
+            }
+        case .limitRange:
+            for data in limitRanges {
                 element = SearchItem(name: data.name, namespace: data.namespace)
                 searchItem.append(element)
             }
@@ -398,6 +419,69 @@ class K8sVM: ObservableObject {
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: ConfigmapInfo) in
                 self.configmapInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func secretList() {
+        print("K8sVM: secretList() called \(currentNS)")
+        K8sApiService.secretList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+                     } receiveValue: { (receivedData: [SecretData]) in
+                print("store")
+                         self.secrets = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func secretInfo(namespace: String, resourceName: String) {
+        print("K8sVM: secretInfo() called")
+        K8sApiService.secretInfo(namespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: SecretInfo) in
+                self.secretInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func resourceQuotaList() {
+        print("K8sVM: resourceQuotaList() called \(currentNS)")
+        K8sApiService.resourceQuotaList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+                     } receiveValue: { (receivedData: [ResourceQuotaData]) in
+                print("store")
+                         self.resourceQuotas = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func resourceQuotaInfo(namespace: String, resourceName: String) {
+        print("K8sVM: resourceQuotaInfo() called")
+        K8sApiService.resourceQuotaInfo(namespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: ResourceQuotaInfo) in
+                self.resourceQuotaInfoData = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func limitRangeList() {
+        print("K8sVM: limitRangeList() called \(currentNS)")
+        K8sApiService.limitRangeList(namespace: currentNS)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+                     } receiveValue: { (receivedData: [LimitRangeData]) in
+                print("store")
+                         self.limitRanges = receivedData
+            }.store(in: &subscription)
+    }
+    
+    func limitRangeInfo(namespace: String, resourceName: String) {
+        print("K8sVM: limitRangeInfo() called")
+        K8sApiService.limitRangeInfo(namespace: currentNS, resourceName: resourceName)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("K8sVM completion: \(completion)")
+            } receiveValue: { (receivedData: LimitRangeInfo) in
+                self.limitRangeInfoData = receivedData
             }.store(in: &subscription)
     }
 }

@@ -11,6 +11,7 @@ struct NamespaceMetricInfo: Codable {
     var podCnt, podTCnt, deployCnt, deployTCnt: CGFloat
     var replicaSetCnt, replicaSetTCnt: CGFloat
     var pvcCnt, pvcTCnt: CGFloat
+    var podRatio, deployRatio, replicaSetRatio, pvcRatio: CGFloat
 
     enum CodingKeys: String, CodingKey {
         case podCnt = "pod_cnt"
@@ -21,5 +22,9 @@ struct NamespaceMetricInfo: Codable {
         case replicaSetTCnt = "replica_set_t_cnt"
         case pvcCnt = "pvc_cnt"
         case pvcTCnt = "pvc_t_cnt"
+        case podRatio = "pod_ratio"
+        case deployRatio = "deploy_ratio"
+        case replicaSetRatio = "replica_set_ratio"
+        case pvcRatio = "pvc_ratio"
     }
 }

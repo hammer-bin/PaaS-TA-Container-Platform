@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserDashboard: View {
     @EnvironmentObject var k8sVM : K8sVM
+    @EnvironmentObject var userVM : UserVM
     
     @State var podCnt: CGFloat = 0
     @State var podTCnt: CGFloat = 0
@@ -18,6 +19,10 @@ struct UserDashboard: View {
     @State var ReplicasetTCnt: CGFloat = 0
     @State var pvcCnt: CGFloat = 0
     @State var pvcTCnt: CGFloat = 0
+    @State var podRatio: CGFloat = 0
+    @State var deployRatio: CGFloat = 0
+    @State var ReplicasetRatio: CGFloat = 0
+    @State var pvcRatio: CGFloat = 0
     
     @State var moreInfo: Bool = false
     
@@ -90,7 +95,7 @@ struct UserDashboard: View {
                     LazyVGrid(columns: columns, spacing: 10) {
                         
                         VStack(spacing: 32) {
-                            getCircleGraph(title: "Deploy", useCnt: deployCnt, totalCnt: deployTCnt)
+                            getCircleGraph(title: "Deploy", useCnt: deployCnt, totalCnt: deployTCnt, ratio: deployRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -98,7 +103,7 @@ struct UserDashboard: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32) {
-                            getCircleGraph(title: "Pod", useCnt: podCnt, totalCnt: podTCnt)
+                            getCircleGraph(title: "Pod", useCnt: podCnt, totalCnt: podTCnt, ratio: podRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -106,7 +111,7 @@ struct UserDashboard: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32) {
-                            getCircleGraph(title: "Replicaset", useCnt: ReplicasetCnt, totalCnt: ReplicasetTCnt)
+                            getCircleGraph(title: "Replicaset", useCnt: ReplicasetCnt, totalCnt: ReplicasetTCnt, ratio: ReplicasetRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -114,7 +119,7 @@ struct UserDashboard: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                         
                         VStack(spacing: 32) {
-                            getCircleGraph(title: "PVC", useCnt: pvcCnt, totalCnt: pvcTCnt)
+                            getCircleGraph(title: "PVC", useCnt: pvcCnt, totalCnt: pvcTCnt, ratio: pvcRatio)
                         }
                         .padding()
                         .background(Color("blue").opacity(0.06))
@@ -128,19 +133,24 @@ struct UserDashboard: View {
             .onAppear{
                 //일반사용자일경우 첫번째 화면에 namespace를 지정해준다.
                 k8sVM.currentNS = UserDefaultManager.shared.getNamespace()
+                userVM.userNamespace = UserDefaultManager.shared.getNamespace()
                 k8sVM.namespaceMetricInfo()
             }
             .onReceive(k8sVM.$namespaceMetricsData, perform: { value in
                 withAnimation(.easeInOut(duration: 2)) {
                     self.podCnt = value?.podCnt ?? 0
-                    self.podTCnt = value?.podTCnt ?? 0
                     self.deployCnt = value?.deployCnt ?? 0
-                    self.deployTCnt = value?.deployTCnt ?? 0
                     self.ReplicasetCnt = value?.replicaSetCnt ?? 0
-                    self.ReplicasetTCnt = value?.replicaSetTCnt ?? 0
                     self.pvcCnt = value?.pvcCnt ?? 0
-                    self.pvcTCnt = value?.pvcTCnt ?? 0
+                    self.podRatio = value?.podRatio ?? 0
+                    self.deployRatio = value?.deployRatio ?? 0
+                    self.ReplicasetRatio = value?.replicaSetRatio ?? 0
+                    self.pvcRatio = value?.pvcRatio ?? 0
                 }
+                self.podTCnt = value?.podTCnt ?? 0
+                self.deployTCnt = value?.deployTCnt ?? 0
+                self.ReplicasetTCnt = value?.replicaSetTCnt ?? 0
+                self.pvcTCnt = value?.pvcTCnt ?? 0
             })
             .onReceive(timer, perform: { value in
                 k8sVM.namespaceMetricInfo()
@@ -149,7 +159,7 @@ struct UserDashboard: View {
     }
     
     @ViewBuilder
-    func getCircleGraph(title: String, useCnt: CGFloat, totalCnt: CGFloat) -> some View {
+    func getCircleGraph(title: String, useCnt: CGFloat, totalCnt: CGFloat, ratio: CGFloat) -> some View {
         VStack{
             HStack{
                 
@@ -167,22 +177,29 @@ struct UserDashboard: View {
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
                 
                 Circle()
-                    .trim(from: 0, to: (useCnt / totalCnt   ))
+                    .trim(from: 0, to: ratio)
                     .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
+                    .animation(Animation.easeInOut(duration: 20), value: ratio)
                 
-                Text(getPercent(current: useCnt, Goal: totalCnt) + " %")
-                    .font(.system(size: 22))
-                    .fontWeight(.bold)
+                RoundedRectangle(cornerRadius: 8).fill(.clear)
+                    .frame(maxWidth: 100, maxHeight: 30)
                     .foregroundColor(Color("blue"))
+                    .modifier(CountingModifierS(number: ratio ,unit: "%", format: "%.1f"))
                     .rotationEffect(.init(degrees: 90))
             }
             .rotationEffect(.init(degrees: -90))
             
-            Text(getDec(val: useCnt) + " / " + getDec(val: totalCnt))
-                .font(.system(size: 22))
-                .foregroundColor(Color("blue"))
-                .fontWeight(.bold)
+            HStack(spacing: 2) {
+                RoundedRectangle(cornerRadius: 8).fill(.clear)
+                    .frame(maxWidth: 30, maxHeight: 30)
+                    .foregroundColor(Color("blue"))
+                    .modifier(CountingModifierS(number: useCnt ,unit: "", format: "%.0f"))
+                Text("/  \(getDec(val: totalCnt))")
+                    .font(.system(size: 22)).bold()
+                    .fontWeight(.black)
+                    .foregroundColor(Color("blue"))
+            }
         }
         
     }

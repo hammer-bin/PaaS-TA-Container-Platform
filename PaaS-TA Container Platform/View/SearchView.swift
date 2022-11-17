@@ -198,7 +198,11 @@ struct SearchView: View {
             case .configmap:
                 k8sVM.currentConfigmap = ConfigmapData(name: resource, namespace: namespace)
             case .secret:
-                k8sVM.currentConfigmap = ConfigmapData(name: resource, namespace: namespace)
+                k8sVM.currentSecret = SecretData(name: resource, namespace: namespace)
+            case .resourceQuota:
+                k8sVM.currentResourceQuota = ResourceQuotaData(name: resource, namespace: namespace)
+            case .limitRange:
+                k8sVM.currentLimitRange = LimitRangeData(name: resource, namespace: namespace)
             }
             
             withAnimation(.easeInOut){

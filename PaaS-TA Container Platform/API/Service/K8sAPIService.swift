@@ -262,6 +262,47 @@ enum K8sApiService {
             .eraseToAnyPublisher()
     }
     
+    static func secretList(namespace: String)-> AnyPublisher<[SecretData], AFError> {
+        print("K8sAPIService = secretList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+
+        return clientSecret(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: SecretResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientSecret(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.secretList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.secretList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func secretInfo(namespace: String, resourceName: String)-> AnyPublisher<SecretInfo, AFError> {
+        print("K8sApiService = configmapInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.secretInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: SecretInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
     static func PVList()-> AnyPublisher<[PVData], AFError> {
         print("K8sApiService = PVList() called")
         
@@ -425,6 +466,88 @@ enum K8sApiService {
             .value()
             .map{ receivedValue in
                 //debugPrint(receivedValue)
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func resourceQuotaList(namespace: String)-> AnyPublisher<[ResourceQuotaData], AFError> {
+        print("K8sAPIService = resourceQuotaList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+
+        return clientResourceQuota(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: ResourceQuotaResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientResourceQuota(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.resourceQuotaList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.resourceQuotaList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func resourceQuotaInfo(namespace: String, resourceName: String)-> AnyPublisher<ResourceQuotaInfo, AFError> {
+        print("K8sApiService = resourceQuotaInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.resourceQuotaInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: ResourceQuotaInfo.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.self
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    static func limitRangeList(namespace: String)-> AnyPublisher<[LimitRangeData], AFError> {
+        print("K8sAPIService = limitRangeList() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+
+        return clientLimitRange(storedApiUrl, storedTokenData, namespace)
+            .publishDecodable(type: LimitRangeResponse.self)
+            .value()
+            .map{ receivedValue in
+                return receivedValue.data ?? []
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    fileprivate static func clientLimitRange(_ storedApiUrl: String, _ storedTokenData: String, _ namespace: String) -> DataRequest {
+        if namespace == "All" {
+            return K8sAPIClient.shared.session
+                .request(K8sAdminRouter.limitRangeList(targetUrl: storedApiUrl, authorization: storedTokenData))
+        } else {
+            return K8sAPIClient.shared.session
+                .request(K8sRouter.limitRangeList(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace))
+        }
+    }
+    
+    static func limitRangeInfo(namespace: String, resourceName: String)-> AnyPublisher<LimitRangeInfo, AFError> {
+        print("K8sApiService = limitRangeInfo() called")
+        
+        let storedTokenData = UserDefaultManager.shared.getK8sToken().k8sToken
+        let storedApiUrl = UserDefaultManager.shared.getK8sToken().apiUrl
+        return K8sAPIClient.shared.session
+            .request(K8sRouter.limitRangeInfo(targetUrl: storedApiUrl, authorization: storedTokenData, namespace: namespace, resourceName: resourceName))
+            .validate(statusCode: 200...400)
+            .publishDecodable(type: LimitRangeInfo.self)
+            .value()
+            .map{ receivedValue in
                 return receivedValue.self
             }
             .eraseToAnyPublisher()

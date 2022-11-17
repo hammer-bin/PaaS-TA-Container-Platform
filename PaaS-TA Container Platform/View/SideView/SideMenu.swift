@@ -114,7 +114,9 @@ struct SideMenu: View {
                 
                 TabButton(image: "externaldrive.badge.icloud", title: "Storage", selectedTab: $selectedTab, animation: animation)
                 
-                TabButton(image: "questionmark.circle", title: "Config", selectedTab: $selectedTab, animation: animation)
+                TabButton(image: "slider.horizontal.3", title: "Config", selectedTab: $selectedTab, animation: animation)
+                
+                //TabButton(image: "captions.bubble", title: "Quota", selectedTab: $selectedTab, animation: animation)
             }
             .padding(.leading, -15)
             .padding(.top,50)

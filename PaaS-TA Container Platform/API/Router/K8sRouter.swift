@@ -37,9 +37,16 @@ enum K8sRouter: URLRequestConvertible {
     
     case configmapList(targetUrl: String, authorization: String, namespace: String)
     case configmapInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    case secretList(targetUrl: String, authorization: String, namespace: String)
+    case secretInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case scList(targetUrl: String, authorization: String, namespace: String)
     case scInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    
+    case resourceQuotaList(targetUrl: String, authorization: String, namespace: String)
+    case resourceQuotaInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
+    case limitRangeList(targetUrl: String, authorization: String, namespace: String)
+    case limitRangeInfo(targetUrl: String, authorization: String, namespace: String, resourceName: String)
     
     case namespaceMetricInfo(targetUrl: String, authorization: String, namespace: String)
     
@@ -65,6 +72,10 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/configmap/list"
         case .configmapInfo:
             return "resource/configmap/info"
+        case .secretList:
+            return "resource/secret/list"
+        case .secretInfo:
+            return "resource/secret/info"
         case .pvcInfo:
             return "resource/pvc/info"
         case .pvcList:
@@ -81,6 +92,14 @@ enum K8sRouter: URLRequestConvertible {
             return "resource/sc/list"
         case .scInfo:
             return "resource/sc/info"
+        case .resourceQuotaList:
+            return "resource/resourcequota/list"
+        case .resourceQuotaInfo:
+            return "resource/resourcequota/info"
+        case .limitRangeList:
+            return "resource/limitrange/list"
+        case .limitRangeInfo:
+            return "resource/limitrange/info"
         case .namespaceMetricInfo:
             return "metrics/namespace/count"
         }
@@ -132,6 +151,11 @@ enum K8sRouter: URLRequestConvertible {
             return listParam(targetUrl, authorization, namespace)
         case let .configmapInfo(targetUrl, authorization, namespace, resourceName):
             return infoParam(targetUrl, authorization, namespace, resourceName)
+            
+        case let .secretList(targetUrl, authorization, namespace):
+            return listParam(targetUrl, authorization, namespace)
+        case let .secretInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
       
         case let .pvcList(targetUrl, authorization, namespace):
             return listParam(targetUrl, authorization, namespace)
@@ -151,6 +175,16 @@ enum K8sRouter: URLRequestConvertible {
         case let .scList(targetUrl, authorization, namespace):
             return listParam(targetUrl, authorization, namespace)
         case let .scInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
+            
+        case let .resourceQuotaList(targetUrl, authorization, namespace):
+            return listParam(targetUrl, authorization, namespace)
+        case let .resourceQuotaInfo(targetUrl, authorization, namespace, resourceName):
+            return infoParam(targetUrl, authorization, namespace, resourceName)
+            
+        case let .limitRangeList(targetUrl, authorization, namespace):
+            return listParam(targetUrl, authorization, namespace)
+        case let .limitRangeInfo(targetUrl, authorization, namespace, resourceName):
             return infoParam(targetUrl, authorization, namespace, resourceName)
             
         case let .namespaceMetricInfo(targetUrl, authorization, namespace):
