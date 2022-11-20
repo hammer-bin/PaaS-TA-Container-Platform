@@ -25,7 +25,7 @@ enum AuthRouter: URLRequestConvertible {
     }
     
     
-    case register(name: String, email: String, password: String, apiUrl: String, k8sToken: String, isAdmin: Bool)
+    case register(name: String, email: String, password: String, apiUrl: String, k8sToken: String, isAdmin: Bool, k8sName: String, NSName: String)
     case login(email: String, password: String)
     case tokenRefresh
     
@@ -59,7 +59,7 @@ enum AuthRouter: URLRequestConvertible {
             return params
         
         
-        case .register(let name, let email, let password, let apiUrl, let k8sToken, let isAdmin):
+        case .register(let name, let email, let password, let apiUrl, let k8sToken, let isAdmin, let k8sName, let NSName):
             var params = Parameters()
             params["user_name"] = name
             params["user_id"] = email
@@ -67,6 +67,8 @@ enum AuthRouter: URLRequestConvertible {
             params["api_url"] = apiUrl
             params["k8S_token"] = k8sToken
             params["is_admin"] = isAdmin
+            params["k8s_name"] = k8sName
+            params["ns_name"] = NSName
             return params
             
         case .tokenRefresh:

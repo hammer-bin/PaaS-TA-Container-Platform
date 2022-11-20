@@ -20,28 +20,28 @@ struct SideMenu: View {
         VStack(alignment: .leading, spacing: 15, content: {
             
             // Profile Pic...
-            Image("anelli")
+            Image("CloudTravel_Logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 70)
+                .frame(width: 200, height: 100)
                 .cornerRadius(10)
                 .padding(.top, 50)
             
-            HStack(spacing: 15) {
-                Button(action: {
-                    showProfile = true
-                }, label: {
-                    Image("hammer_icon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 45, height: 45)
-                })
-                Text(userVM.email)
-                    .font(.title2.bold())
-                    .foregroundColor(.white)
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
+//            HStack(spacing: 15) {
+//                Button(action: {
+//                    showProfile = true
+//                }, label: {
+//                    Image("hammer_icon")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: 45, height: 45)
+//                })
+//                Text(userVM.email)
+//                    .font(.title2.bold())
+//                    .foregroundColor(.white)
+//            }
+//            .padding()
+//            .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack(alignment: .leading, spacing: 6, content: {
 

@@ -253,7 +253,7 @@ struct HomePage: View {
                 self.PodTCnt = value?.podTCnt ?? 0
             })
             .onReceive(timer, perform: { value in
-                //k8sVM.clusterMetricInfo()
+                k8sVM.clusterMetricInfo()
             })
         }
     }

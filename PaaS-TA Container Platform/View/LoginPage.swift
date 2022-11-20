@@ -86,6 +86,7 @@ struct LoginPage: View {
                     
                     // Register Reenter Password
                     if userVM.registerUser{
+                        
                         CustomTextField(icon: "curlybraces.square", title: "API URL", hint: "https://127.0.0.1:6443", value: $userVM.apiUrl, showPassword: .constant(false))
                             .autocapitalization(.none)
                             .padding(.top, 30)
@@ -103,12 +104,23 @@ struct LoginPage: View {
                                 .font(.system(size: 14))
                         }
                         
+                        if userVM.isClusterAdmin {
+                            CustomTextField(icon: "highlighter", title: "K8s Name", hint: "My Cluster", value: $userVM.k8sName, showPassword: .constant(false))
+                                .autocapitalization(.none)
+                                .padding(.top, 10)
+                        }
+                        else {
+                            CustomTextField(icon: "highlighter", title: "Namespace Name", hint: "My Namespace", value: $userVM.nsName, showPassword: .constant(false))
+                                .autocapitalization(.none)
+                                .padding(.top, 10)
+                        }
+                        
                     }
                     
                     //Login Button...
                     Button {
                         if userVM.registerUser{
-                            userVM.register(name: userVM.email, email: userVM.email, password: userVM.password, apiUrl: userVM.apiUrl, k8SToken: userVM.k8sToken, isAdmin: userVM.isClusterAdmin)
+                            userVM.register(name: userVM.email, email: userVM.email, password: userVM.password, apiUrl: userVM.apiUrl, k8SToken: userVM.k8sToken, isAdmin: userVM.isClusterAdmin, k8sName: userVM.k8sName, nsName: userVM.nsName)
                         }
                         else {
                             userVM.isLoading.toggle()
@@ -197,6 +209,8 @@ struct LoginPage: View {
                 userVM.password = ""
                 userVM.re_Enter_Password = ""
                 userVM.k8sToken = ""
+                userVM.k8sName = ""
+                userVM.nsName = ""
                 userVM.showPassword = false
                 userVM.showReEnterPassword = false
                 userVM.registerUser = false

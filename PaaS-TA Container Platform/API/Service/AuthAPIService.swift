@@ -12,7 +12,7 @@ import Alamofire
 //인증관련 api 호출
 enum AuthAPIService {
     //회원가입
-    static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool)-> AnyPublisher<UserData, AFError> {
+    static func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool, k8sName: String, nsName: String)-> AnyPublisher<UserData, AFError> {
         print("AuthAPIService = register() called")
         print("email:: \(email)")
         print("password:: \(password)")
@@ -20,7 +20,7 @@ enum AuthAPIService {
         print("k8SToken:: \(k8SToken)")
         print("isAdmin:: \(isAdmin)")
         return APIClient.shared.session
-            .request(AuthRouter.register(name: name, email: email, password: password, apiUrl: apiUrl, k8sToken: k8SToken, isAdmin: isAdmin))
+            .request(AuthRouter.register(name: name, email: email, password: password, apiUrl: apiUrl, k8sToken: k8SToken, isAdmin: isAdmin, k8sName: k8sName, NSName: nsName))
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map{ receivedValue in
@@ -28,7 +28,7 @@ enum AuthAPIService {
                 // userdefaults, keychain
                 print(receivedValue.token.accessToken)
                 print(receivedValue.token.refreshToken)
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: "", nsName: "")
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: receivedValue.user.k8sName, nsName: receivedValue.user.nsName)
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }

@@ -30,6 +30,8 @@ class UserVM: ObservableObject {
     }
     @Published var apiUrl: String = ""
     @Published var k8sToken: String = ""
+    @Published var k8sName: String = ""
+    @Published var nsName: String = ""
     
     @Published var password = "" {
         didSet {
@@ -111,9 +113,9 @@ class UserVM: ObservableObject {
     var loginFailed = PassthroughSubject<(), Never>()
     
     //회원가입 하기
-    func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool) {
+    func register(name: String, email: String, password: String, apiUrl: String, k8SToken: String, isAdmin: Bool, k8sName: String, nsName: String) {
         print("UserVM: register() called")
-        AuthAPIService.register(name: name, email: email, password: password, apiUrl: apiUrl, k8SToken: k8SToken, isAdmin: isAdmin)
+        AuthAPIService.register(name: name, email: email, password: password, apiUrl: apiUrl, k8SToken: k8SToken, isAdmin: isAdmin, k8sName: k8sName, nsName: nsName)
             .sink(receiveCompletion: { completion in
                     print("UserVM completion: \(completion)")
                 switch completion {
