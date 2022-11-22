@@ -9,10 +9,10 @@ import Foundation
 
 class UserDefaultManager {
     enum Key: String, CaseIterable {
-        case refreshToken, accessToken, k8sToken, apiUrl, isAdmin, k8sName, nsName
+        case refreshToken, accessToken, k8sToken, apiUrl, isAdmin, k8sName, nsName, userId
     }
     enum userKey: String, CaseIterable {
-        case userId, userName, clusterName, apiUrl, k8sToken, isAdmin
+        case userId, userName, clusterName, apiUrl, k8sToken, isAdmin, dToken
     }
     
     static let shared: UserDefaultManager = {
@@ -26,7 +26,7 @@ class UserDefaultManager {
     }
     
     // 토큰 저장. 영구적데이터는 KeyChain에 저장하는것이 좋다.
-    func setTokens(accessToken: String, refreshToken: String, k8sToken: String, apiUrl: String, isAdmin: Bool, k8sName: String, nsName: String){
+    func setTokens(accessToken: String, refreshToken: String, k8sToken: String, apiUrl: String, isAdmin: Bool, k8sName: String, nsName: String, userId: String){
         print("UserDefaultManger - setToken() called")
         UserDefaults.standard.set(accessToken, forKey: Key.accessToken.rawValue)
         UserDefaults.standard.set(refreshToken, forKey: Key.refreshToken.rawValue)
@@ -35,6 +35,7 @@ class UserDefaultManager {
         UserDefaults.standard.set(isAdmin, forKey: Key.isAdmin.rawValue)
         UserDefaults.standard.set(k8sName, forKey: Key.k8sName.rawValue)
         UserDefaults.standard.set(nsName, forKey: Key.nsName.rawValue)
+        UserDefaults.standard.set(userId, forKey: Key.userId.rawValue)
         UserDefaults.standard.synchronize()
     }
     
@@ -73,5 +74,17 @@ class UserDefaultManager {
     
     func getNamespace()->String {
         return UserDefaults.standard.string(forKey: Key.nsName.rawValue) ?? ""
+    }
+    
+    func setDeviceToken(deviceToken: String) {
+        UserDefaults.standard.set(deviceToken, forKey: userKey.dToken.rawValue)
+    }
+    
+    func getDeviceToken()->String {
+        return UserDefaults.standard.string(forKey: userKey.dToken.rawValue) ?? ""
+    }
+    
+    func getUserID()->String {
+        return UserDefaults.standard.string(forKey: userKey.userId.rawValue) ?? ""
     }
 }

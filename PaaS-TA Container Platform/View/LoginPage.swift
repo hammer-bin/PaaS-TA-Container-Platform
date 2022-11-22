@@ -22,7 +22,10 @@ struct LoginPage: View {
         VStack{
             
             // Welcome Back text for 3 half of the screen...
-            Text("Welcome!\nCloud Travel")
+            //Text("Welcome!\nCloud Travel")
+            Image("CloudTravel_Logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
                 .font(.system(size: 55).bold())
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)

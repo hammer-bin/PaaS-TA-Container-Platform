@@ -14,6 +14,7 @@ struct TabButton: View {
     // Selected Tab...
     @Binding var selectedTab: String
     @AppStorage("log_Status") var status = false
+    @EnvironmentObject var userVM : UserVM
     // For Hero Animation Slide...
     var animation: Namespace.ID
     
@@ -23,6 +24,7 @@ struct TabButton: View {
             withAnimation(.spring()){
                 selectedTab = title
                 if title == "Log out" {
+                    userVM.logout()
                     status.toggle()
                 }
             }

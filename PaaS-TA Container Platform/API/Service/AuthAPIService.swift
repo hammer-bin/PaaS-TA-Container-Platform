@@ -28,7 +28,7 @@ enum AuthAPIService {
                 // userdefaults, keychain
                 print(receivedValue.token.accessToken)
                 print(receivedValue.token.refreshToken)
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: receivedValue.user.k8sName, nsName: receivedValue.user.nsName)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: receivedValue.user.k8sName, nsName: receivedValue.user.nsName, userId: receivedValue.user.userID)
                 return receivedValue.user
             }.eraseToAnyPublisher()
     }
@@ -39,15 +39,41 @@ enum AuthAPIService {
         print(email)
         print(password)
         return APIClient.shared.session
-            .request(AuthRouter.login(email: email, password: password))
+            .request(AuthRouter.login(email: email, password: password, deviceToken: UserDefaultManager.shared.getDeviceToken()))
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map{ receivedValue in
                 print(receivedValue)
                 // 받은 토큰 정보 어딘가에 영구 저장
                 // userdefaults, keychain
-                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: receivedValue.user.k8sName, nsName: receivedValue.user.nsName)
+                UserDefaultManager.shared.setTokens(accessToken: receivedValue.token.accessToken, refreshToken: receivedValue.token.refreshToken, k8sToken: receivedValue.user.k8sToken, apiUrl: receivedValue.user.apiUrl, isAdmin: receivedValue.user.isAdmin, k8sName: receivedValue.user.k8sName, nsName: receivedValue.user.nsName, userId: receivedValue.user.userID)
                 return receivedValue.user
+            }.eraseToAnyPublisher()
+    }
+    
+    static func logout()-> AnyPublisher<UserData, AFError> {
+        print("AuthAPIService = logout() called")
+        return APIClient.shared.session
+            .request(AuthRouter.logout(email: UserDefaultManager.shared.getUserID(), deviceToken: UserDefaultManager.shared.getDeviceToken()))
+            .publishDecodable(type: AuthResponse.self)
+            .value()
+            .map{ receivedValue in
+                print(receivedValue)
+                return receivedValue.user
+            }.eraseToAnyPublisher()
+    }
+    
+    //APNs 디바이스 토큰 저장
+    static func updateDeviceToken(token: String)-> AnyPublisher<ApnsTokenData, AFError> {
+        print("AuthAPIService = updateDeviceToken() called")
+
+        return APIClient.shared.session
+            .request(AuthRouter.updateDeviceToken(token: token))
+            .publishDecodable(type: ApnsTokenData.self)
+            .value()
+            .map{ receivedValue in
+                print(receivedValue)
+                return receivedValue
             }.eraseToAnyPublisher()
     }
 }

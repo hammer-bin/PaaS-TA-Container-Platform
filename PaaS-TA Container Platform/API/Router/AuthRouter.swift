@@ -26,8 +26,10 @@ enum AuthRouter: URLRequestConvertible {
     
     
     case register(name: String, email: String, password: String, apiUrl: String, k8sToken: String, isAdmin: Bool, k8sName: String, NSName: String)
-    case login(email: String, password: String)
+    case login(email: String, password: String, deviceToken: String)
     case tokenRefresh
+    case updateDeviceToken(token: String)
+    case logout(email: String, deviceToken: String)
     
     var baseURL: URL {
         return URL(string: APIClient.BASE_URL)!
@@ -41,6 +43,10 @@ enum AuthRouter: URLRequestConvertible {
             return "login"
         case .tokenRefresh:
             return "user/token-refresh"
+        case .updateDeviceToken:
+            return "apns/update-token"
+        case .logout:
+            return "logout"
         }
     }
     
@@ -52,12 +58,18 @@ enum AuthRouter: URLRequestConvertible {
     
     var parameters: Parameters{
         switch self {
-        case let .login(email, password):
+        case let .login(email, password, deviceToken):
             var params = Parameters()
             params["user_id"] = email
             params["user_password"] = password
+            params["device_token"] = deviceToken
             return params
-        
+            
+        case let .logout(email, deviceToken):
+            var params = Parameters()
+            params["user_id"] = email
+            params["device_token"] = deviceToken
+            return params
         
         case .register(let name, let email, let password, let apiUrl, let k8sToken, let isAdmin, let k8sName, let NSName):
             var params = Parameters()
@@ -75,6 +87,11 @@ enum AuthRouter: URLRequestConvertible {
             var params = Parameters()
             let tokenData = UserDefaultManager.shared.getTokens()
             params["refresh_token"] = tokenData.refreshToken
+            return params
+            
+        case .updateDeviceToken(let deviceToken):
+            var params = Parameters()
+            params["device_token"] = deviceToken
             return params
         }
         

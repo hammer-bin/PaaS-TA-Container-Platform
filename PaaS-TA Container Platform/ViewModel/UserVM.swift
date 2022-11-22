@@ -104,11 +104,14 @@ class UserVM: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var userNamespace: String = "All"
     
+    @Published var deviceToken: String = ""
+    
     //회원가입 완료 이벤트
     var registrationSuccess = PassthroughSubject<(), Never>()
     
     // 회원로그인 완료 이벤트
     var loginSuccess = PassthroughSubject<(), Never>()
+    var logoutSuccess = PassthroughSubject<(), Never>()
     
     var loginFailed = PassthroughSubject<(), Never>()
     
@@ -164,7 +167,29 @@ class UserVM: ObservableObject {
                 
             }
         }
+    }
+    
+    func logout() {
+        print("UserVM: register() called")
         
+        AuthAPIService.logout()
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("UserVM completion: \(completion)")
+            } receiveValue: { (receivedUser: UserData) in
+                print("login in")
+                self.loggedInUser = nil
+                self.logoutSuccess.send()
+            }.store(in: &subscription)
+    }
+    
+    func updateDeviceToken(token: String) {
+        AuthAPIService.updateDeviceToken(token: token)
+            .sink { (completion: Subscribers.Completion<AFError>) in
+                print("UserVM completion: \(completion)")
+            } receiveValue: { (receivedData : ApnsTokenData) in
+                print("update to device token")
+                self.deviceToken = receivedData.deviceToken
+            }.store(in: &subscription)
     }
 }
 

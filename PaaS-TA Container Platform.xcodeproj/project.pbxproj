@@ -107,6 +107,7 @@
 		899CDF7728E4EB2F00838335 /* PVCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7628E4EB2F00838335 /* PVCResponse.swift */; };
 		899CDF7928E4EBFC00838335 /* K8sVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7828E4EBFC00838335 /* K8sVM.swift */; };
 		899CDF7C28E4EF3B00838335 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CDF7B28E4EF3A00838335 /* HomePage.swift */; };
+		89A47C99292C23B6003D13E9 /* ApnsTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A47C98292C23B6003D13E9 /* ApnsTokenData.swift */; };
 		89AEC69B2919AD3C00A31230 /* RSCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AEC69A2919AD3C00A31230 /* RSCardView.swift */; };
 		89AEC69D2919AE3600A31230 /* DetailRSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AEC69C2919AE3600A31230 /* DetailRSView.swift */; };
 		89AF80A2290F15BB00787CD2 /* SpeedoMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */; };
@@ -153,6 +154,8 @@
 		893F430F29243AB700DCEACD /* NamespaceMetricInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceMetricInfo.swift; sourceTree = "<group>"; };
 		8947B5112915330E000131F7 /* DeploymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentView.swift; sourceTree = "<group>"; };
 		8947B513291533FD000131F7 /* DeploymentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeploymentCardView.swift; sourceTree = "<group>"; };
+		89495598292B8E2F00CA403F /* PaaS-TA Container PlatformDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PaaS-TA Container PlatformDebug.entitlements"; sourceTree = "<group>"; };
+		89495599292B905900CA403F /* PaaS-TA Container PlatformRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PaaS-TA Container PlatformRelease.entitlements"; sourceTree = "<group>"; };
 		8964DAD3290B2AEA00E77505 /* DetailPVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPVView.swift; sourceTree = "<group>"; };
 		897E0B33291467AC005DBC3B /* IngressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressView.swift; sourceTree = "<group>"; };
 		897E0B35291468AC005DBC3B /* IngressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressCardView.swift; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		899CDF7628E4EB2F00838335 /* PVCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVCResponse.swift; sourceTree = "<group>"; };
 		899CDF7828E4EBFC00838335 /* K8sVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K8sVM.swift; sourceTree = "<group>"; };
 		899CDF7B28E4EF3A00838335 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		89A47C98292C23B6003D13E9 /* ApnsTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnsTokenData.swift; sourceTree = "<group>"; };
 		89AEC69A2919AD3C00A31230 /* RSCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSCardView.swift; sourceTree = "<group>"; };
 		89AEC69C2919AE3600A31230 /* DetailRSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRSView.swift; sourceTree = "<group>"; };
 		89AF80A1290F15BB00787CD2 /* SpeedoMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeedoMeter.swift; path = "../../../../Documents/Kavsoft/Expense Tracker/Expense Tracker/View/SpeedoMeter.swift"; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 		898624C428E24FF800024852 /* PaaS-TA Container Platform */ = {
 			isa = PBXGroup;
 			children = (
+				89495599292B905900CA403F /* PaaS-TA Container PlatformRelease.entitlements */,
+				89495598292B8E2F00CA403F /* PaaS-TA Container PlatformDebug.entitlements */,
 				8993E43128E63580007CA986 /* PaaS-TA-Container-Platform-Info.plist */,
 				89910FD828E3426D00A21088 /* View */,
 				89910FD528E340BD00A21088 /* ViewModel */,
@@ -533,6 +539,7 @@
 				89D7DF9529258E31000DAE33 /* SecretData.swift */,
 				89D7DFA129259A0A000DAE33 /* ResourceQuotaData.swift */,
 				89D7DFA729259FBB000DAE33 /* LimitRangeData.swift */,
+				89A47C98292C23B6003D13E9 /* ApnsTokenData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -710,6 +717,7 @@
 				899CDF6928E4DFB100838335 /* Home.swift in Sources */,
 				89999C8F28E9059800DBA981 /* ReplicaSetListView.swift in Sources */,
 				898FD6A728FE076400D313CE /* K8sData.swift in Sources */,
+				89A47C99292C23B6003D13E9 /* ApnsTokenData.swift in Sources */,
 				892D93FA29170D8C0096F9BE /* UserStorage.swift in Sources */,
 				899CDF6728E4DF8200838335 /* TabButton.swift in Sources */,
 				893F431029243AB700DCEACD /* NamespaceMetricInfo.swift in Sources */,
@@ -874,6 +882,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PaaS-TA Container Platform/PaaS-TA Container PlatformDebug.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -909,6 +918,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PaaS-TA Container Platform/PaaS-TA Container PlatformRelease.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
