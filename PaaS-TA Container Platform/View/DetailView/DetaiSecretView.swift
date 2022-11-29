@@ -41,7 +41,7 @@ struct DetailSecretView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 45, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -65,7 +65,7 @@ struct DetailSecretView: View {
                         }
                         .padding(.horizontal)
                         
-                        // MARK: - PodStatus
+                        // MARK: - Resource
                         VStack{
                             HStack{
                                 ZStack{
@@ -77,13 +77,13 @@ struct DetailSecretView: View {
                                         .foregroundColor(Color("blue"))
                                 }
                                 VStack(alignment: .leading, spacing: 0){
-                                    Text("PodStatus")
+                                    Text("Resource")
                                         //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 75, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -138,8 +138,8 @@ struct DetailSecretView: View {
             Text(title)
                 .font(.caption.bold())
                 .foregroundColor(.gray)
-                .frame(width: width, alignment: .trailing)
                 .padding(.trailing)
+                .frame(width: width, alignment: .trailing)
             Text("\(value)")
                 .font(.system(size: 15, design: .rounded))
                 .frame(alignment: .leading)

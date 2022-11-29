@@ -203,38 +203,6 @@ struct DetailSCView: View {
                     .background(Color.white)
                     //.transition(.opacity)
                     
-                    // MARK: - Back Button
-                    HStack{
-                        
-                        Button(action: {
-                            withAnimation{
-                                k8sVM.showDetail = false
-                            }
-                        }) {
-                            
-                            HStack{
-                                
-                                Image(systemName: "arrow.backward")
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                
-                                Text("Back")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                
-                                
-                            }
-                            .padding(.vertical)
-                            .padding(.horizontal)
-                            .background(
-                             
-                                Color("blue2")
-                                
-                            )
-                            .cornerRadius(10)
-                        }
-                        
-                    }
                 }
                 
             }
@@ -243,8 +211,8 @@ struct DetailSCView: View {
             })
             .onReceive(k8sVM.$scInfoData, perform: { value in
                 self.uid = value?.detailSc.uid ?? ""
-                self.labels = value?.detailSc.labels ?? []
-                self.annotations = value?.detailSc.annotations ?? []
+                self.labels = value?.detailSc.labels ?? ["-"]
+                self.annotations = value?.detailSc.annotations ?? ["-"]
                 self.provider = value?.resourceSc.provider ?? ""
                 self.archiveOnDelete = value?.resourceSc.archiveOnDelete ?? ""
             })

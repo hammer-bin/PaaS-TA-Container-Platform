@@ -68,7 +68,7 @@ struct HomePage: View {
                                 
                                 Text(K8sName)
                                     .font(.system(size: 15, design: .rounded))
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.primary)
                                 
                                 Spacer()
                                 
@@ -78,7 +78,7 @@ struct HomePage: View {
                                     }
                                 }, label: {
                                     Image(systemName: moreInfo ? "arrowtriangle.up.square" : "arrowtriangle.down.square")
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.primary)
                                         .opacity(0.8)
                                 })
                                 
@@ -95,7 +95,7 @@ struct HomePage: View {
                                     
                                     Text(kubeletVersion)
                                         .font(.system(size: 15, design: .rounded))
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.primary)
                                     
                                     Spacer()
                                     
@@ -111,7 +111,7 @@ struct HomePage: View {
                                     
                                     Text(APIUrl)
                                         .font(.callout)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.primary)
                                     
                                     Spacer()
                                     
@@ -277,10 +277,10 @@ struct HomePage: View {
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
                 
                 Circle()
-                    .trim(from: 0, to: ratio)
+                    .trim(from: 0, to: ratio/100)
                     .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                    .animation(Animation.easeInOut(duration: 20), value: ratio)
+                    .animation(Animation.easeInOut(duration: 2), value: ratio)
                 
                 
                 RoundedRectangle(cornerRadius: 8).fill(.clear)

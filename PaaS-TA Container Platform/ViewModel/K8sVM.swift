@@ -414,7 +414,7 @@ class K8sVM: ObservableObject {
     
     func configmapInfo(namespace: String, resourceName: String) {
         print("K8sVM: configmapInfo() called")
-        K8sApiService.configmapInfo(namespace: currentNS, resourceName: resourceName)
+        K8sApiService.configmapInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: ConfigmapInfo) in
@@ -435,7 +435,7 @@ class K8sVM: ObservableObject {
     
     func secretInfo(namespace: String, resourceName: String) {
         print("K8sVM: secretInfo() called")
-        K8sApiService.secretInfo(namespace: currentNS, resourceName: resourceName)
+        K8sApiService.secretInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: SecretInfo) in
@@ -456,7 +456,7 @@ class K8sVM: ObservableObject {
     
     func resourceQuotaInfo(namespace: String, resourceName: String) {
         print("K8sVM: resourceQuotaInfo() called")
-        K8sApiService.resourceQuotaInfo(namespace: currentNS, resourceName: resourceName)
+        K8sApiService.resourceQuotaInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: ResourceQuotaInfo) in
@@ -477,7 +477,7 @@ class K8sVM: ObservableObject {
     
     func limitRangeInfo(namespace: String, resourceName: String) {
         print("K8sVM: limitRangeInfo() called")
-        K8sApiService.limitRangeInfo(namespace: currentNS, resourceName: resourceName)
+        K8sApiService.limitRangeInfo(namespace: namespace, resourceName: resourceName)
             .sink { (completion: Subscribers.Completion<AFError>) in
                 print("K8sVM completion: \(completion)")
             } receiveValue: { (receivedData: LimitRangeInfo) in

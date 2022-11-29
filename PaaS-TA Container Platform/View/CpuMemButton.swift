@@ -34,7 +34,7 @@ struct CpuMemButton: View {
             }
             .padding(.vertical,10)
             .padding(.horizontal)
-            .frame(width: selected == title ? 180 : 100)
+            .frame(width: selected == title ? 160 : 80)
             .background(Color.white.opacity(selected == title ? 0.08 : 0))
             .clipShape(Capsule())
         }

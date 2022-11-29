@@ -40,7 +40,7 @@ struct DetailConfigmapView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 45, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -64,7 +64,7 @@ struct DetailConfigmapView: View {
                         }
                         .padding(.horizontal)
                         
-                        // MARK: - PodStatus
+                        // MARK: - Resource
                         VStack{
                             HStack{
                                 ZStack{
@@ -76,13 +76,13 @@ struct DetailConfigmapView: View {
                                         .foregroundColor(Color("blue"))
                                 }
                                 VStack(alignment: .leading, spacing: 0){
-                                    Text("PodStatus")
+                                    Text("Resource")
                                         //.font(.caption.bold())
                                         .font(.system(size: 15)).bold()
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 75, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -116,9 +116,9 @@ struct DetailConfigmapView: View {
             })
             .onReceive(k8sVM.$configmapInfoData, perform: { value in
                 self.uid = value?.metadata.uid ?? ""
-                self.labels = value?.metadata.labels ?? []
-                self.annotations = value?.metadata.annotations ?? []
-                self.data = value?.data ?? []
+                self.labels = value?.metadata.labels ?? ["-"]
+                self.annotations = value?.metadata.annotations ?? ["-"]
+                self.data = value?.data ?? ["-"]
             })
             .onDisappear(perform: {
                 print(".onDisappear :: Configmap")

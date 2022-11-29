@@ -18,6 +18,7 @@ struct PaaS_TA_Container_PlatformApp: App {
             ContentView()
                 .environmentObject(UserVM())
                 .environmentObject(K8sVM())
+                .preferredColorScheme(.light)
         }
     }
 }

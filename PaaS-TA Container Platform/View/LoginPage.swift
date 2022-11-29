@@ -23,7 +23,7 @@ struct LoginPage: View {
             
             // Welcome Back text for 3 half of the screen...
             //Text("Welcome!\nCloud Travel")
-            Image("CloudTravel_Logo")
+            Image("CloudTravel_500")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .font(.system(size: 55).bold())

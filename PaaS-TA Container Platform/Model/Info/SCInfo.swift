@@ -20,8 +20,8 @@ struct SCInfo: Codable {
 // MARK: - DetailSc
 struct DetailSc: Codable {
     let name, uid: String
-    let labels, annotations: [String]
-    let createdTime: String
+    let labels, annotations: [String]?
+    let createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -32,7 +32,7 @@ struct DetailSc: Codable {
 
 // MARK: - ResourceSc
 struct ResourceSc: Codable {
-    let provider, archiveOnDelete: String
+    let provider, archiveOnDelete: String?
 
     enum CodingKeys: String, CodingKey {
         case provider

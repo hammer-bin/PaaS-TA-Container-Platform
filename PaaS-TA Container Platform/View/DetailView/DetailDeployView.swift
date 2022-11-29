@@ -46,7 +46,7 @@ struct DetailDeployView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 45, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -98,11 +98,11 @@ struct DetailDeployView: View {
                             VStack(alignment: .leading, spacing: 10){
 
                                 
-                                Item(title: "Strategy", value: strategy, width: 140)
-                                Item(title: "minReadySeconds", value: String(minReadySeconds), width: 140)
-                                Item(title: "revisionHistoryLimit", value: String(revisionHistoryLimit), width: 140)
+                                Item(title: "Strategy", value: strategy, width: 135)
+                                Item(title: "minReadySeconds", value: String(minReadySeconds), width: 135)
+                                Item(title: "revisionHistoryLimit", value: String(revisionHistoryLimit), width: 135)
                                 
-                                ItemList(title: "Selector", value: selector, width: 140)
+                                ItemList(title: "Selector", value: selector, width: 135)
                                 
                                 
                             }
@@ -133,7 +133,7 @@ struct DetailDeployView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 114, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -172,7 +172,7 @@ struct DetailDeployView: View {
                                         .foregroundColor(.gray)
                                         .padding(.trailing)
                                     Color("blue3")
-                                        .frame(width: 68, height: 2)
+                                        .frame(width: 75, height: 2)
                                         .clipShape(Capsule())
                                 }
                                 Spacer()
@@ -180,9 +180,9 @@ struct DetailDeployView: View {
                             .padding(.horizontal)
                             
                             VStack(alignment: .leading, spacing: 10){
-                                Item(title: "Updated", value: String(updated), width: 90)
-                                Item(title: "Total", value: String(total), width: 90)
-                                Item(title: "Available", value: String(available), width: 90)
+                                Item(title: "Updated", value: String(updated), width: 110)
+                                Item(title: "Total", value: String(total), width: 110)
+                                Item(title: "Available", value: String(available), width: 110)
                             }
                             .padding(.vertical)
                             .padding(.horizontal, 25)
@@ -207,13 +207,13 @@ struct DetailDeployView: View {
                 k8sVM.deployInfo(namespace: deploy.namespace, resourceName: deploy.name)
             })
             .onReceive(k8sVM.$deployInfoData, perform: { value in
-                self.uid = value?.detail.uid ?? ""
-                self.strategy = value?.resourceInfo.strategy ?? ""
+                self.uid = value?.detail.uid ?? "-"
+                self.strategy = value?.resourceInfo.strategy ?? "-"
                 self.minReadySeconds = value?.resourceInfo.minReadySeconds ?? 0
                 self.revisionHistoryLimit = value?.resourceInfo.revisionHistoryLimit ?? 0
-                self.selector = value?.resourceInfo.Selector ?? []
-                self.maxSurge = value?.updateStrategy.maxSurge ?? ""
-                self.maxUnavailable = value?.updateStrategy.maxUnavailable ?? ""
+                self.selector = value?.resourceInfo.Selector ?? ["-"]
+                self.maxSurge = value?.updateStrategy.maxSurge ?? "-"
+                self.maxUnavailable = value?.updateStrategy.maxUnavailable ?? "-"
                 self.updated = value?.podStatus.updated ?? 0
                 self.total = value?.podStatus.total ?? 0
                 self.available = value?.podStatus.available ?? 0
@@ -233,8 +233,8 @@ struct DetailDeployView: View {
             Text(title)
                 .font(.caption.bold())
                 .foregroundColor(.gray)
-                .frame(width: width, alignment: .trailing)
                 .padding(.trailing)
+                .frame(width: width, alignment: .trailing)
             Text("\(value)")
                 .font(.system(size: 15, design: .rounded))
                 .frame(alignment: .leading)

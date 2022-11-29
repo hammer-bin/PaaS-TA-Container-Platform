@@ -14,6 +14,7 @@ struct MainView: View {
     @State var translation: CGSize = .zero
     @State var offsetX: CGFloat = -120
     @EnvironmentObject var k8sVM : K8sVM
+    @Environment(\.colorScheme) var colorScheme
     
     // Animation Namespace
     @Namespace var animation
@@ -33,20 +34,35 @@ struct MainView: View {
             ZStack{
                 
                 // two background Cards...
-                
-                Color.white
-                    .opacity(0.5)
-                    .cornerRadius(showMenu ? 15 : 0)
-                    .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
-                    .offset(x: showMenu ? -25 : 0)
-                    .padding(.vertical, 30)
-                
-                Color.white
-                    .opacity(0.5)
-                    .cornerRadius(showMenu ? 15 : 0)
-                    .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
-                    .offset(x: showMenu ? -50 : 0)
-                    .padding(.vertical, 60)
+                if colorScheme == .light {
+                    Color.white
+                        .opacity(0.5)
+                        .cornerRadius(showMenu ? 15 : 0)
+                        .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
+                        .offset(x: showMenu ? -25 : 0)
+                        .padding(.vertical, 30)
+                    
+                    Color.white
+                        .opacity(0.5)
+                        .cornerRadius(showMenu ? 15 : 0)
+                        .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
+                        .offset(x: showMenu ? -50 : 0)
+                        .padding(.vertical, 60)
+                } else {
+                    Color.black
+                        .opacity(0.5)
+                        .cornerRadius(showMenu ? 15 : 0)
+                        .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
+                        .offset(x: showMenu ? -25 : 0)
+                        .padding(.vertical, 30)
+                    
+                    Color.black
+                        .opacity(0.5)
+                        .cornerRadius(showMenu ? 15 : 0)
+                        .shadow(color: Color.black.opacity(0.07), radius: 5, x: -5, y: 0)
+                        .offset(x: showMenu ? -50 : 0)
+                        .padding(.vertical, 60)
+                }
                 
                 Home(selectedTab: $selectedTab)
                     .cornerRadius(showMenu ? 15 : 0)
@@ -100,7 +116,7 @@ struct MainView: View {
                                 .padding([.top, .trailing], 15)
                                 .font(.title2)
                                 .frame(width: 36, height: 36)
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                                 .opacity(showMenu ? 0 : 1)
                             
                         })

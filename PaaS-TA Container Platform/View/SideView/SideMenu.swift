@@ -73,7 +73,7 @@ struct SideMenu: View {
                     }
                     .padding(.vertical,10)
                     .padding(.horizontal)
-                    .frame(maxWidth: 240, alignment: .leading)
+                    .frame(maxWidth: 225, alignment: .leading)
                     .fontWeight(.semibold)
                     .background(Color.white)
                     .clipShape(Capsule())
@@ -97,7 +97,7 @@ struct SideMenu: View {
                     }
                     .padding(.vertical,10)
                     .padding(.horizontal)
-                    .frame(maxWidth: 240, alignment: .leading)
+                    .frame(maxWidth: 225, alignment: .leading)
                     .fontWeight(.semibold)
                     .background(Color.white)
                     .clipShape(Capsule())

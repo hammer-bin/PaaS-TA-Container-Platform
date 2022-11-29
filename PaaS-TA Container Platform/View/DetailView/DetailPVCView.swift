@@ -15,6 +15,9 @@ struct DetailPVCView: View {
     @State var storageClass: String = ""
     @State var storage: String = ""
     @State var accessMode: [String] = []
+    @State var labels: [String] = []
+    @State var annotations: [String] = []
+    @State var createdTime: String = ""
     var body: some View {
         
         if let data = k8sVM.currentPVC, k8sVM.showDetail {
@@ -49,47 +52,13 @@ struct DetailPVCView: View {
                             }
                             .padding(.horizontal)
 
-                            
-                            
-                            
                             VStack(alignment: .leading, spacing: 10){
-                                
-                                HStack{
-                                    Text("Name")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 90, alignment: .trailing)
-                                    Text("\(data.name)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                    Spacer()
-                                }
-                                
-                                HStack{
-                                    Text("Namespace")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 90, alignment: .trailing)
-                                    Text("\(data.namespace)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                }
-                        
-                                
-                                HStack{
-                                    Text("UID")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 90, alignment: .trailing)
-                                    Text(uid)
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                }
-                                
-                                
+                                Item(title: "Name", value: data.name, width: 90)
+                                Item(title: "Namespace", value: data.namespace, width: 90)
+                                Item(title: "UID", value: uid, width: 90)
+                                ItemList(title: "Labels", value: labels, width: 90)
+                                ItemList(title: "Annotations", value: annotations, width: 90)
+                                Item(title: "CreateTime", value: createdTime, width: 90)
                             }
                             .padding(.vertical)
                             .padding(.horizontal, 25)
@@ -129,53 +98,10 @@ struct DetailPVCView: View {
                             
                             VStack(alignment: .leading, spacing: 10){
                                 
-                                HStack{
-                                    Text("status")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 140, alignment: .trailing)
-                                    Text("\(status)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                    Spacer()
-                                }
-                                
-                                HStack{
-                                    Text("storageClass")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 140, alignment: .trailing)
-                                    Text("\(storageClass)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                }
-                                
-                                HStack{
-                                    Text("storage")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 140, alignment: .trailing)
-                                    Text("\(storage)")
-                                        .font(.system(size: 15, design: .rounded))
-                                        .fontWeight(.medium)
-                                }
-                                
-                                HStack{
-                                    Text("accessMode")
-                                        .font(.caption.bold())
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing)
-                                        .frame(width: 140, alignment: .trailing)
-                                    ForEach(accessMode, id: \.self){ am in
-                                        Text(am)
-                                            .font(.system(size: 15, design: .rounded))
-                                            .fontWeight(.medium)
-                                            //.clipShape(Rectangle())
-                                    }
-                                }
+                                Item(title: "Status", value: status, width: 100)
+                                Item(title: "StorageClass", value: storageClass, width: 100)
+                                Item(title: "Storate", value: storage, width: 100)
+                                ItemList(title: "AccessMode", value: accessMode, width: 100)
                                 
                                 
                             }
@@ -194,38 +120,6 @@ struct DetailPVCView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                     //.transition(.opacity)
-                    
-                    // MARK: - Back Button
-                    HStack{
-                        
-                        Button(action: {
-                            withAnimation{
-                                k8sVM.showDetail = false
-                            }
-                        }) {
-                            
-                            HStack{
-                                
-                                Image(systemName: "arrow.backward")
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                
-                                Text("Back")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                
-                                
-                            }
-                            .padding(.vertical)
-                            .padding(.horizontal)
-                            .background(
-                             
-                                Color("blue2")
-                                
-                            )
-                            .cornerRadius(10)
-                        }
-                    }
                 }
                 
             }
@@ -238,6 +132,9 @@ struct DetailPVCView: View {
                 self.storageClass = value?.resourcePVC.storageClass ?? ""
                 self.storage = value?.resourcePVC.capacity.storage ?? ""
                 self.accessMode = value?.resourcePVC.accessMode ?? []
+                self.labels = value?.detailPVC.labels ?? ["-"]
+                self.annotations = value?.detailPVC.annotations ?? ["-"]
+                self.createdTime = value?.detailPVC.createdTime ?? "-"
             })
             .onDisappear(perform: {
                 print(".onDisappear :: PVC")
@@ -247,8 +144,48 @@ struct DetailPVCView: View {
             .edgesIgnoringSafeArea(.all)
             
         }
-            
-        
-        
+    }
+    
+    @ViewBuilder
+    func Item(title: String, value: String, width: CGFloat) -> some View {
+        HStack{
+            Text(title)
+                .font(.caption.bold())
+                .foregroundColor(.gray)
+                .padding(.trailing)
+                .frame(width: width, alignment: .trailing)
+            Text("\(value)")
+                .font(.system(size: 15, design: .rounded))
+                .frame(alignment: .leading)
+                .fontWeight(.medium)
+            Spacer()
+        }
+    }
+    
+    @ViewBuilder
+    func ItemList(title: String, value: [String], width: CGFloat) -> some View {
+        HStack{
+            Text(title)
+                .font(.caption.bold())
+                .foregroundColor(.gray)
+                .padding(.trailing)
+                .frame(width: width, alignment: .trailing)
+            VStack(alignment: .leading, spacing: 3){
+                ForEach(value, id: \.self){ am in
+                    Text(am)
+                        .font(.system(size: 15, design: .rounded))
+                        .fontWeight(.medium)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .foregroundColor(.white)
+                        .background(
+                            Rectangle()
+                                .fill(Color.gray)
+                                .cornerRadius(3)
+                        )
+                }
+            }
+            Spacer()
+        }
     }
 }

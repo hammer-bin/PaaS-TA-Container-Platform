@@ -25,6 +25,7 @@ struct UserDashboard: View {
     @State var pvcRatio: CGFloat = 0
     
     @State var moreInfo: Bool = false
+    @Namespace private var namespace
     
     var columns = Array(repeating: GridItem(.flexible(), spacing: 20), count:2)
     
@@ -45,12 +46,13 @@ struct UserDashboard: View {
                                     .font(.system(size:15))
                                     .fontWeight(.bold)
                                     .foregroundColor(.gray)
-                                    .frame(width: 120, alignment: .leading)
+                                    .frame(width: 93, alignment: .leading)
                                 
                                 Text(UserDefaultManager.shared.getNamespace())
                                     .font(.system(size: 15, design: .rounded))
                                     .lineLimit(moreInfo ? 4 : 1)
-                                    .foregroundColor(.black)
+                                    .matchedGeometryEffect(id: "namespaceName", in: namespace)
+                                    .foregroundColor(.primary)
                                 
                                 Spacer()
                                 
@@ -60,7 +62,8 @@ struct UserDashboard: View {
                                     }
                                 }, label: {
                                     Image(systemName: moreInfo ? "arrowtriangle.up.square" : "arrowtriangle.down.square")
-                                        .foregroundColor(.black)
+                                        .matchedGeometryEffect(id: "moreInfo", in: namespace)
+                                        .foregroundColor(.primary)
                                         .opacity(0.8)
                                 })
                                 
@@ -73,11 +76,11 @@ struct UserDashboard: View {
                                         .font(.system(size:15))
                                         .fontWeight(.bold)
                                         .foregroundColor(.gray)
-                                        .frame(width: 120, alignment: .leading)
+                                        .frame(width: 93, alignment: .leading)
                                     
                                     Text(UserDefaultManager.shared.getK8sToken().apiUrl)
                                         .font(.callout)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.primary)
                                     
                                     Spacer()
                                     
@@ -177,10 +180,10 @@ struct UserDashboard: View {
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
                 
                 Circle()
-                    .trim(from: 0, to: ratio)
+                    .trim(from: 0, to: ratio/100)
                     .stroke(Color("blue"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
                     .frame(width: (UIScreen.main.bounds.width - 150) / 2, height: (UIScreen.main.bounds.width - 150) / 2)
-                    .animation(Animation.easeInOut(duration: 20), value: ratio)
+                    .animation(Animation.easeInOut(duration: 2), value: ratio)
                 
                 RoundedRectangle(cornerRadius: 8).fill(.clear)
                     .frame(maxWidth: 100, maxHeight: 30)

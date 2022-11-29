@@ -15,12 +15,16 @@ struct PVCInfo: Codable {
 // MARK: - DetailPVC
 struct DetailPVC: Codable {
     var name, uid, namespace: String
-    var createdTime: String
+    var labels: [String]?
+    var annotations: [String]?
+    var createdTime: String?
 
     enum CodingKeys: String, CodingKey {
         case name
         case uid = "UID"
         case namespace
+        case labels = "Labels"
+        case annotations = "Annotations"
         case createdTime
     }
 }
